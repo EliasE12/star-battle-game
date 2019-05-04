@@ -16,4 +16,44 @@ public class Gunship extends Starfigther {
         this.typeShield = typeShield;
         this.hyperdrive = hyperdrive;
     }
+
+    public int getAntiMissile() {
+        return antiMissile;
+    }
+
+    public void setAntiMissile(int antiMissile) {
+        this.antiMissile = antiMissile;
+    }
+
+    public int getIonCannon() {
+        return ionCannon;
+    }
+
+    public void setIonCannon(int ionCannon) {
+        this.ionCannon = ionCannon;
+    }
+
+    public int getProtonTorpedo() {
+        return protonTorpedo;
+    }
+
+    public void setProtonTorpedo(int protonTorpedo) {
+        this.protonTorpedo = protonTorpedo;
+    }
+
+    public String getTypeShield() {
+        return typeShield;
+    }
+
+    public void setTypeShield(String typeShield) {
+        this.typeShield = typeShield;
+    }
+
+    public boolean isHyperdrive() {
+        return hyperdrive;
+    }
+
+    public void setHyperdrive(boolean hyperdrive) {
+        this.hyperdrive = hyperdrive;
+    }
 }

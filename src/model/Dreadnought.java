@@ -16,4 +16,36 @@ public class Dreadnought extends Spaceship {
         this.laserCannon = laserCannon;
         this.ionCannon = ionCannon;
     }
+
+    public boolean isMassDestruction() {
+        return massDestruction;
+    }
+
+    public void setMassDestruction(boolean massDestruction) {
+        this.massDestruction = massDestruction;
+    }
+
+    public int getTurboLaser() {
+        return turboLaser;
+    }
+
+    public void setTurboLaser(int turboLaser) {
+        this.turboLaser = turboLaser;
+    }
+
+    public int getLaserCannon() {
+        return laserCannon;
+    }
+
+    public void setLaserCannon(int laserCannon) {
+        this.laserCannon = laserCannon;
+    }
+
+    public int getIonCannon() {
+        return ionCannon;
+    }
+
+    public void setIonCannon(int ionCannon) {
+        this.ionCannon = ionCannon;
+    }
 }

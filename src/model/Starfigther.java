@@ -10,4 +10,12 @@ public abstract class Starfigther extends Spaceship {
         super(name, staffLimit, model, volume, fuelRatio, healt);
         this.turboLaser = turboLaser;
     }
+
+    public int getTurboLaser() {
+        return turboLaser;
+    }
+
+    public void setTurboLaser(int turboLaser) {
+        this.turboLaser = turboLaser;
+    }
 }

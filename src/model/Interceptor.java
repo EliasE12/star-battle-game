@@ -10,4 +10,20 @@ public class Interceptor extends Starfigther {
         this.provisions = provisions;
         this.turbo = turbo;
     }
+
+    public int getProvisions() {
+        return provisions;
+    }
+
+    public void setProvisions(int provisions) {
+        this.provisions = provisions;
+    }
+
+    public int getTurbo() {
+        return turbo;
+    }
+
+    public void setTurbo(int turbo) {
+        this.turbo = turbo;
+    }
 }

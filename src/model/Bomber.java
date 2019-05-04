@@ -8,4 +8,12 @@ public class Bomber extends Starfigther {
         super(name, staffLimit, model, volume, fuelRatio, healt, turboLaser);
         this.loadingCapacity = loadingCapacity;
     }
+
+    public int getLoadingCapacity() {
+        return loadingCapacity;
+    }
+
+    public void setLoadingCapacity(int loadingCapacity) {
+        this.loadingCapacity = loadingCapacity;
+    }
 }
