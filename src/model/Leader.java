@@ -1,11 +1,11 @@
 package model;
 
-public class Leader {
+public abstract class Leader {
 
     public enum LevelExperience{HIGHT, MEDIUM, LOW};
 
-    private String name;
-    private LevelExperience levelExperience;
+    protected String name;
+    protected LevelExperience levelExperience;
 
     public Leader(String name, LevelExperience levelExperience) {
         this.name = name;
