@@ -1,4 +1,4 @@
-package interfaces;
+package model;
 
 import model.Spaceship;
 
