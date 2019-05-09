@@ -2,41 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54582673-d10f-4c8d-b7d6-d631ea001f33" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/interfaces/Combatant.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/interfaces/Defensible.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Battlecruiser$Rank.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Battlecruiser.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Bomber.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Destroyer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Dominator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Dreadnought.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Faction.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Game.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Gunship.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Interceptor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Leader$LevelExperience.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Leader.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/LivingBeing$Species.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/LivingBeing.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Match.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Member.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Node.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Player.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Protector.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Robot$Funtion.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Robot.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Shuttle.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Spaceship.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Starfigther.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/model/Stress.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/InicialWindowController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/InicialWindowGUI.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/userInterface/InicialWindowController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/userInterface/InicialWindowGUI.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/userInterface/PrincipalMenuGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Battlecruiser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Battlecruiser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/userInterface/InicialWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/InicialWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/userInterface/InicialWindowGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/userInterface/InicialWindowGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/userInterface/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/userInterface/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -60,22 +30,35 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/userInterface/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+              <caret line="13" column="39" lean-forward="true" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/userInterface/InicialWindowController.java">
+        <entry file="file://$PROJECT_DIR$/src/controllers/InicialWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="323">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/model/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+              <folding>
+                <element signature="e#81#82#0" expanded="true" />
+                <element signature="e#113#114#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,7 +80,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/model/Player.java" />
-        <option value="$PROJECT_DIR$/src/model/Game.java" />
         <option value="$PROJECT_DIR$/src/model/Match.java" />
         <option value="$PROJECT_DIR$/src/model/Starfigther.java" />
         <option value="$PROJECT_DIR$/src/model/Bomber.java" />
@@ -106,8 +88,10 @@
         <option value="$PROJECT_DIR$/src/model/Dreadnought.java" />
         <option value="$PROJECT_DIR$/src/model/Battlecruiser.java" />
         <option value="$PROJECT_DIR$/src/userInterface/InicialWindowGUI.fxml" />
-        <option value="$PROJECT_DIR$/src/userInterface/InicialWindowController.java" />
         <option value="$PROJECT_DIR$/src/userInterface/Main.java" />
+        <option value="$PROJECT_DIR$/src/userInterface/InicialWindowController.java" />
+        <option value="$PROJECT_DIR$/src/controllers/InicialWindowController.java" />
+        <option value="$PROJECT_DIR$/src/model/Game.java" />
       </list>
     </option>
   </component>
@@ -126,6 +110,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -142,13 +127,24 @@
               <item name="star-battle-game" type="b2602c69:ProjectViewProjectNode" />
               <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="star-battle-game" type="b2602c69:ProjectViewProjectNode" />
+              <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="star-battle-game" type="b2602c69:ProjectViewProjectNode" />
+              <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="userInterface" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Course" />
     </panes>
   </component>
@@ -178,7 +174,7 @@
       <module name="star-battle-game" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="userInterface.*" />
+          <option name="PATTERN" value="controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -203,13 +199,21 @@
       <option name="presentableId" value="Default" />
       <updated>1556984174533</updated>
     </task>
+    <task id="LOCAL-00001" summary="Creada la primera ventana del programa, la cual es en donde toca iniciar sesion. Construido el metodo que ejecuta la primera ventana de login. Creado su correspondiente controller">
+      <created>1557436697108</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1557436697108</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22108346" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22108346" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -239,6 +243,10 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="UML design tool window" order="8" />
     </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creada la primera ventana del programa, la cual es en donde toca iniciar sesion. Construido el metodo que ejecuta la primera ventana de login. Creado su correspondiente controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creada la primera ventana del programa, la cual es en donde toca iniciar sesion. Construido el metodo que ejecuta la primera ventana de login. Creado su correspondiente controller" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/model/Player.java">
@@ -339,17 +347,6 @@
             <element signature="e#1732#1733#0" expanded="true" />
             <element signature="e#1769#1770#0" expanded="true" />
             <element signature="e#1794#1795#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#119#120#0" expanded="true" />
-            <element signature="e#151#152#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -487,20 +484,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/userInterface/InicialWindowController.java">
+    <entry file="file://$PROJECT_DIR$/src/userInterface/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="153">
+          <caret line="13" column="39" lean-forward="true" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/InicialWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/userInterface/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/model/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        <state relative-caret-position="170">
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding>
+            <element signature="e#81#82#0" expanded="true" />
+            <element signature="e#113#114#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

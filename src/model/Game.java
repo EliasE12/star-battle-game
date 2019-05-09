@@ -5,10 +5,14 @@ public class Game {
     private Player root;
 
     public Game() {
+        this.root = null;
+    }
+
+    public void searchPlayer(String nickName){
 
     }
 
-    public Game(Player root){
-        this.root = root;
+    private void createPlayer(){
+
     }
 }

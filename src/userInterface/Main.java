@@ -11,10 +11,27 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("InicialWindowGUI.fxml"));
-        primaryStage.setTitle("");
+        primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+
+/*    public void sumarTotales(){
+        int suma = 0;
+
+        for (int i = 0; i < array.size(); i++) {
+
+            if (array.get(i) instanceof LineaTelefonica){
+
+                suma += array.get(i).calcularCosto();
+
+            }else {
+                suma += array.get(i).calcularCosto();
+            }
+
+        }
+
+    }*/
 
 
     public static void main(String[] args) {
