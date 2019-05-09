@@ -17,10 +17,10 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                <children>
                   <JFXTextField fx:id="tfEnter" />
-                  <JFXButton fx:id="btEnter" text="Entrar" />
+                  <JFXButton fx:id="btEnter" onAction="#enterClicked" text="Entrar" />
                </children>
             </HBox>
-            <JFXButton fx:id="btHallOfFame" text="Salón de a Fama " />
+            <JFXButton fx:id="btHallOfFame" onAction="#hallFameClicked" text="Salón de a Fama " />
          </children>
       </VBox>
    </center>
