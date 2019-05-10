@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -23,13 +23,13 @@
       <HBox prefHeight="33.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <JFXTreeTableView BorderPane.alignment="CENTER">
-         <columns>
-            <TreeTableColumn prefWidth="150.0" text="Nombre de Usuario" />
-            <TreeTableColumn minWidth="0.0" prefWidth="153.0" text="Puntaje Global" />
-            <TreeTableColumn fx:id="tvHallOfFame" prefWidth="131.0" text="Juegos Ganados" />
-            <TreeTableColumn prefWidth="150.0" text="Juegos Perdidos" />
-         </columns>
-      </JFXTreeTableView>
+      <TableView fx:id="tvHallOfFame" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="tcName" prefWidth="193.0" text="Nombre del Jugador" />
+          <TableColumn fx:id="tcGlobalScore" prefWidth="133.0" text="Puntaje Global" />
+            <TableColumn fx:id="tcWonMatch" prefWidth="131.0" text="Partidas Ganadas" />
+            <TableColumn fx:id="tcLostMatch" prefWidth="126.0" text="Partidas Perdidas" />
+        </columns>
+      </TableView>
    </center>
 </BorderPane>
