@@ -4,14 +4,14 @@ import customExceptions.EqualUserException;
 
 public class Player {
 
-    private Player right;
-    private Player left;
-
     private String name;
     private String userName;
     private int globalScore;
     private int wonGames;
     private int lostGames;
+
+    private Player right;
+    private Player left;
 
     public Player(String name ,String userName, int globalScore, int wonGames, int lostGames) {
         this.name = name;

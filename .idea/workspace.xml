@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54582673-d10f-4c8d-b7d6-d631ea001f33" name="Default Changelist" comment="">
+    <list default="true" id="54582673-d10f-4c8d-b7d6-d631ea001f33" name="Default Changelist" comment="Implementada la ventana de registro de un nuevo jugador (Registration) y su respectivo su controller asociado.">
+      <change afterPath="$PROJECT_DIR$/src/controllers/RegistrationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/userInterface/RegistrationGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/star-battle-game/controllers/FallOfFameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/star-battle-game/controllers/FallOfFameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/star-battle-game/controllers/InicialWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/star-battle-game/controllers/InicialWindowController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/HallOfFameGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/HallOfFameGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/InicialWindowGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/InicialWindowGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/PrincipalMenuGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/PrincipalMenuGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/FallOfFameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/FallOfFameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInterface/HallOfFameGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/userInterface/HallOfFameGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/InicialWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/InicialWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/userInterface/InicialWindowGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/userInterface/InicialWindowGUI.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,90 +27,22 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Destroyer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/userInterface/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/InicialWindowController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/userInterface/HallOfFameGUI.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controllers/FallOfFameController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Game.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="EliasE12 &lt;simply753@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -118,19 +60,21 @@
         <option value="$PROJECT_DIR$/src/controllers/PrincipalMenuController.java" />
         <option value="$PROJECT_DIR$/src/customExceptions/EqualUserException.java" />
         <option value="$PROJECT_DIR$/src/model/Game.java" />
-        <option value="$PROJECT_DIR$/src/model/Player.java" />
         <option value="$PROJECT_DIR$/src/customExceptions/EmptyDataException.java" />
-        <option value="$PROJECT_DIR$/src/controllers/InicialWindowController.java" />
         <option value="$PROJECT_DIR$/src/userInterface/Main.java" />
+        <option value="$PROJECT_DIR$/src/model/Player.java" />
         <option value="$PROJECT_DIR$/src/controllers/FallOfFameController.java" />
+        <option value="$PROJECT_DIR$/src/controllers/RegistrationController.java" />
+        <option value="$PROJECT_DIR$/src/userInterface/RegistrationGUI.fxml" />
+        <option value="$PROJECT_DIR$/src/controllers/InicialWindowController.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="y" value="77" />
-    <option name="width" value="1386" />
-    <option name="height" value="788" />
+    <option name="x" value="98" />
+    <option name="y" value="38" />
+    <option name="width" value="1152" />
+    <option name="height" value="680" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -140,9 +84,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Course" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -155,28 +97,12 @@
               <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="star-battle-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="star-battle-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="star-battle-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="userInterface" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Course" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -185,7 +111,7 @@
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -244,12 +170,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557443749368</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Implementadas la ventana de Hall of Fame, con su respectivo controller">
+      <created>1557491163385</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1557491163385</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="1" />
@@ -257,20 +189,20 @@
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.2239819" />
+      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.22775264" />
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.17952757" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.265" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39923954" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.56166667" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5019531" side_tool="true" weight="0.56166667" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49804688" weight="0.56166667" />
       <window_info anchor="bottom" id="Educational.CheckDetails" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -325,7 +257,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creada la primera ventana del programa, la cual es en donde toca iniciar sesion. Construido el metodo que ejecuta la primera ventana de login. Creado su correspondiente controller" />
     <MESSAGE value="Creada la excepcion EmptyDataException, implementado el cuerpo del metodo enterClicked." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creada la excepcion EmptyDataException, implementado el cuerpo del metodo enterClicked." />
+    <MESSAGE value="Implementadas la ventana de Hall of Fame, con su respectivo controller" />
+    <MESSAGE value="Implementada la ventana de registro de un nuevo jugador (Registration) y su respectivo su controller asociado." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementada la ventana de registro de un nuevo jugador (Registration) y su respectivo su controller asociado." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/model/Match.java">
@@ -545,14 +479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/userInterface/InicialWindowGUI.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/customExceptions/EqualUserException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -575,6 +501,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Destroyer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -589,10 +525,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/model/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
+        <state relative-caret-position="176">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/userInterface/PlayerHistory.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/userInterface/InicialWindowGUI.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/RegistrationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -601,8 +556,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/InicialWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+        <state relative-caret-position="184">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/FallOfFameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -611,28 +576,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/userInterface/HallOfFameGUI.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
+        <state relative-caret-position="440">
           <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/userInterface/RegistrationGUI.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        <state relative-caret-position="208">
+          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/FallOfFameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
   <component name="masterDetails">
