@@ -1,16 +1,20 @@
 package model;
 
+import customExceptions.EqualUserException;
+
 public class Player {
 
     private Player right;
     private Player left;
 
+    private String name;
     private String userName;
     private int globalScore;
     private int wonGames;
     private int lostGames;
 
-    public Player(String userName, int globalScore, int wonGames, int lostGames) {
+    public Player(String name ,String userName, int globalScore, int wonGames, int lostGames) {
+        this.name = name;
         this.userName = userName;
         this.globalScore = globalScore;
         this.wonGames = wonGames;
@@ -23,6 +27,10 @@ public class Player {
 
     public Player getLeft() {
         return left;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public String getUserName() {
@@ -39,5 +47,25 @@ public class Player {
 
     public int getLostGames() {
         return lostGames;
+    }
+
+    public void addPlayer(Player toAdd) throws EqualUserException {
+        if(userName.compareTo(toAdd.getUserName()) == 0){
+            throw new EqualUserException();
+
+        }else if (userName.compareTo(toAdd.getUserName()) < 0){
+            if (left == null){
+                left = toAdd;
+            }else {
+                left.addPlayer(toAdd);
+            }
+
+        }else if (userName.compareTo(toAdd.getUserName()) > 0){
+            if (right == null){
+                right = toAdd;
+            }else {
+                right.addPlayer(toAdd);
+            }
+        }
     }
 }

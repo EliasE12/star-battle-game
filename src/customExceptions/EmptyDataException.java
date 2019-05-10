@@ -1,18 +1,16 @@
 package customExceptions;
 
-import com.jfoenix.controls.JFXDialog;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 
 public class EmptyDataException extends Exception {
 
     public EmptyDataException() {
-        super("To be able to log in, you need to type your username.");
+        super("Para poder iniciar sesión, debe escribir su nombre de usuario.");
     }
 
     public void message(){
-        Alert alert = new Alert(Alert.AlertType.ERROR, "Caused by \n" + "The login field is empty.", ButtonType.CLOSE);
+        Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "El campo de inicio de sesión está vacío.", ButtonType.CLOSE);
         alert.setHeaderText(super.getMessage());
         alert.show();
     }

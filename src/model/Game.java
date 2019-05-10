@@ -1,6 +1,7 @@
 package model;
 
 import customExceptions.EmptyDataException;
+import customExceptions.EqualUserException;
 
 public class Game {
 
@@ -10,17 +11,29 @@ public class Game {
         this.root = null;
     }
 
-    public void searchPlayer(String nickName) throws EmptyDataException {
+    public Player searchPlayer(String nickName) throws EmptyDataException {
+        Player found = null;
+
         if (nickName.equals("")){
             throw new EmptyDataException();
 
         }else {
 
 
+            if (found == null){
+                throw new NullPointerException();
+            }
         }
+        return found;
     }
 
-    private void createPlayer(){
+    public void addPlayer(String nickName, String name) throws EqualUserException {
+        Player player = new Player(name ,nickName, 0, 0, 0);
 
+        if (root == null){
+            root = player;
+        }else {
+            root.addPlayer(player);
+        }
     }
 }
