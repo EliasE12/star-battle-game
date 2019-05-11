@@ -5,7 +5,9 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.event.ActionEvent;
 import model.Record;
 
 public class PlayerHistoryController {
@@ -23,7 +25,7 @@ public class PlayerHistoryController {
     private TableColumn<Record, Integer> score;
 
     @FXML
-    private TableColumn<Record, Boolean> won;
+    private TableColumn<Record, Record.Result> result;
 
     
     @FXML
@@ -31,9 +33,10 @@ public class PlayerHistoryController {
     	time.setCellValueFactory(new PropertyValueFactory<Record, String>("time"));
     	date.setCellValueFactory(new PropertyValueFactory<Record, Date>("date"));
     	score.setCellValueFactory(new PropertyValueFactory<Record, Integer>("score"));
-    	won.setCellValueFactory(new PropertyValueFactory<Record, Boolean>("won"));
-
+        result.setCellValueFactory(new PropertyValueFactory<Record, Record.Result>("result"));
     }
+
+
 }
 
 

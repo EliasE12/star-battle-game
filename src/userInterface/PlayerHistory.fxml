@@ -7,9 +7,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PlayerHistoryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PlayerHistoryController">
    <top>
-      <VBox alignment="CENTER" prefHeight="84.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Historial del jugador" textAlignment="CENTER" wrappingWidth="494.8349609375">
                <font>
@@ -20,12 +20,12 @@
       </VBox>
    </top>
    <center>
-      <TableView fx:id="tbPlayerHistory" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tbPlayerHistory" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="time" prefWidth="105.0" text="Tiempo" />
-          <TableColumn fx:id="date" prefWidth="130.0" text="Fecha" />
-            <TableColumn fx:id="score" prefWidth="184.0" text="Puntaje" />
-            <TableColumn fx:id="won" prefWidth="180.0" text="Gano" />
+          <TableColumn fx:id="time" editable="false" prefWidth="158.0" resizable="false" sortable="false" text="Tiempo" />
+          <TableColumn fx:id="date" editable="false" prefWidth="182.0" resizable="false" sortable="false" text="Fecha" />
+            <TableColumn fx:id="score" editable="false" prefWidth="128.0" resizable="false" sortable="false" text="Puntaje" />
+            <TableColumn fx:id="result" editable="false" prefWidth="231.0" resizable="false" sortable="false" text="Resultado" />
         </columns>
       </TableView>
    </center>

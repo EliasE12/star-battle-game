@@ -13,19 +13,19 @@ public class Game {
     /**
      * -------
      *  Se usa recursiva para localizar un jugador en el arbol que inicia en este nodo.
-     * @param nickName es el nombre de usuario que se desea buscar. - nameSearch != null
+     * @param userName es el nombre de usuario que se desea buscar. - nameSearch != null
      * @return jugador con el mismo nombre de usuario. Si no lo encuentra retorna null;
      * @throws NullPointerException se lanzá cuando no encuentra a un jugador.
      * @throws EmptyDataException se lanzá cuando no se ingresa un valor vacio.
      */
-    public Player searchPlayer(String nickName) throws EmptyDataException, NullPointerException{
+    public Player searchPlayer(String userName) throws EmptyDataException {
     	Player found = null;
 
-        if (nickName.equals("")){
+        if (userName.equals("")){
             throw new EmptyDataException();
 
         }else {
-            found = root.search(nickName);
+            found = root.search(userName);
         }
 
         if(found == null) {
@@ -35,13 +35,13 @@ public class Game {
     }
 
   
-    public void addPlayer(String nickName, String name, String lastName) throws EqualUserException, EmptyDataException {
+    public void addPlayer(String userName, String name, String lastName) throws EqualUserException, EmptyDataException {
 
-        if (nickName.equals("") || name.equals("") || lastName.equals("")){
+        if (userName.equals("") || name.equals("") || lastName.equals("")){
             throw new EmptyDataException();
 
         }else {
-            Player player = new Player(name , lastName, nickName, 0, 0, 0);
+            Player player = new Player(name , lastName, userName, 0, 0, 0);
 
             if (root == null){
                 root = player;

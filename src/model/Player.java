@@ -13,6 +13,7 @@ public class Player {
 
     private Player right;
     private Player left;
+    private Record first;
 
     public Player(String name, String lastName, String userName, int globalScore, int wonGames, int lostGames) {
         this.name = name;
@@ -21,6 +22,10 @@ public class Player {
         this.globalScore = globalScore;
         this.wonGames = wonGames;
         this.lostGames = lostGames;
+
+        right = null;
+        left = null;
+        first = null;
     }
 
     public Player getRight() {
@@ -29,6 +34,10 @@ public class Player {
 
     public Player getLeft() {
         return left;
+    }
+
+    public Record getRecord(){
+        return first;
     }
 
     public String getName(){
@@ -106,5 +115,8 @@ public class Player {
     public boolean isLeaf() {
     	return (right == null && left == null);
     }
+
+
+
     
 }

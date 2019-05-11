@@ -1,20 +1,34 @@
 package controllers;
 
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import model.Player;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
 
-    @FXML private JFXButton btRecord;
+    private Player player;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+
+    public void setPlayer(Player player){
+        this.player = player;
     }
 
 
@@ -24,7 +38,22 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void recordClicked(ActionEvent event) {
+    void recordClicked(ActionEvent event)  {
+        Stage stage = new Stage();
 
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/userInterface/PlayerHistory.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        stage.setScene(new Scene(root));
+        stage.setTitle("Historial de partidas");
+        stage.setResizable(false);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
+        stage.show();
     }
+
 }
