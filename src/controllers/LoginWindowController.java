@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class InicialWindowController implements Initializable {
+public class LoginWindowController implements Initializable {
 
     private Game game;
 
