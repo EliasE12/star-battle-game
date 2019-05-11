@@ -1,6 +1,7 @@
 package model;
 
 import customExceptions.EqualUserException;
+import customExceptions.NotExistPlayerException;
 
 public class Player {
 
@@ -13,7 +14,6 @@ public class Player {
 
     private Player right;
     private Player left;
-    private Record first;
 
     public Player(String name, String lastName, String userName, int globalScore, int wonGames, int lostGames) {
         this.name = name;
@@ -22,10 +22,6 @@ public class Player {
         this.globalScore = globalScore;
         this.wonGames = wonGames;
         this.lostGames = lostGames;
-
-        right = null;
-        left = null;
-        first = null;
     }
 
     public Player getRight() {
@@ -34,10 +30,6 @@ public class Player {
 
     public Player getLeft() {
         return left;
-    }
-
-    public Record getRecord(){
-        return first;
     }
 
     public String getName(){
@@ -92,7 +84,7 @@ public class Player {
      * @return jugador con el mismo nombre de usuario. Si no lo encuentra retorna null;
      * @throws NullPointerException se lanzá cuando no encuentra a un jugador.
      */
-    public Player search (String nickName) {
+    public Player search (String nickName) throws NotExistPlayerException{
         Player found = null;
     	
     	if(nickName.compareTo(nickName) == 0) {
@@ -102,6 +94,10 @@ public class Player {
       	}else {
             found = right.search(nickName);
     	}
+
+    	if (found == null){
+    	    throw new NotExistPlayerException();
+        }
 
     	return found;
     }
@@ -116,7 +112,60 @@ public class Player {
     	return (right == null && left == null);
     }
 
+    /**
+     * Elimina el jugador con el nombre de usuario asociado.
+     * @param nickName - Es el nombre de usuario del jugador a eliminar.
+     * @return el jugador que se ha eliminado. En otro caso devuelve null.
+     */
+    public Player delete(String nickName){
+
+        if (isLeaf()){
+            return null;
+        }
+
+        if (userName.compareTo(nickName)==0){
+            if (left == null){
+                return right;
+            }
+            if (right == null){
+                return left;
+            }
+
+            Player successor = right.getMinor();
+            right = right.delete(successor.getUserName());
+            successor.left = left;
+            successor.right = right;
+            return successor;
+
+        }else if(userName.compareTo(nickName)>0){
+            left = left.delete(nickName);
+        }else {
+            right = right.delete(nickName);
+        }
+
+        return this;
+
+    }
+
+    /**
+     * Devuelve el menor jugador del arbol.
+     * @return - el menor jugador.
+     */
+    public Player getMinor(){
+        return (left == null) ? this : left.getMinor();
+    }
+
+    /**
+     * Devuelve el mayor jugador del arbol.
+     * @return - el mayor jugador.
+     */
+    public Player getMajor(){
+        return (right == null) ? this : right.getMajor();
+    }
 
 
-    
+
+
+
+
 }

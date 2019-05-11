@@ -2,16 +2,15 @@ package controllers;
 
 import com.jfoenix.controls.JFXTextField;
 import customExceptions.EmptyDataException;
+import customExceptions.NotExistPlayerException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.event.ActionEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Game;
 import model.Player;
@@ -40,16 +39,22 @@ public class LoginWindowController implements Initializable {
             Player found = game.searchPlayer(tfEnter.getText());
 
             if (found != null) {
-                startMainMenu(found, event);
+
             }
+
         } catch (EmptyDataException e) {
             e.message();
 
         } catch (NullPointerException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "Nombre de usuario incorrecto o usuario no registrado", ButtonType.CLOSE);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "Nombre de usuario incorrecto o usuario no registrado.", ButtonType.CLOSE);
             alert.setHeaderText("Usuario no encontrado");
             alert.show();
+        } catch (NotExistPlayerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "El jugador buscado no existe.", ButtonType.CLOSE);
+            alert.setHeaderText("Jugador no existe");
+            alert.show();
         }
+
     }
 
     @FXML
@@ -71,49 +76,37 @@ public class LoginWindowController implements Initializable {
 
         stage.setTitle("Ventana de Registro");
         stage.setScene(new Scene(root));
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner((Stage) ((Node) event.getSource()).getScene().getWindow());
         stage.show();
     }
 
     @FXML
     void hallFameClicked(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/HallOfFameGUI.fxml"));
+        Stage stage = new Stage();
+
         Parent root = null;
 
         try {
-            root = loader.load();
-        }catch (IOException e){
+            root = FXMLLoader.load(getClass().getResource("/userInterface/HallOfFameGUI.fxml"));
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Salon de la Fama");
         stage.setScene(new Scene(root));
-        stage.setTitle("Salón de la Fama");
         stage.show();
     }
+
 
     @FXML
     void deletePlayerClicked(ActionEvent event) {
-        
-    }
-
-    private void startMainMenu(Player player, ActionEvent event){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/MainMenuGUI.fxml"));
-        Parent root = null;
-
-        try{
-            root = loader.load();
-        }catch (IOException e){
-            e.printStackTrace();
+        try {
+            game.deletePlayer(tfEnter.getText());
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "El jugador a eliminar no existe.", ButtonType.CLOSE);
+            alert.setHeaderText("El jugador no existe");
+            alert.show();
         }
 
-        MainMenuController ven = loader.getController();
-        ven.setPlayer(player);
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
     }
 
 }
