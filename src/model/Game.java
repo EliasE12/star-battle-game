@@ -20,25 +20,34 @@ public class Game {
      */
     public Player searchPlayer(String nickName) throws EmptyDataException, NullPointerException{
     	Player found = null;
+
         if (nickName.equals("")){
             throw new EmptyDataException();
+
         }else {
-        	found = (root == null) ? null: root.search(nickName);
+            found = root.search(nickName);
         }
+
         if(found == null) {
-        	throw new NullPointerException();
+            throw new NullPointerException();
         }
         return found;
     }
 
   
-    public void addPlayer(String nickName, String name) throws EqualUserException {
-        Player player = new Player(name ,nickName, 0, 0, 0);
+    public void addPlayer(String nickName, String name, String lastName) throws EqualUserException, EmptyDataException {
 
-        if (root == null){
-            root = player;
+        if (nickName.equals("") || name.equals("") || lastName.equals("")){
+            throw new EmptyDataException();
+
         }else {
-            root.addPlayer(player);
+            Player player = new Player(name , lastName, nickName, 0, 0, 0);
+
+            if (root == null){
+                root = player;
+            }else {
+                root.addPlayer(player);
+            }
         }
     }
     

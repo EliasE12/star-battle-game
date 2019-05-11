@@ -5,6 +5,7 @@ import customExceptions.EqualUserException;
 public class Player {
 
     private String name;
+    private String lastName;
     private String userName;
     private int globalScore;
     private int wonGames;
@@ -13,8 +14,9 @@ public class Player {
     private Player right;
     private Player left;
 
-    public Player(String name ,String userName, int globalScore, int wonGames, int lostGames) {
+    public Player(String name, String lastName, String userName, int globalScore, int wonGames, int lostGames) {
         this.name = name;
+        this.lastName = lastName;
         this.userName = userName;
         this.globalScore = globalScore;
         this.wonGames = wonGames;
@@ -31,6 +33,10 @@ public class Player {
 
     public String getName(){
         return name;
+    }
+
+    public String getLastName(){
+        return lastName;
     }
 
     public String getUserName() {
@@ -50,6 +56,7 @@ public class Player {
     }
 
     public void addPlayer(Player toAdd) throws EqualUserException {
+
         if(userName.compareTo(toAdd.getUserName()) == 0){
             throw new EqualUserException();
 
@@ -76,15 +83,18 @@ public class Player {
      * @return jugador con el mismo nombre de usuario. Si no lo encuentra retorna null;
      * @throws NullPointerException se lanzá cuando no encuentra a un jugador.
      */
-    public Player search (String nickName) throws NullPointerException{
+    public Player search (String nickName) {
+        Player found = null;
     	
-    	if(this.name.compareTo(nickName) == 0) {
-    		return this;
-    	}else if(this.name.compareTo(nickName) < 0) {
-    		return (right == null)? null : right.search(nickName);    		
+    	if(nickName.compareTo(nickName) == 0) {
+    		found = this;
+    	}else if(nickName.compareTo(nickName) < 0) {
+            found = left.search(nickName);
       	}else {
-      		return (left == null)? null : left.search(nickName);
+            found = right.search(nickName);
     	}
+
+    	return found;
     }
     
     

@@ -5,7 +5,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PrincipalMenuController implements Initializable {
+public class LoginMenuController implements Initializable {
 
 
 
