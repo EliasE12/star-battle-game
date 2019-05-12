@@ -56,6 +56,12 @@ public class Player {
         return lostGames;
     }
 
+    /**
+     * Se usa recursividad para agregar a un nuevo jugador al arbol binario, utilizando como criterio su nombre de usaurio
+     * @param toAdd jugador el cual se agregará al arbol binario
+     * @pre Player != null
+     * @throws EqualUserException se lanzará cuando halle un jugador ya agregado, con el mismo nombre de usuario
+     */
     public void addPlayer(Player toAdd) throws EqualUserException {
 
         if(userName.compareTo(toAdd.getUserName()) == 0){
@@ -78,21 +84,20 @@ public class Player {
     }
     
     /**
-     * -------
      *  Se usa recursiva para localizar un jugador en el arbol que inicia en este nodo.
-     * @param nickName es el nombre de usuario que se desea buscar. - nameSearch != null
+     * @param userName es el nombre de usuario que se desea buscar. - nameSearch != null
      * @return jugador con el mismo nombre de usuario. Si no lo encuentra retorna null;
-     * @throws NullPointerException se lanzá cuando no encuentra a un jugador.
+     * @throws NotExistPlayerException se lanzá cuando no encuentra a un jugador.
      */
-    public Player search (String nickName) throws NotExistPlayerException{
+    public Player search (String userName) throws NotExistPlayerException{
         Player found = null;
     	
-    	if(nickName.compareTo(nickName) == 0) {
+    	if(userName.compareToIgnoreCase(userName) == 0) {
     		found = this;
-    	}else if(nickName.compareTo(nickName) < 0) {
-            found = left.search(nickName);
+    	}else if(userName.compareToIgnoreCase(userName) < 0) {
+            found = left.search(userName);
       	}else {
-            found = right.search(nickName);
+            found = right.search(userName);
     	}
 
     	if (found == null){
@@ -114,16 +119,16 @@ public class Player {
 
     /**
      * Elimina el jugador con el nombre de usuario asociado.
-     * @param nickName - Es el nombre de usuario del jugador a eliminar.
+     * @param userName - Es el nombre de usuario del jugador a eliminar.
      * @return el jugador que se ha eliminado. En otro caso devuelve null.
      */
-    public Player delete(String nickName){
+    public Player delete(String userName) {
 
         if (isLeaf()){
             return null;
         }
 
-        if (userName.compareTo(nickName)==0){
+        if (this.userName.compareTo(userName)==0){
             if (left == null){
                 return right;
             }
@@ -137,10 +142,10 @@ public class Player {
             successor.right = right;
             return successor;
 
-        }else if(userName.compareTo(nickName)>0){
-            left = left.delete(nickName);
+        }else if(this.userName.compareTo(userName)>0){
+            left = left.delete(userName);
         }else {
-            right = right.delete(nickName);
+            right = right.delete(userName);
         }
 
         return this;
