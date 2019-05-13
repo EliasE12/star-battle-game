@@ -15,6 +15,9 @@ public class Player {
     private Player right;
     private Player left;
 
+    private Match match;
+    private Record first;
+
     public Player(String name, String lastName, String userName, int globalScore, int wonGames, int lostGames) {
         this.name = name;
         this.lastName = lastName;
@@ -54,6 +57,19 @@ public class Player {
 
     public int getLostGames() {
         return lostGames;
+    }
+
+    public Match getMatch() {
+        return match;
+    }
+
+    public Record getFirst() {
+        return first;
+    }
+
+
+    public void setMatch(Match match) {
+        this.match = match;
     }
 
     /**

@@ -5,6 +5,7 @@ import customExceptions.EqualUserException;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import model.Game;
@@ -13,8 +14,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class RegistrationWindowController implements Initializable {
-
-    private Stage stage;
 
     private Game game;
 
@@ -31,16 +30,13 @@ public class RegistrationWindowController implements Initializable {
     }
 
 
-    public void setStage(Stage stage){
-        this.stage = stage;
-    }
-
     public void setGame(Game game){
         this.game = game;
     }
 
     @FXML
     void cancelClicked(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
@@ -48,6 +44,7 @@ public class RegistrationWindowController implements Initializable {
     void toRegisterClicked(ActionEvent event) {
         try {
             game.addPlayer(tfUserName.getText(), tfName.getText(), tfLasName.getText());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.close();
 
         }catch (EmptyDataException e){

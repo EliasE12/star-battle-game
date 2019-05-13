@@ -64,7 +64,6 @@ public class LoginWindowController implements Initializable {
         }
 
         RegistrationWindowController ven = loader.getController();
-        ven.setStage(stage);
         ven.setGame(game);
 
         stage.setTitle("Ventana de Registro");
@@ -76,16 +75,17 @@ public class LoginWindowController implements Initializable {
 
     @FXML
     void hallFameClicked(ActionEvent event) {
-        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/HallOfFameGUI.fxml"));
 
         Parent root = null;
 
         try {
-            root = FXMLLoader.load(getClass().getResource("/userInterface/HallOfFameGUI.fxml"));
+            root = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Salon de la Fama");
         stage.setScene(new Scene(root));
         stage.show();
@@ -105,6 +105,9 @@ public class LoginWindowController implements Initializable {
         }catch (IOException e){
             e.printStackTrace();
         }
+
+        MainMenuController ven = loader.getController();
+        ven.setPlayer(found);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

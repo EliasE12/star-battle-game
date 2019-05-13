@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Match;
 import model.Player;
 
 import java.io.IOException;
@@ -31,10 +32,27 @@ public class MainMenuController implements Initializable {
         this.player = player;
     }
 
-
     @FXML
     void newMatchClicked(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/SelectionWindowGUI.fxml"));
+        Parent root = null;
 
+        try{
+            root = loader.load();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        Match match = new Match("00:00", 0, false);
+        player.setMatch(match);
+
+        SelectionWindowController ven = loader.getController();
+        ven.setPlayer(player);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Selección de Capitanes");
+        stage.show();
     }
 
     @FXML

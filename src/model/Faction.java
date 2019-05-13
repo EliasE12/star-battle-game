@@ -9,4 +9,9 @@ public class Faction {
     private int memberN;
     private Leader leader;
 
+    public Faction(String name, int memberN, Leader leader) {
+        this.name = name;
+        this.memberN = memberN;
+        this.leader = leader;
+    }
 }
