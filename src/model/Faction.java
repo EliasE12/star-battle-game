@@ -21,46 +21,54 @@ public class Faction {
 
 
 
-    public void createRandomNumbers(SpaceShipType type,int size) {
-        int randomX;
-        int randomY;
-        int randomD;
+    public void createRandomNumbers(SpaceShipType type, int size, String[][] gameBoard) {
+        Match.DIRECTION direction;
+        int randomX = 0;
+        int randomY = 0;
+        int randomD = 0;
 
         boolean posicion = false;
 
         while (!posicion) {
-            int posX = (int) Math.floor(Math.random() * (0 - (Match.GAME_BOARD_SIZE - 1)) + ((Match.GAME_BOARD_SIZE - 1) - 1));
-            int posY = (int) Math.floor(Math.random() * (0 - (Match.GAME_BOARD_SIZE - 1)) + ((Match.GAME_BOARD_SIZE - 1) - 1));
-            int Direction = (int) Math.floor(Math.random() * (1 - (2)) + (2 - 1));
+            randomX = (int) Math.floor(Math.random() * (0 - (Match.GAME_BOARD_SIZE - 1)) + ((Match.GAME_BOARD_SIZE - 1) - 1));
+            randomY = (int) Math.floor(Math.random() * (0 - (Match.GAME_BOARD_SIZE - 1)) + ((Match.GAME_BOARD_SIZE - 1) - 1));
+            randomD = (int) Math.floor(Math.random() * (1 - (2)) + (2 - 1));
 
         }
 
+        if (randomD == 1){
+            direction = Match.DIRECTION.HORIZONTAL;
+        }else {
+            direction = Match.DIRECTION.VERTICAL;
+        }
+
+        posicionarNave(gameBoard, randomX, randomY, direction, size);
     }
 
-        public void posicionarNave(String[][] matriz,int x, int y, Match.DIRECTION direction, int  size_Nave){
-            boolean termino = false;
+    public void posicionarNave(String[][] matriz,int x, int y, Match.DIRECTION direction, int  size_Nave){
+        boolean termino = false;
 
-            switch (direction) {
-                case HORIZONTAL:
-                    for (int j = y; !termino; j++) {
-                        matriz[x][j] = "X";
-                        size_Nave--;
-                        if (size_Nave < 1) {
-                            termino = true;
-                        }
+        switch (direction) {
+            case HORIZONTAL:
+                for (int j = y; !termino; j++) {
+                    matriz[x][j] = "X";
+                    size_Nave--;
+                    if (size_Nave < 1) {
+                        termino = true;
                     }
-                    break;
-                case VERTICAL:
-                    for (int i = x; !termino; i++) {
-                        matriz[i][y] = "X";
-                        size_Nave--;
-                        if (size_Nave < 1) {
-                            termino = true;
-                        }
+                }
+                break;
+            case VERTICAL:
+                for (int i = x; !termino; i++) {
+                    matriz[i][y] = "X";
+                    size_Nave--;
+                    if (size_Nave < 1) {
+                        termino = true;
                     }
-                    break;
-            }
+                }
+                break;
         }
+    }
 
 
 
