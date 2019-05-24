@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PlayerHistoryController">
+   <top>
+      <VBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Historial del jugador" textAlignment="CENTER" wrappingWidth="494.8349609375">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <TableView fx:id="tbPlayerHistory" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="time" editable="false" prefWidth="158.0" resizable="false" sortable="false" text="Tiempo" />
+          <TableColumn fx:id="date" editable="false" prefWidth="182.0" resizable="false" sortable="false" text="Fecha" />
+            <TableColumn fx:id="score" editable="false" prefWidth="128.0" resizable="false" sortable="false" text="Puntaje" />
+            <TableColumn fx:id="result" editable="false" prefWidth="231.0" resizable="false" sortable="false" text="Resultado" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>

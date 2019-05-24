@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="586.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FallOfFameController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Salón de la Fama">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton buttonType="RAISED" onAction="#returnClicked" text="Volver ">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children></HBox>
+   </bottom>
+   <center>
+      <TableView fx:id="tvHallOfFame" prefHeight="350.0" prefWidth="586.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="tcName" editable="false" prefWidth="193.0" resizable="false" sortable="false" text="Nombre del Jugador" />
+          <TableColumn fx:id="tcGlobalScore" editable="false" prefWidth="133.0" resizable="false" sortable="false" text="Puntaje Global" />
+            <TableColumn fx:id="tcWonMatch" editable="false" prefWidth="131.0" resizable="false" sortable="false" text="Partidas Ganadas" />
+            <TableColumn fx:id="tcLostMatch" editable="false" prefWidth="126.0" resizable="false" sortable="false" text="Partidas Perdidas" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>
