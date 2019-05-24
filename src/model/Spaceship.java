@@ -34,11 +34,10 @@ public abstract class Spaceship {
 	protected int healt;
 	
 	
-	public Spaceship(String name, int staffLimit, String model, double volume, double fuelRatio, int healt) {
+	public Spaceship(String name, int staffLimit, String model, double fuelRatio, int healt) {
 		this.name = name;
 		this.staffLimit = staffLimit;
 		this.model = model;
-		this.volume = volume;
 		this.fuelRatio = fuelRatio;
 		this.healt = healt;
 		this.next = null;
@@ -93,16 +92,6 @@ public abstract class Spaceship {
 
 	public void setModel(String model) {
 		this.model = model;
-	}
-
-
-	public double getVolume() {
-		return volume;
-	}
-
-
-	public void setVolume(double volume) {
-		this.volume = volume;
 	}
 
 

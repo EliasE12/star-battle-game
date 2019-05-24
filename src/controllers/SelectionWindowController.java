@@ -12,6 +12,8 @@ import model.Leader;
 import model.Match;
 import model.Player;
 import com.jfoenix.controls.JFXTextField;
+
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -75,8 +77,8 @@ public class SelectionWindowController implements Initializable {
             player.getMatch().createUserFaction(tfFactionName.getText(), members, Match.LeaderType.STRATEGIST, tfCaptainName.getText(), cbExperienceLevel.getValue());
 
         }catch (NumberFormatException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "Caracter incorrecto digitado, solo debe ingresar numeros", ButtonType.CLOSE);
-            alert.setHeaderText("Caracter invalido digitado");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "Espacio en banco o caracter invalido digitado", ButtonType.CLOSE);
+            alert.setHeaderText("La cantidad de miembros de la nueva faccion debe ser un numero");
             alert.show();
 
         }catch (EmptyDataException e){
@@ -91,12 +93,13 @@ public class SelectionWindowController implements Initializable {
             player.getMatch().createUserFaction(tfFactionName.getText(), members, Match.LeaderType.PROTECTOR, tfCaptainName.getText(), cbExperienceLevel.getValue());
 
         }catch (NumberFormatException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "Caracter incorrecto digitado, solo debe ingresar numeros", ButtonType.CLOSE);
-            alert.setHeaderText("Caracter invalido digitado");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "Espacio en banco o caracter invalido digitado", ButtonType.CLOSE);
+            alert.setHeaderText("La cantidad de miembros de la nueva faccion debe ser un numero");
             alert.show();
 
         }catch (EmptyDataException e){
             e.message();
         }
+
     }
 }

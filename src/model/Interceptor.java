@@ -5,8 +5,8 @@ public class Interceptor extends Starfigther {
     private int provisions;
     private int turbo;
 
-    public Interceptor(String name, int staffLimit, String model, double volume, double fuelRatio, int healt, int turboLaser, int provisions, int turbo) {
-        super(name, staffLimit, model, volume, fuelRatio, healt, turboLaser);
+    public Interceptor(String name, int staffLimit, String model, double fuelRatio, int healt, int turboLaser, int provisions, int turbo) {
+        super(name, staffLimit, model, fuelRatio, healt, turboLaser);
         this.provisions = provisions;
         this.turbo = turbo;
     }

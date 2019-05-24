@@ -6,13 +6,15 @@ public class Destroyer extends Spaceship{
 	
 	
 	public static final int AMOUNT_LIFE = 2000;
+	public static final int SIZE = 3;
+
 	private int turboLaser;
 	private int laserCannon;
 
 	
 	
-	public Destroyer(String name, int staffLimit, String model, double volume, double fuelRatio, int healt, int turboLaser, int laserCannon) {
-		super(name, staffLimit, model, volume, fuelRatio, healt);
+	public Destroyer(String name, int staffLimit, String model, double fuelRatio, int healt, int turboLaser, int laserCannon) {
+		super(name, staffLimit, model, fuelRatio, healt);
 		this.laserCannon = laserCannon;
 		this.turboLaser = turboLaser;
 	}

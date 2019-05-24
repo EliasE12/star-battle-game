@@ -4,7 +4,11 @@ import customExceptions.EmptyDataException;
 
 public class Match {
 
+    public static final int GAME_BOARD_SIZE = 10;
+
     public enum LeaderType {DOMINATOR, PROTECTOR, STRATEGIST};
+    public enum DIRECTION{HORIZONTAL, VERTICAL};
+
 
     private Faction user;
     private Faction machine;
@@ -13,11 +17,16 @@ public class Match {
     private int score;
     private boolean win;
 
+    private String[][] gameBoardPlayer;
+    private String[][] gameBoardMachine;
 
     public Match(String time, int score, boolean win) {
         this.time = time;
         this.score = score;
         this.win = win;
+
+        gameBoardPlayer = new String[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
+        gameBoardMachine = new String[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
     }
 
 
@@ -57,7 +66,7 @@ public class Match {
         }
     }
 
-    public void chooseEnemy(){
+    public void createPlayerShips(){
 
     }
 }

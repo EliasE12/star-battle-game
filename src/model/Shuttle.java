@@ -3,13 +3,15 @@ package model;
 public class Shuttle extends Spaceship{
 	
 	public final static int AMOUNT_LIFE = 100;
+	public final static int SIZE = 1;
+
 	//ATRIBUTOS
 	
 	private int turboLaser;
 	private int laserCannon;
 	
-	public Shuttle(String name, int staffLimit, String model, double volume, double fuelRatio, int healt,int turboLaser, int laserCannon) {
-		super(name, staffLimit, model, volume, fuelRatio, healt);
+	public Shuttle(String name, int staffLimit, String model, double fuelRatio, int healt,int turboLaser, int laserCannon) {
+		super(name, staffLimit, model, fuelRatio, healt);
 		this.laserCannon = laserCannon;
 		this.turboLaser = turboLaser;
 	}

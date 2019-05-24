@@ -4,8 +4,8 @@ public class Bomber extends Starfigther {
 
     private int loadingCapacity;
 
-    public Bomber(String name, int staffLimit, String model, double volume, double fuelRatio, int healt, int turboLaser, int loadingCapacity) {
-        super(name, staffLimit, model, volume, fuelRatio, healt, turboLaser);
+    public Bomber(String name, int staffLimit, String model, double fuelRatio, int healt, int turboLaser, int loadingCapacity) {
+        super(name, staffLimit, model, fuelRatio, healt, turboLaser);
         this.loadingCapacity = loadingCapacity;
     }
 
