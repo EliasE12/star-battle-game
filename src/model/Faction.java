@@ -86,8 +86,8 @@ public class Faction {
             }
 
             posicion = verificarPosition(gameBoard, randomX, randomY, direction, size);
-
         }
+
         posicionarNave(gameBoard, randomX, randomY, direction, size);
     }
 

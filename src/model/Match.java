@@ -25,6 +25,7 @@ public class Match {
     private String[][] gameBoardPlayer;
     private String[][] gameBoardMachine;
 
+
     public Match(String time, int score, boolean win) {
         this.time = time;
         this.score = score;
@@ -33,6 +34,9 @@ public class Match {
         gameBoardPlayer = new String[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
         gameBoardMachine = new String[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
     }
+
+
+
 
 
     /**
