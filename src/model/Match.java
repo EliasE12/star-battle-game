@@ -69,4 +69,8 @@ public class Match {
     public void createPlayerShips(){
 
     }
+
+    public void createMachineShips(){
+
+    }
 }

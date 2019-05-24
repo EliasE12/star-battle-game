@@ -33,7 +33,7 @@ public class Faction {
             int posY = (int)Math.floor(Math.random()*(0-(Match.GAME_BOARD_SIZE - 1)) + ((Match.GAME_BOARD_SIZE-1) - 1));
             int Direction = (int)Math.floor(Math.random()*(1-(2)) + (2 - 1));
 
-            
+
         }
     }
 }
