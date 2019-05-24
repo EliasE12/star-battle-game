@@ -3,6 +3,7 @@ package model;
 public class Faction {
 
     public enum SpaceShipType{STARFIGHTER, BOMBER, INTERCEPTOR, GUNSHIP, DREADNOUGHT, DESTROYER, BATTLECRUISER, SHUTTLE};
+    public enum Direction{VERTICAL,HORIZONTAL}
 
     private Node root;
     private Spaceship first;
@@ -12,13 +13,51 @@ public class Faction {
     private Leader leader;
 
 
-
     public Faction(String name, int memberN, Leader leader) {
         this.name = name;
         this.memberN = memberN;
         this.leader = leader;
     }
 
+
+    public boolean verificarPosition(String[][] gb,int posF, int postC, Direction direction, int sizeSpaceshit) {
+        boolean valido = false;
+        if (direction.equals(Direction.HORIZONTAL)) {
+            int size = 0;
+            for (int i = 0; i < gb.length && !valido; i++) {
+                if (i == posF) {
+                    if (!gb[i][postC].equals("")) {
+                        return false;
+                    } else {
+                        gb[i][postC] = "*";
+                        size++;
+                    }
+
+                    if (size == sizeSpaceshit) {
+                        valido = true;
+                    }
+                }
+            }
+        } else if (direction.equals(Direction.VERTICAL)) {
+            int size = 0;
+            for (int j = 0; j < gb[0].length && !valido; j++) {
+                if (j == postC) {
+                    if (!gb[posF][j].equals("")) {
+                        return false;
+                    } else {
+                        gb[j][postC] = "*";
+                        size++;
+                    }
+
+                    if (size == sizeSpaceshit) {
+                        valido = true;
+                    }
+                }
+            }
+        }
+
+        return valido;
+    }
 
 
     public void createRandomNumbers(SpaceShipType type, int size, String[][] gameBoard) {
