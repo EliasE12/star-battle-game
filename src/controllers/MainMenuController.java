@@ -43,7 +43,7 @@ public class MainMenuController implements Initializable {
             e.printStackTrace();
         }
 
-        Match match = new Match("00:00", 0, false);
+        Match match = new Match(0, 0, false);
         player.setMatch(match);
 
         SelectionWindowController ven = loader.getController();

@@ -3,6 +3,7 @@ package model;
 import customExceptions.EmptyDataException;
 import customExceptions.EqualUserException;
 import customExceptions.NotExistPlayerException;
+import customExceptions.NotRegisteredUsersException;
 
 public class Game {
 
@@ -34,16 +35,23 @@ public class Game {
      * @throws NullPointerException se lanzá cuando no encuentra a un jugador.
      * @throws EmptyDataException se lanzá cuando no se ingresa un valor vacio.
      */
-    public Player searchPlayer(String userName) throws EmptyDataException, NotExistPlayerException {
-    	Player found = null;
+    public Player searchPlayer(String userName) throws EmptyDataException, NotExistPlayerException, NotRegisteredUsersException {
+    	Player found;
 
         if (userName.equals("")){
             throw new EmptyDataException();
 
         }else {
-            found = root.search(userName);
+            if (root != null){
+                found = root.search(userName);
+            }else {
+                throw new NotRegisteredUsersException();
+            }
         }
 
+        /*if (found == null){
+            throw new NotExistPlayerException();
+        }*/
         return found;
     }
 
@@ -75,8 +83,18 @@ public class Game {
 
 
 
-    public void deletePlayer(String userName) {
-        root = root.delete(userName);
+    public void deletePlayer(String userName)throws EmptyDataException, NotRegisteredUsersException {
+        if (userName.equals("")){
+            throw new EmptyDataException();
+
+        }else {
+            if (root != null){
+                root = root.delete(userName);
+
+            }else {
+                throw new NotRegisteredUsersException();
+            }
+        }
         numberPlayers--;
     }
     	

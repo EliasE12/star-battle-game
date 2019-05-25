@@ -3,6 +3,7 @@ package controllers;
 import com.jfoenix.controls.JFXTextField;
 import customExceptions.EmptyDataException;
 import customExceptions.NotExistPlayerException;
+import customExceptions.NotRegisteredUsersException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +39,7 @@ public class LoginWindowController implements Initializable {
     void enterClicked(ActionEvent event) {
         try {
             Player found = game.searchPlayer(tfEnter.getText());
+            System.out.println(found.getUserName());
 
             if (found != null) {
                 startMainMenu(found, event);
@@ -46,6 +48,8 @@ public class LoginWindowController implements Initializable {
         } catch (EmptyDataException e) {
             e.message();
         }catch (NotExistPlayerException e) {
+            e.message();
+        } catch (NotRegisteredUsersException e) {
             e.message();
         }
     }
@@ -93,7 +97,13 @@ public class LoginWindowController implements Initializable {
 
     @FXML
     void deletePlayerClicked(ActionEvent event) {
-        game.deletePlayer(tfEnter.getText());
+        try {
+            game.deletePlayer(tfEnter.getText());
+        } catch (EmptyDataException e) {
+            e.message();
+        } catch (NotRegisteredUsersException e) {
+            e.message();
+        }
     }
 
     private void startMainMenu(Player found, ActionEvent event){

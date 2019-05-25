@@ -18,7 +18,7 @@ public class Match {
     private Faction user;
     private Faction machine;
 
-    private String time;
+    private int time;
     private int score;
     private boolean win;
 
@@ -26,7 +26,7 @@ public class Match {
     private String[][] gameBoardMachine;
 
 
-    public Match(String time, int score, boolean win) {
+    public Match(int time, int score, boolean win) {
         this.time = time;
         this.score = score;
         this.win = win;

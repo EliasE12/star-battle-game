@@ -64,8 +64,6 @@ public class Faction {
     }
 
 
-
-
     /**
      * Crea posiciones en X y Y aleatorias, para verificar si es posible posicionar la nave ha crear en dicha posicion.
      * <pre> la matriz en la cual se va ha posicionar la nave tiene que ser != null</>

@@ -7,10 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import model.Player;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GameBoardController implements Initializable {
+
+    private Player player;
 
     @FXML private Label gameTimeMachine;
     @FXML private Label gameTimePlayer;
@@ -34,6 +38,10 @@ public class GameBoardController implements Initializable {
     }
 
 
+
+    public void setPlayer(Player player){
+        this.player = player;
+    }
 
     @FXML public void battleCruiserClicked(ActionEvent event) {
 

@@ -108,12 +108,16 @@ public class Player {
     public Player search (String userName) throws NotExistPlayerException{
         Player found = null;
     	
-    	if(userName.compareToIgnoreCase(userName) == 0) {
+    	if(userName.compareTo(this.userName) == 0) {
     		found = this;
-    	}else if(userName.compareToIgnoreCase(userName) < 0) {
-            found = left.search(userName);
+    	}else if(userName.compareTo(this.userName) < 0) {
+    	    if (left != null){
+                found = left.search(userName);
+            }
       	}else {
-            found = right.search(userName);
+    	    if (right != null){
+                found = right.search(this.userName);
+            }
     	}
 
     	if (found == null){
@@ -159,13 +163,16 @@ public class Player {
             return successor;
 
         }else if(this.userName.compareTo(userName)>0){
-            left = left.delete(userName);
+            if (left != null){
+                left = left.delete(userName);
+            }
+
         }else {
-            right = right.delete(userName);
+            if (right != null){
+                right = right.delete(userName);
+            }
         }
-
         return this;
-
     }
 
     /**
