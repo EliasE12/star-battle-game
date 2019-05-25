@@ -83,14 +83,14 @@ public class Player {
         if(userName.compareTo(toAdd.getUserName()) == 0){
             throw new EqualUserException();
 
-        }else if (userName.compareTo(toAdd.getUserName()) < 0){
+        }else if (toAdd.userName.compareTo(this.userName) < 0){
             if (left == null){
                 left = toAdd;
             }else {
                 left.addPlayer(toAdd);
             }
 
-        }else if (userName.compareTo(toAdd.getUserName()) > 0){
+        }else if (toAdd.userName.compareTo(this.userName) > 0){
             if (right == null){
                 right = toAdd;
             }else {
