@@ -12,6 +12,6 @@ public class TimeGameThread extends Thread {
 
     @Override
     public void run() {
-
+        match.manageMatchTime();
     }
 }
