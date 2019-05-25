@@ -20,43 +20,50 @@ public class Faction {
     }
 
 
-    private boolean verificarPosition(String[][] gb, int posF, int postC, Direction direction, int sizeSpaceshit) {
+    /**
+     * Verifica si la posición en el tablero de juego en la que se va a colocar una nueva nave, es permitida o no.
+     * @param matriz - Es el tablero de juego.
+     * @param posF - Es la posición x del tablero de juego.
+     * @param posC - Es la posición y del tablero de juego.
+     * @param direction - Es la dirección en la que se va a colocar la nave en el
+     *                    tablero de juego. Puede se HORIZONTAL O VERTICAL.
+     * @param sizeSpaceshit - Es el tamaño de la nave, es decir, el número de casillas que ocupará en el tablero de juego.
+     * @return - true si la posición en la que se colocará la nave es permitida.
+     *           false si la posición en la que se colocará la nave no es permitida.
+     */
+    private boolean verificarPosition(String[][] matriz, int posF, int posC, Direction direction, int sizeSpaceshit) {
         boolean valido = false;
         if (direction.equals(Direction.HORIZONTAL)) {
             int size = 0;
-            for (int i = 0; i < gb.length && !valido; i++) {
-                if (i == posF) {
-                    if (!gb[i][postC].equals("")) {
-                        return false;
-                    } else {
-                        gb[i][postC] = "*";
-                        size++;
-                    }
-
-                    if (size == sizeSpaceshit) {
-                        valido = true;
-                    }
+            for (int j = posC; j < matriz[0].length && !valido; j++) {
+                if (matriz[posF][j].equals("X")) {
+                    valido = false;
+                } else if (size >= matriz[0].length) {
+                    valido = false;
+                } else if (size == sizeSpaceshit) {
+                    valido = true;
                 }
+                size++;
             }
+
         } else if (direction.equals(Direction.VERTICAL)) {
             int size = 0;
-            for (int j = 0; j < gb[0].length && !valido; j++) {
-                if (j == postC) {
-                    if (!gb[posF][j].equals("")) {
-                        return false;
-                    } else {
-                        gb[j][postC] = "*";
-                        size++;
-                    }
-
-                    if (size == sizeSpaceshit) {
-                        valido = true;
-                    }
+            for (int j = posF; j < matriz.length && !valido; j++) {
+                if (matriz[posF][j].equals("X")) {
+                    valido = false;
+                } else if (size >= matriz.length) {
+                    valido = false;
+                } else if (size == sizeSpaceshit) {
+                    valido = true;
                 }
+                size++;
+
             }
         }
         return valido;
     }
+
+
 
 
     /**
@@ -70,28 +77,38 @@ public class Faction {
         Direction direction = null;
         int randomX = 0;
         int randomY = 0;
-        int randomD;
+        int randomD=0;
 
-        boolean posicion = false;
+        boolean valido = false;
 
-        while (!posicion) {
-            randomX = (int) Math.floor(Math.random() * (0 - (Match.GAME_BOARD_SIZE - 1)) + ((Match.GAME_BOARD_SIZE - 1) - 1));
-            randomY = (int) Math.floor(Math.random() * (0 - (Match.GAME_BOARD_SIZE - 1)) + ((Match.GAME_BOARD_SIZE - 1) - 1));
-            randomD = (int) Math.floor(Math.random() * (1 - (2)) + (2 - 1));
+        while (!valido) {
+            randomX = (int) Math.floor(Math.random() * (Match.GAME_BOARD_SIZE - (0 + 1)) + 0);
+            randomY = (int) Math.floor(Math.random() * (Match.GAME_BOARD_SIZE - (0 + 1)) + 0);
+            randomD = (int) Math.floor(Math.random() * 2+1);
 
             if (randomD == 1){
                 direction = Direction.HORIZONTAL;
-            }else {
+            }else if(randomD == 2){
                 direction = Direction.VERTICAL;
             }
 
-            posicion = verificarPosition(gameBoard, randomX, randomY, direction, size);
+            valido = verificarPosition(gameBoard, randomX, randomY, direction, size);
+            System.out.println(valido);
         }
 
-        posicionarNave(gameBoard, randomX, randomY, direction, size);
+        posicionarNave(gameBoard,randomX, randomY, direction, size);
     }
 
 
+    /**
+     * Posiciona una nueva nave en una posición permitida del tablero de juego.
+     * @param matriz - Es el tablero de juego.
+     * @param x - Es la posición x del tablero de juego.
+     * @param y - Es la posición y del tablero de juego.
+     * @param direction - s la dirección en la que se va a colocar la nave en el
+     *      *                    tablero de juego. Puede se HORIZONTAL O VERTICAL.
+     * @param size_Nave - Es el tamaño de la nave, es decir, el número de casillas que ocupará en el tablero de juego.
+     */
     public void posicionarNave(String[][] matriz, int x, int y, Direction direction, int  size_Nave){
         boolean termino = false;
 
