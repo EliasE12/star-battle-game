@@ -73,6 +73,7 @@ public class GameBoardController implements Initializable {
             np.message();
 
         }else {
+            gameBoadPlayer.setDisable(true);
             gameBoardMachine.setDisable(false);
             fillGridMachine();
         }

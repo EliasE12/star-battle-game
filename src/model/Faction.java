@@ -25,11 +25,9 @@ public class Faction {
      * @param matriz - Es el tablero de juego.
      * @param posF - Es la posición x del tablero de juego.
      * @param posC - Es la posición y del tablero de juego.
-     * @param direction - Es la dirección en la que se va a colocar la nave en el
-     *                    tablero de juego. Puede se HORIZONTAL O VERTICAL.
+     * @param direction - Es la dirección en la que se va a colocar la nave en el tablero de juego. Puede se HORIZONTAL O VERTICAL.
      * @param sizeSpaceshit - Es el tamaño de la nave, es decir, el número de casillas que ocupará en el tablero de juego.
-     * @return - true si la posición en la que se colocará la nave es permitida.
-     *           false si la posición en la que se colocará la nave no es permitida.
+     * @return - true si la posición en la que se colocará la nave es permitida. False si la posición en la que se colocará la nave no es permitida.
      */
     private boolean verificarPosition(String[][] matriz, int posF, int posC, Direction direction, int sizeSpaceshit) {
         boolean valido = false;

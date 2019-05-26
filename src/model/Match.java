@@ -93,11 +93,13 @@ public class Match {
             Faction faction = new Faction(factionName, members, leader1);
             user = faction;
 
+            //Modificado
             createMachineFaction(members, type, experience);
         }
     }
 
 
+    //Metodo modificado
     /**
      * Metodo que se encarga de crear la faccion enemiga, dependiendo de la faccion creada por el usaurio
      * @param members numero de miembros que poseera la faccion enemiga
@@ -169,6 +171,7 @@ public class Match {
     }
 
 
+    //Metodo modificado
     /**
      * Inicializa el llamado a los metodos que se encargan de crear las naves en las posiciones escogidas por el jugador.
      * <pre>La matriz gameBoardPlayer donde se van a posicionar las naves del jugador, debe ser != null</>
@@ -196,6 +199,7 @@ public class Match {
     }
 
 
+    //Metodo Modificado
     /**
      * Se encarga de verificar que si en la posicion, pasada como parametro, haya ubicada una nave en el tablero de juego del jugador.
      * @param position posicion donde se verificara, en el tablero de juego del jugador, si hay una nave posicionada
@@ -216,6 +220,7 @@ public class Match {
     }
 
 
+    //Metodo modificado
     /**
      * Se encarga de verificar que si en la posicion, pasada como parametro, haya ubicada una nave en el tablero de juego de la maquina.
      * @@param position posicion donde se verificara, en el tablero de juego de la maquina, si hay una nave posicionada
@@ -236,7 +241,7 @@ public class Match {
     }
 
 
-
+    //Metodo modificado
     public boolean winner(){
         boolean win = false;
 
