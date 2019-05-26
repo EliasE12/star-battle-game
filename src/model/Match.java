@@ -33,8 +33,26 @@ public class Match {
 
         gameBoardPlayer = new String[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
         gameBoardMachine = new String[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
+
+        fillMatrix(gameBoardPlayer);
+        fillMatrix(gameBoardMachine);
     }
 
+    public String[][] getGameBoardPlayer() {
+        return gameBoardPlayer;
+    }
+
+    public String[][] getGameBoardMachine() {
+        return gameBoardMachine;
+    }
+
+    private void fillMatrix(String[][] matrix){
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                matrix[i][j] = "*";
+            }
+        }
+    }
 
     public void manageMatchTime(){
 
@@ -74,8 +92,37 @@ public class Match {
             }
             Faction faction = new Faction(factionName, members, leader1);
             user = faction;
+
+            createMachineFaction(members, type, experience);
         }
     }
+
+
+    /**
+     * Metodo que se encarga de crear la faccion enemiga, dependiendo de la faccion creada por el usaurio
+     * @param members numero de miembros que poseera la faccion enemiga
+     * @param leaderType tipo de lider que dirigira la faccion enemiga
+     * @param experience nivel de experiencia del capitan de la faccion enemiga
+     */
+    private void createMachineFaction(int members, LeaderType leaderType, Leader.LevelExperience experience){
+        Leader leader = null;
+
+        switch (leaderType){
+            case DOMINATOR:
+                leader = new Protector("Protector", experience, false);
+                break;
+
+            case PROTECTOR:
+                leader = new Strategist("Strategist", experience, false);
+                break;
+
+            case STRATEGIST:
+                leader = new Dominator("Dominator", experience, false);
+        }
+        Faction faction = new Faction("Machine", members, leader);
+        machine = faction;
+    }
+
 
     /**
      * Se encarga de calcular el tamano de la nave pasada por parametro.
@@ -128,26 +175,38 @@ public class Match {
      * <pre>La matriz gameBoardMachine donde se van a posicionar las naves de la maquina, debe ser != null</>
      * @param spaceShipType tipo de nave a crear y/o posicionar
      * @param direction direccion en la que se va a posicionar la nave
-     * @param x posicion X de la nave
-     * @param y posicion Y de la nave
+     * @param position posicion donde se creara la nueva nave
+     * @throws EmptyDataException - se lanza cuando alguno de lso parametros es nulo o esta vacio
      */
-    public void createSpaceShips(SpaceShipType spaceShipType, Direction direction, int x, int y){
-        int size;
-        size = calculateSizeShip(spaceShipType);
+    public void createSpaceShips(SpaceShipType spaceShipType, Direction direction, String position)throws EmptyDataException{
+        if (spaceShipType == null || direction == null){
+            throw new EmptyDataException();
 
-        user.posicionarNave(gameBoardPlayer, x, y, direction, size);
-        machine.createRandomNumbers(spaceShipType, size, gameBoardMachine);
+        }else {
+            int size;
+            size = calculateSizeShip(spaceShipType);
+
+            String[] p = position.split(",");
+            int x = Integer.parseInt(p[0]);
+            int y = Integer.parseInt(p[1]);
+
+            user.posicionarNave(gameBoardPlayer, x, y, direction, size);
+            machine.createRandomNumbers(spaceShipType, size, gameBoardMachine);
+        }
     }
 
 
     /**
      * Se encarga de verificar que si en la posicion, pasada como parametro, haya ubicada una nave en el tablero de juego del jugador.
-     * @param x posicion X de la nave
-     * @param y posicion Y de la nave
+     * @param position posicion donde se verificara, en el tablero de juego del jugador, si hay una nave posicionada
      * @return true si en la posicion, pasada por parametro, hay una nave. False en caso contrario.
      */
-    public boolean uncoverPlayersBox(int x, int y){
+    public boolean uncoverPlayersBox(String position){
         boolean discoveredShip = false;
+
+        String[] p = position.split(",");
+        int x = Integer.parseInt(p[0]);
+        int y = Integer.parseInt(p[1]);
 
         if (gameBoardPlayer[x][y].equals("X")){
             discoveredShip = true;
@@ -159,14 +218,17 @@ public class Match {
 
     /**
      * Se encarga de verificar que si en la posicion, pasada como parametro, haya ubicada una nave en el tablero de juego de la maquina.
-     * @param x posicion X de la nave.
-     * @param y posicion Y de la nave.
+     * @@param position posicion donde se verificara, en el tablero de juego de la maquina, si hay una nave posicionada
      * @return True si en la posicion pasada como parametro hay una nave. False en caso contrario.
      */
-    public boolean uncoverMachineBox(int x, int y){
+    public boolean uncoverMachineBox(String position){
         boolean discoveredShip = false;
 
-        if (gameBoardMachine.equals("X")){
+        String[] p = position.split(",");
+        int x = Integer.parseInt(p[0]);
+        int y = Integer.parseInt(p[1]);
+
+        if (gameBoardMachine[x][y].equals("X")){
             discoveredShip = true;
         }
 

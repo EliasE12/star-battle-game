@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FallOfFameController implements Initializable {
+public class HallOfFameController implements Initializable {
 
     @FXML private TableView<Player> tvHallOfFame;
     @FXML private TableColumn<Player, String> tcName;
