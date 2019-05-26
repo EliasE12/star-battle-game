@@ -1,6 +1,7 @@
 package controllers;
 
 import customExceptions.EmptyDataException;
+import customExceptions.NotShipsPositionedException;
 import javafx.event.ActionEvent;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
@@ -67,9 +68,15 @@ public class GameBoardController implements Initializable {
 
     @FXML
     void playClicked(ActionEvent event) {
+        if (!spaceShipsBox.getItems().isEmpty()){
+            NotShipsPositionedException np = new NotShipsPositionedException();
+            np.message();
 
+        }else {
+            gameBoardMachine.setDisable(false);
+            fillGridMachine();
+        }
     }
-
 
 
     private void fillGrid(){
@@ -94,16 +101,59 @@ public class GameBoardController implements Initializable {
 
         try {
             player.getMatch().createSpaceShips(s, horientationBox.getValue(), b.getId());
-
             spaceShipsBox.getItems().remove(s);
 
-            for (int i = 0; i < Match.GAME_BOARD_SIZE; i++) {
-                for (int j = 0; j < Match.GAME_BOARD_SIZE; j++) {
-                    gameBoardP[i][j].setText(player.getMatch().getGameBoardPlayer()[i][j]);
-                }
-            }
+            updateGameBoard(gameBoardP);
         } catch (EmptyDataException e) {
             e.message();
+        }
+    }
+
+    private void updateGameBoard(Button[][] gameBoard){
+        for (int i = 0; i < Match.GAME_BOARD_SIZE; i++) {
+            for (int j = 0; j < Match.GAME_BOARD_SIZE; j++) {
+                gameBoard[i][j].setText(player.getMatch().getGameBoardPlayer()[i][j]);
+            }
+        }
+    }
+
+
+
+    private void fillGridMachine(){
+        for (int i = 0; i < Match.GAME_BOARD_SIZE; i++) {
+            for (int j = 0; j < Match.GAME_BOARD_SIZE; j++) {
+
+                Button b = new Button("*");
+                b.setId(i + "," + j);
+                b.setOnAction(event -> actionPlayer(b.getId()));
+                b.setPrefHeight(50);
+                b.setPrefWidth(50);
+
+                gameBoardM[i][j] = b;
+                gameBoardMachine.add(b, j, i);
+            }
+        }
+    }
+
+    private void actionPlayer(String position){
+        boolean isShip = player.getMatch().uncoverMachineBox(position);
+
+        if (isShip){
+            discoverShip(position, gameBoardM);
+        }
+    }
+
+    private void discoverShip(String position, Button[][] gameBoard){
+        boolean founded = false;
+
+        for (int i = 0; i < Match.GAME_BOARD_SIZE && !founded; i++) {
+            for (int j = 0; j < Match.GAME_BOARD_SIZE && !founded; j++) {
+                if (position.compareTo(gameBoard[i][j].getId()) == 0){
+                    founded = true;
+
+                    gameBoard[i][j].setText("X");
+                }
+            }
         }
     }
 }
