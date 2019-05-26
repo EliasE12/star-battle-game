@@ -1,24 +1,62 @@
 package model;
 import model.Match.Direction;
 
+// Clase
+
+/**
+ * Entidad que representa una facción.
+ */
 public class Faction {
 
+    // Constantes
+
+    /**
+     * Indica el tipo de naves que pertenecen a la facción.
+     */
     public enum SpaceShipType{STARFIGHTER, BOMBER, INTERCEPTOR, GUNSHIP, DREADNOUGHT, DESTROYER, BATTLECRUISER, SHUTTLE};
 
+    // Atributos
+
+    /**
+     * Es la raiz del árbol miembros de la faccion.
+     */
     private Node root;
+
+    /**
+     * Es la primera nave de la lista de naves de la facción.
+     */
     private Spaceship first;
 
+    /**
+     * Es el nombre de la facción.
+     */
     private String name;
+
+    /**
+     * Es el número de miembros de la facción.
+     */
     private int memberN;
+
+    /**
+     * Es el lider de la facción.
+     */
     private Leader leader;
 
+    // Constructor
 
+    /**
+     * Inicializa los valores de los atributos de la facción.
+     * @param name - Es el nombre de la faccion.
+     * @param memberN - Es el número de miembros en la facción.
+     * @param leader - Es el lider e la facción
+     */
     public Faction(String name, int memberN, Leader leader) {
         this.name = name;
         this.memberN = memberN;
         this.leader = leader;
     }
 
+    // Métodos
 
     /**
      * Verifica si la posición en el tablero de juego en la que se va a colocar una nueva nave, es permitida o no.

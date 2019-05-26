@@ -2,10 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f3482ee-53c8-4caf-a9f5-ef034d5084e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/JUnit5_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/star-battle-game/model/Faction$SpaceShipType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/star-battle-game/model/Match$DIRECTION.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/MainMenuGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/star-battle-game/userInterface/MainMenuGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GameBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/HallOfFameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/HallOfFameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/LoginWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/PlayerHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/PlayerHistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/RegistrationWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/RegistrationWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/SelectionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/SelectionWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customExceptions/EmptyDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customExceptions/EmptyDataException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customExceptions/EqualUserException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customExceptions/EqualUserException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customExceptions/NotExistPlayerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customExceptions/NotExistPlayerException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customExceptions/NotRegisteredUsersException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customExceptions/NotRegisteredUsersException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Combatant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Combatant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Defensible.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Defensible.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Battlecruiser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Battlecruiser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Bomber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Destroyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Destroyer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Dominator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Dominator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Dreadnought.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Dreadnought.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Faction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Faction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Gunship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Gunship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Interceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Interceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Leader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Leader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/LivingBeing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/LivingBeing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Protector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Protector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Robot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Shuttle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Shuttle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Spaceship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Spaceship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Starfigther.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Starfigther.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Strategist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Strategist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/threads/TimeGameThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/threads/TimeGameThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/threads/UpdateThreadMatchTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/threads/UpdateThreadMatchTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/userInterface/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/userInterface/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/userInterface/MainMenuGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/userInterface/MainMenuGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/star-battle-game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/star-battle-game.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,35 +56,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/GameBoardController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="75" column="42" selection-start-line="75" selection-start-column="42" selection-end-line="75" selection-end-column="42" />
-              <folding>
-                <element signature="e#1141#1142#0" expanded="true" />
-                <element signature="e#1177#1178#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/Match.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
-              <folding>
-                <element signature="e#1006#1007#0" expanded="true" />
-                <element signature="e#1044#1045#0" expanded="true" />
-                <element signature="e#1091#1092#0" expanded="true" />
-                <element signature="e#1130#1131#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-3010">
+              <caret line="95" column="5" lean-forward="true" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -82,8 +103,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Course" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -100,19 +122,18 @@
               <item name="star-battle-game" type="b2602c69:ProjectViewProjectNode" />
               <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="star-battle-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="customExceptions" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="star-battle-game" type="b2602c69:ProjectViewProjectNode" />
               <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="userInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="star-battle-game" type="b2602c69:ProjectViewProjectNode" />
+              <item name="star-battle-game" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -198,20 +219,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962293" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16968326" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.3284553" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3284553" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3284553" />
@@ -219,14 +236,18 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" visible="true" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3284553" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -250,12 +271,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/userInterface/GameBoardGUI.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/SelectionWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -294,14 +315,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Match.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
-          <folding>
-            <element signature="e#1006#1007#0" expanded="true" />
-            <element signature="e#1044#1045#0" expanded="true" />
-            <element signature="e#1091#1092#0" expanded="true" />
-            <element signature="e#1130#1131#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-3010">
+          <caret line="95" column="5" lean-forward="true" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
         </state>
       </provider>
     </entry>

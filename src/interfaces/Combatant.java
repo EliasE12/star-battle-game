@@ -1,6 +1,14 @@
 package interfaces;
 
+// Interface
+
+/**
+ * Entidad wur representa que una nave puede combatir.
+ */
 public interface Combatant {
+
+    // Constantes
+
     /**
      * Daño del turbo laser.
      */
@@ -18,6 +26,8 @@ public interface Combatant {
      * Daño del torpedo de proton.
      */
     public final int PROTON_TORPEDO_DAMAGE = 700;
+
+    // Métodos
 
     public int maximunDamage();
 }

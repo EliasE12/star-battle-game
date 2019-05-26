@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuController">
    <center>
       <SplitPane dividerPositions="0.3745819397993311" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
@@ -17,7 +17,7 @@
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#recordClicked" text="Histarial">
+                  <JFXButton buttonType="RAISED" onAction="#recordClicked" text="Historial">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></JFXButton>

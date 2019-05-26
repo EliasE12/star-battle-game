@@ -3,21 +3,76 @@ package model;
 import customExceptions.EqualUserException;
 import customExceptions.NotExistPlayerException;
 
+// Clase
+
+/**
+ * Entidad que representa un jugador.
+ */
 public class Player {
 
+    // Atributos
+
+    /**
+     * Es el nombre del jugador.
+     */
     private String name;
+
+    /**
+     * Es el apellido del jugador.
+     */
     private String lastName;
+
+    /**
+     * Es el nombre de usuario del jugador.
+     */
     private String userName;
+
+    /**
+     * Es el puntaje del jugador.
+     */
     private int globalScore;
+
+    /**
+     * Es el número de partidos ganadas por jugador.
+     */
     private int wonGames;
+
+    /**
+     * Es el número de partidas perdidas por el jugador.
+     */
     private int lostGames;
 
+    /**
+     * Es el jugador derecho del jugador actual.
+     */
     private Player right;
+
+    /**
+     * Es el jugador izquierdo del jugador actual.
+     */
     private Player left;
 
+    /**
+     * Es la partida actual.
+     */
     private Match match;
+
+    /**
+     * Es el primer historial del jugador.
+     */
     private Record first;
 
+    // Constructor
+
+    /**
+     * Inicializa los atributos y relaciones del jugador.
+     * @param name - El nombre del jugador.
+     * @param lastName - El apellido del jugador.
+     * @param userName El nombre de usuario del jugador.
+     * @param globalScore - El puntaje del jugador.
+     * @param wonGames - Las partidos ganadas del jugador.
+     * @param lostGames - Las partidas perdidas del jugador.
+     */
     public Player(String name, String lastName, String userName, int globalScore, int wonGames, int lostGames) {
         this.name = name;
         this.lastName = lastName;
@@ -27,47 +82,92 @@ public class Player {
         this.lostGames = lostGames;
     }
 
+    // Métodos
+
+    /**
+     * Devuelve el jugador derecho del jugador actual.
+     * @return right.
+     */
     public Player getRight() {
         return right;
     }
 
+    /**
+     * Cambia el jugador derecho del jugador actual
+     * @return left.
+     */
     public Player getLeft() {
         return left;
     }
 
+    /**
+     * Devuelve el nombre del jugador
+     * @return name
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * Devuelve el apellido del jugador
+     * @return lastName
+     */
     public String getLastName(){
         return lastName;
     }
 
+    /**
+     * Devuelve el nombre de usuario del jugador.
+     * @return userName.
+     */
     public String getUserName() {
         return userName;
     }
 
+    /**
+     * Devuelve el puntaje del jugador.
+     * @return globalScore
+     */
     public int getGlobalScore() {
         return globalScore;
     }
 
+    /**
+     * Devuelve las partidas ganadas del jugador.
+     * @return wonGames
+     */
     public int getWonGames() {
         return wonGames;
     }
 
+    /**
+     * Devuelve las partidas perdidas del jugador.
+     * @return lostGames
+     */
     public int getLostGames() {
         return lostGames;
     }
 
+    /**
+     * Devuelve la partida.
+     * @return match
+     */
     public Match getMatch() {
         return match;
     }
 
+    /**
+     * Devuelve el primer historial del jugador.
+     * @return first
+     */
     public Record getFirst() {
         return first;
     }
 
-
+    /**
+     * Cambia la partida del jugador.
+     * @param match - la partida.
+     */
     public void setMatch(Match match) {
         this.match = match;
     }

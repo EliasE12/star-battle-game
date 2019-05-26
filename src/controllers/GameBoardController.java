@@ -13,7 +13,6 @@ import model.Match;
 import model.Player;
 import model.Faction.SpaceShipType;
 import  model.Match.Direction;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 

@@ -17,15 +17,45 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// Clase
+
+/**
+ * Entidad que representa el controlador de la ventana del salón de la fama.
+ */
 public class HallOfFameController implements Initializable {
 
+    // Atrubutos
+
+    /**
+     * Es la tabla que muestra los datos del salón.
+     */
     @FXML private TableView<Player> tvHallOfFame;
+
+    /**
+     * Es la columna que muestra el nombre el nombre de un  jugador.
+     */
     @FXML private TableColumn<Player, String> tcName;
+
+    /**
+     * Es la columna que muestra el puntaje global de un jugador.
+     */
     @FXML private TableColumn<Player, Integer> tcGlobalScore;
+
+    /**
+     * Es la columna que muestra las partidas ganadas de un jugador.
+     */
     @FXML private TableColumn<Player, Integer> tcWonMatch;
+
+    /**
+     * Es la columna que muestra las partidas perdidas de un jugador
+     */
     @FXML private TableColumn<Player, Integer> tcLostMatch;
 
+    // Métodos
 
+    /**
+     * Carga e inicializa el formato en que muestran los datos en la tabla del salón.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -36,6 +66,10 @@ public class HallOfFameController implements Initializable {
 
     }
 
+    /**
+     * Controla la acción de presionar el botón para volver a la ventana de menú principal.
+     * @param event - Es el evento producido al presionar el botón.
+     */
     @FXML
     void returnClicked(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/LoginWindowGUI.fxml"));

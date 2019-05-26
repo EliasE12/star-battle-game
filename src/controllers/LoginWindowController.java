@@ -22,19 +22,46 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// Clase
+
+/**
+ * Entdad que representa el controlador de la ventana de iniciar a jugar.
+ */
 public class LoginWindowController implements Initializable {
 
-    private Game game;
+    // Atributos
 
+    /**
+     * Es el campo de texto para ingresar el nombre de usuario del jugador.
+     */
     @FXML private JFXTextField tfEnter;
 
+    /**
+     *
+     */
     private String borrar;
+
+    // Relación
+
+    /**
+     * Es la relación con Juego, la clase principal del modelo.
+     */
+    private Game game;
+
+    // Métodos
+
+    /**
+     * Inicializa los atributos y relaciones de la clase, necesarios manejar la ventana.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         game = new Game();
     }
 
-
+    /**
+     * Controla la acción de presionar el botón para entrar a jugador
+     * @param event - Es el evento producido al presionar el botón.
+     */
     @FXML
     void enterClicked(ActionEvent event) {
         try {
@@ -54,6 +81,10 @@ public class LoginWindowController implements Initializable {
         }
     }
 
+    /**
+     * Controla la acción de presionar el botón de registrar un jugador.
+     * @param event - Es el evento producido al presionar el botón.
+     */
     @FXML
     void toRegisterClicked(ActionEvent event) {
         Stage stage = new Stage();
@@ -77,6 +108,10 @@ public class LoginWindowController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Controla la acción de presionar el botón para ver el salón de la fama.
+     * @param event - Es el evento producido al presionar el botón.
+     */
     @FXML
     void hallFameClicked(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/HallOfFameGUI.fxml"));
@@ -95,6 +130,10 @@ public class LoginWindowController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Controla la acción de presionar el botón para eliminar un jugador.
+     * @param event - Es el evento producido al presionar el botón.
+     */
     @FXML
     void deletePlayerClicked(ActionEvent event) {
         try {
@@ -106,6 +145,11 @@ public class LoginWindowController implements Initializable {
         }
     }
 
+    /**
+     * Vuelve a la ventana de inicio, con la información del jugador indicado.
+     * @param found - Es el jugador indicado.
+     * @param event - Es el evento producido al presionar el botón..
+     */
     private void startMainMenu(Player found, ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/MainMenuGUI.fxml"));
         Parent root = null;

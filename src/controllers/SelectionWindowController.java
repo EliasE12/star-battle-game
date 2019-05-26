@@ -24,42 +24,79 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// Clase
+
+/**
+ * Entidad que representa el controlador de la ventana de selcción del líder.
+ */
 public class SelectionWindowController implements Initializable {
 
+    // Atributos
+
+    /**
+     * Es la imagen perteneciente al lider de tipo Dominador.
+     */
+    @FXML private ImageView dominatorImage;
+
+    /**
+     * Es la imagen perteneciente al lider de tipo Protector.
+     */
+    @FXML private ImageView protectorImage;
+
+    /**
+     * Es la imagen perteneciente al lider de tipo Estratega.
+     */
+    @FXML private ImageView strategistImage;
+
+    /**
+     * Es el compo de texto para el nombre de la facción.
+     */
+    @FXML private JFXTextField tfFactionName;
+
+    /**
+     * Es el campo de texto para el número de miembros.
+     */
+    @FXML private JFXTextField tfMembers;
+
+    /**
+     * Es el campo de texto para el nombre del liíer.
+     */
+    @FXML private JFXTextField tfCaptainName;
+
+    /**
+     * Es el menú desplegable para indicar el nivel de experiencia del líder.
+     */
+    @FXML private JFXComboBox<Leader.LevelExperience> cbExperienceLevel;
+
+    // Relación
+
+    /**
+     * Es el jugador.
+     */
     private Player player;
 
-    @FXML
-    private ImageView dominatorImage;
+    // Métodos
 
-    @FXML
-    private ImageView protectorImage;
-
-    @FXML
-    private ImageView strategistImage;
-
-    @FXML
-    private JFXTextField tfFactionName;
-
-    @FXML
-    private JFXTextField tfMembers;
-
-    @FXML
-    private JFXTextField tfCaptainName;
-
-    @FXML
-    private JFXComboBox<Leader.LevelExperience> cbExperienceLevel;
-
-
+    /**
+     * Inicializa los valores que muestran en el menú desplegable de la experiencia del líder.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cbExperienceLevel.getItems().addAll(Leader.LevelExperience.LOW, Leader.LevelExperience.MEDIUM, Leader.LevelExperience.HIGHT);
     }
 
-
+    /**
+     * Cambia el jugador.
+     * @param player - El nuevo jugador.
+     */
     public void setPlayer(Player player){
         this.player = player;
     }
 
+    /**
+     * Controla la acción de presionar el botón dedicado a crear una partida con el lider de tipo Dominador.
+     * @param event - Es el evento producido al presionar el botón.
+     */
     @FXML
     void dominatorClicked(MouseEvent event) {
 
@@ -78,6 +115,10 @@ public class SelectionWindowController implements Initializable {
         }
     }
 
+    /**
+     * Controla la acción de presionar el botón dedicado a crear una partida con el lider de tipo Estratega.
+     * @param event - Es el evento producido al presionar el botón.
+     */
     @FXML
     void estrategistClicked(MouseEvent event) {
         try {
@@ -95,6 +136,10 @@ public class SelectionWindowController implements Initializable {
         }
     }
 
+    /**
+     * Controla la acción de presionar el botón dedicado a crear una partida con el lider de tipo Protector.
+     * @param event - Es el evento producido al presionar el botón.
+     */
     @FXML
     void protectorClicked(MouseEvent event) {
         try {

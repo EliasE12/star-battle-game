@@ -5,20 +5,49 @@ import customExceptions.EqualUserException;
 import customExceptions.NotExistPlayerException;
 import customExceptions.NotRegisteredUsersException;
 
+// Clase
+
+/**
+ * Entidad que representa el Juego.
+ */
 public class Game {
 
+    // Atributos
+
+    /**
+     * Es la raíz del árbol de jugadores.
+     */
     private Player root;
+
+    /**
+     * Es el número de jugadores en el juego.
+     */
     private int numberPlayers;
 
+    // Constructor
+
+    /**
+     * Inicializa los valores de los atributos del juego.
+     */
     public Game() {
         this.root = null;
     }
 
+    // Métodos
 
+    /**
+     * Devuelve el número de jugadores en el juwgo.
+     * @return numberPlayers.
+     */
     public int getNumberPlayers() {
         return numberPlayers;
     }
 
+    /**
+     * Verifica si el árbol de jugadores está vacío.
+     * @return true si el árbol está vacío.
+     *         false si el árbol no está vacío.
+     */
     public boolean isEmpty(){
         if(root == null){
             return true;
@@ -28,7 +57,6 @@ public class Game {
     }
 
     /**
-     * -------
      *  Se usa recursiva para localizar un jugador en el arbol que inicia en este nodo.
      * @param userName es el nombre de usuario que se desea buscar. - nameSearch != null
      * @return jugador con el mismo nombre de usuario. Si no lo encuentra retorna null;
@@ -68,7 +96,6 @@ public class Game {
 
         if (userName.equals("") || name.equals("") || lastName.equals("")){
             throw new EmptyDataException();
-
         }else {
             Player player = new Player(name , lastName, userName, 0, 0, 0);
 
@@ -81,8 +108,10 @@ public class Game {
         }
     }
 
-
-
+    /**
+     * Elimina un jugador del juego, indicando su nombre de usuario.
+     * @param userName - Es el nombre de usuario del jugador a eliminar.
+     */
     public void deletePlayer(String userName)throws EmptyDataException, NotRegisteredUsersException {
         if (userName.equals("")){
             throw new EmptyDataException();

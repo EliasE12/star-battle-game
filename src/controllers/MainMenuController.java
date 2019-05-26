@@ -12,26 +12,46 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Match;
 import model.Player;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// Clase
+
+/**
+ * Entidad que representa el controlador de la ventana del menú principal.
+ */
 public class MainMenuController implements Initializable {
 
+    // Relación
+
+    /**
+     * Es la relación con la clase Jugador.
+     */
     private Player player;
 
+    // Métodos
 
+    /**
+     * Inicializa los atributos que se manejan en la ventana.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-
+    /**
+     * Cambia el jugador.
+     * @param player - El nuevo jugador.
+     */
     public void setPlayer(Player player){
         this.player = player;
     }
 
+    /**
+     * Controla la acción de presionar el botón de crear una partida.
+     * @param event - Es el evento producido al presionar el botón.
+     */
     @FXML
     void newMatchClicked(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/SelectionWindowGUI.fxml"));
@@ -55,6 +75,10 @@ public class MainMenuController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Controla la acción de presionar el botón ver el historial del jugador.
+     * @param event - Es el evento producido al presionar el botón.
+     */
     @FXML
     void recordClicked(ActionEvent event)  {
         Stage stage = new Stage();

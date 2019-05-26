@@ -3,29 +3,86 @@ package model;
 import customExceptions.EmptyDataException;
 import model.Faction.SpaceShipType;
 
+// Clase
+
+/**
+ * Entidad que representa un partida del juego.
+ */
 public class Match {
 
+    // Constantes
+
+    /**
+     * Indica la duración de la partida.
+     */
     public static final long DURATION_MATCH = 600000;
+
+    /**
+     * Idica la duración del turno.
+     */
     public static final long DURATION_TURN = 60000;
 
+    /**
+     * Indica el tamaño del tablero de juego.
+     */
     public static final int GAME_BOARD_SIZE = 10;
 
-
+    /**
+     * Indica los distintos tipos de líderes que pueden existir.
+     */
     public enum LeaderType {DOMINATOR, PROTECTOR, STRATEGIST};
+
+    /**
+     * Indica los distintos tipos de posiciones en los que se puede posicionar una nave en el tablero de juego.
+     */
     public enum Direction {HORIZONTAL, VERTICAL};
 
+    // Atributos
 
+    /**
+     * Es la facción que pertenece al jugador.
+     */
     private Faction user;
+
+    /**
+     * Es la facción que pertenece a la máquina.
+     */
     private Faction machine;
 
+
+    /**
+     * Es el tiempo de juego.
+     */
     private int time;
+
+    /**
+     * Es el puntaje del jugador en la partida.
+     */
     private int score;
+
+    /**
+     * Indica si el jugador gana o no la partida.
+     */
     private boolean win;
 
+    /**
+     * Es el tablero de juego perteneciente al jugador.
+     */
     private String[][] gameBoardPlayer;
+
+    /**
+     * Es el tablero de juego perteneciente a la máquina.
+     */
     private String[][] gameBoardMachine;
 
+    //Constructor
 
+    /**
+     * Inicializa los valores de los atributos de la partida.
+     * @param time - El tiempo de juego.
+     * @param score . El puntaje del jugador en la partida.
+     * @param win - Indica si el jugador gana o na la partida.
+     */
     public Match(int time, int score, boolean win) {
         this.time = time;
         this.score = score;
@@ -38,14 +95,26 @@ public class Match {
         fillMatrix(gameBoardMachine);
     }
 
+    /**
+     * Devuelve la matriz que contiene el tablero de juego del jugador.
+     * @return gameBoardPlayer.
+     */
     public String[][] getGameBoardPlayer() {
         return gameBoardPlayer;
     }
 
+    /**
+     * Devuelve la matriz que contiene el tablero de juego de la máquina.
+     * @return gameBoardMachine
+     */
     public String[][] getGameBoardMachine() {
         return gameBoardMachine;
     }
 
+    /**
+     * Pinta la matriz que representa el tablero de juego.
+     * @param matrix - La matriz que se va a pintar.
+     */
     private void fillMatrix(String[][] matrix){
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
@@ -54,6 +123,9 @@ public class Match {
         }
     }
 
+    /**
+     * Maneja el tiempo de duración de la partida.
+     */
     public void manageMatchTime(){
 
     }
@@ -93,13 +165,11 @@ public class Match {
             Faction faction = new Faction(factionName, members, leader1);
             user = faction;
 
-            //Modificado
             createMachineFaction(members, type, experience);
         }
     }
 
 
-    //Metodo modificado
     /**
      * Metodo que se encarga de crear la faccion enemiga, dependiendo de la faccion creada por el usaurio
      * @param members numero de miembros que poseera la faccion enemiga
@@ -171,7 +241,6 @@ public class Match {
     }
 
 
-    //Metodo modificado
     /**
      * Inicializa el llamado a los metodos que se encargan de crear las naves en las posiciones escogidas por el jugador.
      * <pre>La matriz gameBoardPlayer donde se van a posicionar las naves del jugador, debe ser != null</>
@@ -199,7 +268,6 @@ public class Match {
     }
 
 
-    //Metodo Modificado
     /**
      * Se encarga de verificar que si en la posicion, pasada como parametro, haya ubicada una nave en el tablero de juego del jugador.
      * @param position posicion donde se verificara, en el tablero de juego del jugador, si hay una nave posicionada
@@ -220,7 +288,6 @@ public class Match {
     }
 
 
-    //Metodo modificado
     /**
      * Se encarga de verificar que si en la posicion, pasada como parametro, haya ubicada una nave en el tablero de juego de la maquina.
      * @@param position posicion donde se verificara, en el tablero de juego de la maquina, si hay una nave posicionada
@@ -241,7 +308,10 @@ public class Match {
     }
 
 
-    //Metodo modificado
+    /**
+     *
+     * @return
+     */
     public boolean winner(){
         boolean win = false;
 
