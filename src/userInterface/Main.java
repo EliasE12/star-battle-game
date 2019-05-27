@@ -16,7 +16,7 @@ public class Main extends Application {
     // Métodos
 
     /**
-     * Carga e inicializa en juego.
+     * Carga e inicializa el juego.
      * @param primaryStage - Es el scenario principal.
      * @throws Exception - Es el error que se produce cuando no se puede cargar la ventana principal.
      */

@@ -1,5 +1,6 @@
 package controllers;
 
+import com.jfoenix.controls.JFXButton;
 import customExceptions.EmptyDataException;
 import customExceptions.NotShipsPositionedException;
 import javafx.event.ActionEvent;
@@ -16,11 +17,18 @@ import  model.Match.Direction;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// Clase
+
+/**
+ * Entidad que representa el controlador de la ventana del tablero de juego.
+ */
 public class GameBoardController implements Initializable {
 
+    // Atrubutos
+
     private Player player;
-    private Button[][] gameBoardP;
-    private Button[][] gameBoardM;
+    private JFXButton[][] gameBoardP;
+    private JFXButton[][] gameBoardM;
 
     @FXML
     private JFXComboBox<SpaceShipType> spaceShipsBox;
@@ -50,8 +58,8 @@ public class GameBoardController implements Initializable {
         spaceShipsBox.getItems().addAll(SpaceShipType.SHUTTLE, SpaceShipType.BOMBER, SpaceShipType.INTERCEPTOR, SpaceShipType.GUNSHIP, SpaceShipType.STARFIGHTER, SpaceShipType.DESTROYER, SpaceShipType.BATTLECRUISER, SpaceShipType.DREADNOUGHT);
         horientationBox.getItems().addAll(Direction.HORIZONTAL, Direction.VERTICAL);
 
-        gameBoardP = new Button[Match.GAME_BOARD_SIZE][Match.GAME_BOARD_SIZE];
-        gameBoardM = new Button[Match.GAME_BOARD_SIZE][Match.GAME_BOARD_SIZE];
+        gameBoardP = new JFXButton[Match.GAME_BOARD_SIZE][Match.GAME_BOARD_SIZE];
+        gameBoardM = new JFXButton[Match.GAME_BOARD_SIZE][Match.GAME_BOARD_SIZE];
 
         gameBoardMachine.setDisable(true);
         fillGrid();
@@ -83,7 +91,7 @@ public class GameBoardController implements Initializable {
         for (int i = 0; i < Match.GAME_BOARD_SIZE; i++) {
             for (int j = 0; j < Match.GAME_BOARD_SIZE; j++) {
 
-                Button b = new Button("*");
+                JFXButton b = new JFXButton("*");
                 b.setId(i + "," + j);
                 b.setOnAction(event -> action(b));
                 b.setPrefHeight(50);
@@ -123,7 +131,7 @@ public class GameBoardController implements Initializable {
         for (int i = 0; i < Match.GAME_BOARD_SIZE; i++) {
             for (int j = 0; j < Match.GAME_BOARD_SIZE; j++) {
 
-                Button b = new Button("*");
+                JFXButton b = new JFXButton("*");
                 b.setId(i + "," + j);
                 b.setOnAction(event -> actionPlayer(b.getId()));
                 b.setPrefHeight(50);
@@ -152,6 +160,7 @@ public class GameBoardController implements Initializable {
                     founded = true;
 
                     gameBoard[i][j].setText("X");
+
                 }
             }
         }
