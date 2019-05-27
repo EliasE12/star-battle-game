@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edf29dab-4dbe-4423-b67c-27e1f971c107" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/JUnit5_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfoenix_8_0_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GameBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/MainMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/threads/TimeGameThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/threads/TimeGameThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/threads/UpdateThreadMatchTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/threads/UpdateThreadMatchTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/star-battle-game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/star-battle-game.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,29 +19,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/GameBoardController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="75" column="22" selection-start-line="75" selection-start-column="22" selection-end-line="75" selection-end-column="22" />
-              <folding>
-                <element signature="e#1888#1889#0" expanded="true" />
-                <element signature="e#1924#1925#0" expanded="true" />
-                <element signature="e#1994#1995#0" expanded="true" />
-                <element signature="e#2022#2023#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="323">
+              <caret line="39" column="129" selection-start-line="39" selection-start-column="129" selection-end-line="39" selection-end-column="129" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Match.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2901">
-              <caret line="342" column="8" selection-start-line="342" selection-start-column="8" selection-end-line="342" selection-end-column="8" />
+            <state relative-caret-position="1997">
+              <caret line="373" column="113" selection-start-line="373" selection-start-column="113" selection-end-line="373" selection-end-column="113" />
               <folding>
-                <element signature="e#2224#2225#0" expanded="true" />
-                <element signature="e#2251#2252#0" expanded="true" />
                 <element signature="method#fillMatrix#0;class#Match#0" />
                 <element signature="method#manageMatchTime#0;class#Match#0" />
                 <element signature="method#createUserFaction#0;class#Match#0" />
@@ -57,16 +42,9 @@
                 <element signature="method#createSpaceShips#0;class#Match#0" />
                 <element signature="method#uncoverPlayersBox#0;class#Match#0" />
                 <element signature="method#uncoverMachineBox#0;class#Match#0" />
+                <element signature="method#winner#0;class#Match#0" />
+                <element signature="method#generatePositionMachine#0;class#Match#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/threads/UpdateThreadMatchTime.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -81,9 +59,11 @@
       <list>
         <option value="$PROJECT_DIR$/src/threads/TimeGameThread.java" />
         <option value="$PROJECT_DIR$/src/controllers/MainMenuController.java" />
-        <option value="$PROJECT_DIR$/src/controllers/GameBoardController.java" />
+        <option value="$PROJECT_DIR$/src/model/Player.java" />
+        <option value="$PROJECT_DIR$/src/model/Record.java" />
         <option value="$PROJECT_DIR$/src/threads/UpdateThreadMatchTime.java" />
         <option value="$PROJECT_DIR$/src/model/Match.java" />
+        <option value="$PROJECT_DIR$/src/controllers/GameBoardController.java" />
       </list>
     </option>
   </component>
@@ -193,6 +173,21 @@
       <option name="presentableId" value="Default" />
       <updated>1558965926439</updated>
     </task>
+    <task id="LOCAL-00001" summary="Arregladas las clases TimeGameThread y UpdateThreadMatchTime, para actualizar correctamente el tiempo de la partida en curso. creado el metodo updateMatchTime, en la clase GameBoardController, para actualizar el tiempo en la interfaz de usuario.">
+      <created>1558968634907</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1558968634907</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Arreglado el hilo que controla el tiempo de juego, Agregado los debidos comentarios en las clases actualizadas.">
+      <created>1558990466343</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1558990466343</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -204,7 +199,7 @@
       <window_info id="UI Designer" />
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24962293" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2269985" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
@@ -227,6 +222,11 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Arregladas las clases TimeGameThread y UpdateThreadMatchTime, para actualizar correctamente el tiempo de la partida en curso. creado el metodo updateMatchTime, en la clase GameBoardController, para actualizar el tiempo en la interfaz de usuario." />
+    <MESSAGE value="Arreglado el hilo que controla el tiempo de juego, Agregado los debidos comentarios en las clases actualizadas." />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglado el hilo que controla el tiempo de juego, Agregado los debidos comentarios en las clases actualizadas." />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/controllers/SelectionWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -242,47 +242,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="65" column="98" selection-start-line="65" selection-start-column="75" selection-end-line="65" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Record.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="122" column="43" selection-start-line="122" selection-start-column="43" selection-end-line="122" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Spaceship.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1003">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-352">
+          <caret line="338" column="79" selection-start-line="338" selection-start-column="79" selection-end-line="338" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/threads/UpdateThreadMatchTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="59" column="138" selection-start-line="59" selection-start-column="138" selection-end-line="59" selection-end-column="138" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/threads/TimeGameThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#452#453#0" expanded="true" />
-            <element signature="e#486#487#0" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+            <element signature="e#656#657#0" expanded="true" />
             <element signature="e#750#751#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/GameBoardController.java">
+    <entry file="file://$PROJECT_DIR$/src/controllers/HallOfFameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="75" column="22" selection-start-line="75" selection-start-column="22" selection-end-line="75" selection-end-column="22" />
-          <folding>
-            <element signature="e#1888#1889#0" expanded="true" />
-            <element signature="e#1924#1925#0" expanded="true" />
-            <element signature="e#1994#1995#0" expanded="true" />
-            <element signature="e#2022#2023#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/threads/UpdateThreadMatchTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
+        <state relative-caret-position="-46">
+          <caret line="56" column="37" lean-forward="true" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Match.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2901">
-          <caret line="342" column="8" selection-start-line="342" selection-start-column="8" selection-end-line="342" selection-end-column="8" />
+        <state relative-caret-position="1997">
+          <caret line="373" column="113" selection-start-line="373" selection-start-column="113" selection-end-line="373" selection-end-column="113" />
           <folding>
-            <element signature="e#2224#2225#0" expanded="true" />
-            <element signature="e#2251#2252#0" expanded="true" />
             <element signature="method#fillMatrix#0;class#Match#0" />
             <element signature="method#manageMatchTime#0;class#Match#0" />
             <element signature="method#createUserFaction#0;class#Match#0" />
@@ -291,7 +311,16 @@
             <element signature="method#createSpaceShips#0;class#Match#0" />
             <element signature="method#uncoverPlayersBox#0;class#Match#0" />
             <element signature="method#uncoverMachineBox#0;class#Match#0" />
+            <element signature="method#winner#0;class#Match#0" />
+            <element signature="method#generatePositionMachine#0;class#Match#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/GameBoardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="39" column="129" selection-start-line="39" selection-start-column="129" selection-end-line="39" selection-end-column="129" />
         </state>
       </provider>
     </entry>

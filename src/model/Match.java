@@ -75,6 +75,7 @@ public class Match {
      */
     private String[][] gameBoardMachine;
 
+
     //Constructor
 
     /**
@@ -95,6 +96,7 @@ public class Match {
         fillMatrix(gameBoardMachine);
     }
 
+
     /**
      * Devuelve el valor que posee el atributo time de la clase Match.
      * @return El valor y/o numero que posee el parametro time.
@@ -102,6 +104,7 @@ public class Match {
     public long getTime(){
         return time;
     }
+
 
     /**
      * Devuelve el valor del parametro score de la clase Match.
@@ -111,6 +114,7 @@ public class Match {
         return score;
     }
 
+
     /**
      * Devuelve el valor del parametro win de la clase Match.
      * @return true si el jugador gano la partida en curso. False en caso contrario.
@@ -118,6 +122,7 @@ public class Match {
     public boolean isWin() {
         return win;
     }
+
 
     /**
      * Devuelve la matriz que contiene el tablero de juego del jugador.
@@ -127,6 +132,7 @@ public class Match {
         return gameBoardPlayer;
     }
 
+
     /**
      * Devuelve la matriz que contiene el tablero de juego de la máquina.
      * @return gameBoardMachine
@@ -134,6 +140,7 @@ public class Match {
     public String[][] getGameBoardMachine() {
         return gameBoardMachine;
     }
+
 
     /**
      * Pinta la matriz que representa el tablero de juego.
@@ -146,6 +153,7 @@ public class Match {
             }
         }
     }
+
 
     /**
      * Maneja el tiempo de duración de la partida.
@@ -359,5 +367,21 @@ public class Match {
 
 
         return win;
+    }
+
+
+    /**
+     * Se encarga de generar aleatoriamente la posicion del boton que seleccionara la maquina en su debido turno.
+     * @return
+     */
+    public String generatePositionMachine(){
+        String position = "";
+
+        int x = (int) Math.floor(Math.random() * (GAME_BOARD_SIZE - (0 + 1)) + 0);
+        int y = (int) Math.floor(Math.random() * (GAME_BOARD_SIZE - (0 + 1)) + 0);
+
+        position = x + "," + y;
+
+        return position;
     }
 }

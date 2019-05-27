@@ -37,6 +37,11 @@ public class GameBoardController implements Initializable {
     private Player player;
 
     /**
+     *Se encarga de verificar si el juego ya comenzo, para desabilitar la opcion de agregar naves al tablero de juego del jugador
+     */
+    private boolean playClicked;
+
+    /**
      * Matriz de botones el cual albergara el tablero del jugador y todos los cambios que se le hagan.
      */
     private JFXButton[][] gameBoardP;
@@ -88,6 +93,8 @@ public class GameBoardController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        playClicked = false;
+
         spaceShipsBox.getItems().addAll(SpaceShipType.SHUTTLE, SpaceShipType.BOMBER, SpaceShipType.INTERCEPTOR, SpaceShipType.GUNSHIP, SpaceShipType.STARFIGHTER, SpaceShipType.DESTROYER, SpaceShipType.BATTLECRUISER, SpaceShipType.DREADNOUGHT);
         horientationBox.getItems().addAll(Direction.HORIZONTAL, Direction.VERTICAL);
 
@@ -128,6 +135,8 @@ public class GameBoardController implements Initializable {
             np.message();
 
         }else {
+            playClicked = true;
+
             UpdateThreadMatchTime umt = new UpdateThreadMatchTime(this);
             umt.setDaemon(true);
             umt.start();
@@ -182,15 +191,17 @@ public class GameBoardController implements Initializable {
      * @param b Es el boton seleccionado
      */
     private void action(Button b){
-        SpaceShipType s = spaceShipsBox.getValue();
+        if (!playClicked){
+            SpaceShipType s = spaceShipsBox.getValue();
 
-        try {
-            player.getMatch().createSpaceShips(s, horientationBox.getValue(), b.getId());
-            spaceShipsBox.getItems().remove(s);
+            try {
+                player.getMatch().createSpaceShips(s, horientationBox.getValue(), b.getId());
+                spaceShipsBox.getItems().remove(s);
 
-            updateGameBoard(gameBoardP);
-        } catch (EmptyDataException e) {
-            e.message();
+                updateGameBoard(gameBoardP);
+            } catch (EmptyDataException e) {
+                e.message();
+            }
         }
     }
 
@@ -253,6 +264,22 @@ public class GameBoardController implements Initializable {
                     gameBoard[i][j].setText("X");
                 }
             }
+        }
+    }
+
+    /**
+     * Se encarga de escoger aleatoriamente un boton en el tablero de juego del jugador y destaparla para, posteriormente,
+     * verificar si hay o no una nave.
+     */
+    private void turnMachine(){
+        String position = player.getMatch().generatePositionMachine();
+
+        String[] p = position.split(",");
+        Button b = gameBoardP[Integer.parseInt(p[0])][Integer.parseInt(p[1])];
+        b.setDisable(true);
+
+        if (!player.getMatch().uncoverPlayersBox(position)){
+            b.setText("#");
         }
     }
 }
