@@ -1,5 +1,6 @@
 package threads;
 
+import controllers.GameBoardController;
 import model.Match;
 
 // Clase
@@ -12,18 +13,18 @@ public class TimeGameThread extends Thread {
     // Atributos
 
     /**
-     * Es la partida a la que se le mide el tiempo.
+     * Es el controlador el cual se encarga de actualizar el tiempo de la partida en curso.
      */
-    private Match match;
+    private GameBoardController gbc;
 
     // Constructor
 
     /**
      * Inicializa el cronómetro con la partidad ingresada.
-     * @param match - la partida.
+     * @param gbc - controlador el cual posee el metodo que actualiza el tiempo de la partida en curso.
      */
-    public TimeGameThread(Match match) {
-        this.match = match;
+    public TimeGameThread(GameBoardController gbc) {
+        this.gbc = gbc;
     }
 
     /**
@@ -31,6 +32,6 @@ public class TimeGameThread extends Thread {
      */
     @Override
     public void run() {
-        match.manageMatchTime();
+        gbc.updateMatchTime();
     }
 }

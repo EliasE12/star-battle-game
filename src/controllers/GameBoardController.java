@@ -14,6 +14,8 @@ import model.Match;
 import model.Player;
 import model.Faction.SpaceShipType;
 import  model.Match.Direction;
+import threads.UpdateThreadMatchTime;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -70,6 +72,9 @@ public class GameBoardController implements Initializable {
     public void setPlayer(Player player){
         this.player = player;
     }
+    public Player getPlayer(){
+        return player;
+    }
 
 
 
@@ -80,10 +85,21 @@ public class GameBoardController implements Initializable {
             np.message();
 
         }else {
+            UpdateThreadMatchTime umt = new UpdateThreadMatchTime(this);
+            umt.setDaemon(true);
+            umt.start();
+
             gameBoadPlayer.setDisable(true);
             gameBoardMachine.setDisable(false);
             fillGridMachine();
         }
+    }
+
+
+    public void updateMatchTime(){
+        String time = player.getMatch().manageMatchTime();
+
+        gameTime.setText(time);
     }
 
 

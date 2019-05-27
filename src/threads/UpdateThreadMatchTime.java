@@ -1,5 +1,6 @@
 package threads;
 
+import controllers.GameBoardController;
 import javafx.application.Platform;
 import model.Match;
 
@@ -20,14 +21,14 @@ public class UpdateThreadMatchTime extends Thread {
     /**
      * Es la partida a la que se va a actualizar el tiempo.
      */
-    private Match match;
+    private GameBoardController gbc;
 
     /**
      * Actualiza el cronómetro con la partida.
-     * @param match - la partida.
+     * @param gbc - El controlador el cual es el encargado de actualizar el tiempo del juego en la interfaz del usuario.
      */
-    public UpdateThreadMatchTime(Match match) {
-        this.match = match;
+    public UpdateThreadMatchTime(GameBoardController gbc) {
+        this.gbc = gbc;
     }
 
     /**
@@ -35,8 +36,8 @@ public class UpdateThreadMatchTime extends Thread {
      */
     @Override
     public void run() {
-        while(true){
-            TimeGameThread timeGameThread = new TimeGameThread(match);
+        while(gbc.getPlayer().getMatch().getTime() > 0){
+            TimeGameThread timeGameThread = new TimeGameThread(gbc);
             Platform.runLater(timeGameThread);
 
             try {

@@ -15,7 +15,7 @@ public class Match {
     /**
      * Indica la duración de la partida.
      */
-    public static final long DURATION_MATCH = 600000;
+    public static final long DURATION_MATCH = 600;
 
     /**
      * Idica la duración del turno.
@@ -53,7 +53,7 @@ public class Match {
     /**
      * Es el tiempo de juego.
      */
-    private int time;
+    private long time;
 
     /**
      * Es el puntaje del jugador en la partida.
@@ -83,7 +83,7 @@ public class Match {
      * @param score . El puntaje del jugador en la partida.
      * @param win - Indica si el jugador gana o na la partida.
      */
-    public Match(int time, int score, boolean win) {
+    public Match(long time, int score, boolean win) {
         this.time = time;
         this.score = score;
         this.win = win;
@@ -93,6 +93,14 @@ public class Match {
 
         fillMatrix(gameBoardPlayer);
         fillMatrix(gameBoardMachine);
+    }
+
+    /**
+     * Devuelve el valor que posee el atributo time de la clase Match.
+     * @return El valor y/o numero que posee el parametro time.
+     */
+    public long getTime(){
+        return time;
     }
 
     /**
@@ -125,9 +133,26 @@ public class Match {
 
     /**
      * Maneja el tiempo de duración de la partida.
+     * @return El tiempo de la partida actualizado
      */
-    public void manageMatchTime(){
+    public String manageMatchTime(){
+        String s = "";
+        time --;
 
+        long hour = (time/3600);
+        long minute = ((time-hour*3600)/60);
+        long seg = time-(hour*3600+minute*60);
+
+        if (seg < 10){
+            s = "0" + seg;
+
+        }else {
+            s += seg;
+        }
+
+        String matchTime = "00" + ":0" + minute + ":" + s;
+
+        return matchTime;
     }
 
 
