@@ -20,7 +20,7 @@ public class Match {
     /**
      * Idica la duración del turno.
      */
-    public static final long DURATION_TURN = 60000;
+    public static final long DURATION_TURN = 30;
 
     /**
      * Indica el tamaño del tablero de juego.
@@ -101,6 +101,22 @@ public class Match {
      */
     public long getTime(){
         return time;
+    }
+
+    /**
+     * Devuelve el valor del parametro score de la clase Match.
+     * @return El valor y/o numero que posee el parametro score.
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * Devuelve el valor del parametro win de la clase Match.
+     * @return true si el jugador gano la partida en curso. False en caso contrario.
+     */
+    public boolean isWin() {
+        return win;
     }
 
     /**

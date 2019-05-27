@@ -3,6 +3,9 @@ package model;
 import customExceptions.EqualUserException;
 import customExceptions.NotExistPlayerException;
 
+import java.util.Calendar;
+import java.util.Date;
+
 // Clase
 
 /**
@@ -80,6 +83,11 @@ public class Player {
         this.globalScore = globalScore;
         this.wonGames = wonGames;
         this.lostGames = lostGames;
+
+        left = null;
+        right = null;
+
+        first = null;
     }
 
     // Métodos
@@ -289,6 +297,85 @@ public class Player {
      */
     public Player getMajor(){
         return (right == null) ? this : right.getMajor();
+    }
+
+    /**
+     * Crea el historial de la partida acabada de finalizar por el jugador.
+     */
+    public void createRecord(){
+        String date;
+        boolean win = match.isWin();
+        int score = match.getScore();
+        String time = match.manageMatchTime();
+        String delayedTime = "";
+        Record.Result result;
+
+        if (win){
+            result = Record.Result.VICTORIA;
+        }else {
+            result = Record.Result.DERROTA;
+        }
+
+        if (match.getTime() <= 0){
+            delayedTime = "00:10:00";
+
+        }else {
+            delayedTime = calculateTime();
+        }
+
+        Calendar c = Calendar.getInstance();
+        String day = Integer.toString(c.get(Calendar.DATE));
+        String month = Integer.toString(c.get(Calendar.MONTH));
+        String year = Integer.toString(c.get(Calendar.YEAR));
+
+        date = day + "/" + month + "/" + year;
+
+        Record record = new Record(date, score, win, delayedTime, result);
+        addRecord(record);
+    }
+
+    /**
+     * Calcula el tiempo de juego que le ha tomado al jugador ganar o perder la partida, cuando no se le ha acaba el tiempo.
+     * @return El tiempo demorado por el jugador en acabar o perder la partida.
+     */
+    private String calculateTime(){
+        String timeCalculated = "";
+        String s = "";
+        String m = "";
+
+        String[] timeDelayed = match.manageMatchTime().split(":");
+
+        long hourD = Long.parseLong(timeDelayed[0]);
+        long minD = Long.parseLong(timeDelayed[1]);
+        long segD = Long.parseLong(timeDelayed[2]);
+
+        long hour = (Match.DURATION_MATCH/3600) - (hourD);
+        long minute = ((Match.DURATION_MATCH-hour*3600)/60) - (minD);
+        long seg = Match.DURATION_MATCH-(hour*3600+minute*60) - (segD);
+
+        if (minute < 10){
+            m = "0" + minute;
+        }
+        if (seg < 10){
+            s = "0" + seg;
+        }
+
+        timeCalculated = hour + ":" + m + ":" + s;
+
+        return timeCalculated;
+    }
+
+    /**
+     * Agrega el Historial creado a la lista simple de historiales del jugador.
+     * <pre> El historial que recibe como parametro llamado record es != null</>
+     */
+    private void addRecord(Record record){
+        if (first == null){
+            first = record;
+
+        }else {
+            first.addRecord(record);
+        }
     }
 
 

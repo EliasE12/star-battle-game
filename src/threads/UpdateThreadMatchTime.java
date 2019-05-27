@@ -14,14 +14,19 @@ public class UpdateThreadMatchTime extends Thread {
     // atributos
 
     /**
-     * Es el tiempo que se va actualizar la duración de la partida.
+     * Es el tiempo en que se va actualizar la duración de la partida.
      */
     private static final int SLEEP_TIME = 1000;
 
     /**
-     * Es la partida a la que se va a actualizar el tiempo.
+     * Es el controlador donde se va a actualizar el tiempo.
      */
     private GameBoardController gbc;
+
+    /**
+     * Es la condicion de parada del ciclo que realiza el hilo
+     */
+    private boolean stop;
 
     /**
      * Actualiza el cronómetro con la partida.
@@ -29,6 +34,7 @@ public class UpdateThreadMatchTime extends Thread {
      */
     public UpdateThreadMatchTime(GameBoardController gbc) {
         this.gbc = gbc;
+        stop = false;
     }
 
     /**
@@ -36,7 +42,8 @@ public class UpdateThreadMatchTime extends Thread {
      */
     @Override
     public void run() {
-        while(gbc.getPlayer().getMatch().getTime() > 0){
+        while(!stop){
+
             TimeGameThread timeGameThread = new TimeGameThread(gbc);
             Platform.runLater(timeGameThread);
 
@@ -45,6 +52,16 @@ public class UpdateThreadMatchTime extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            stopped();
+        }
+    }
+
+    /**
+     * Se encarga de verificar la continuidad del ciclo del hilo, inspeccionando que el tiempo de la partida en curso aun sea mayor que 0.
+     */
+    private void stopped(){
+        if (gbc.getPlayer().getMatch().getTime() == 0){
+            stop = true;
         }
     }
 }

@@ -12,7 +12,7 @@ public class Record {
 	// Constantes
 
 	/**
-	 * Indic el tipo de resultado de una partida.
+	 * Indica el tipo de resultado de una partida.
 	 */
 	public enum Result {VICTORIA, DERROTA};
 
@@ -26,7 +26,7 @@ public class Record {
 	/**
 	 * Es la fecha de la partida.
 	 */
-	private Date date;
+	private String date;
 
 	/**
 	 * Es el puntaje obtenido en la partida.
@@ -58,7 +58,7 @@ public class Record {
 	 * @param time - El tiempo de duracion de la partida.
 	 * @param result - El resultado de la partida.
 	 */
-	public Record(Date date, int score, boolean won, String time, Result result) {
+	public Record(String date, int score, boolean won, String time, Result result) {
 		this.date = date;
 		this.score = score;
 		this.won = won;
@@ -74,7 +74,7 @@ public class Record {
 	 * Devuelve la fecha de la partida.
 	 * @return date.
 	 */
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
@@ -117,9 +117,19 @@ public class Record {
 	public Result getResult(){
 		return result;
 	}
-	
-	
-	
+
+	/**
+	 * Se encarga de recorrer la lista simple hasta hallar el ultimo elemnto de esta(la lista simple), para luego, agregarsela a la siguiente.
+	 * @param toAdd Es el elemento a anadir
+	 */
+	public void addRecord(Record toAdd){
+		if (next == null){
+			next = toAdd;
+
+		}else {
+			next.addRecord(toAdd);
+		}
+	}
 	
 	
 }
