@@ -339,6 +339,7 @@ public class Player {
      * @return El tiempo demorado por el jugador en acabar o perder la partida.
      */
     private String calculateTime(){
+        long duration = 0;
         String timeCalculated = "";
         String s = "";
         String m = "";
@@ -349,9 +350,25 @@ public class Player {
         long minD = Long.parseLong(timeDelayed[1]);
         long segD = Long.parseLong(timeDelayed[2]);
 
-        long hour = (Match.DURATION_MATCH/3600) - (hourD);
-        long minute = ((Match.DURATION_MATCH-hour*3600)/60) - (minD);
-        long seg = Match.DURATION_MATCH-(hour*3600+minute*60) - (segD);
+        long hour;
+        long minute;
+        long seg;
+
+        switch (match.getUser().getLeader().getLevelExperience()){
+            case HIGHT:
+                duration = Match.DURATION_MATCH_HIGH_LEVEL;
+                break;
+            case MEDIUM:
+                duration = Match.DURATION_MATCH_MEDIUM_LEVEL;
+                break;
+            case LOW:
+                duration = Match.DURATION_MATCH_LOW_LEVEL;
+                break;
+        }
+
+        hour = (duration/3600) - (hourD);
+        minute = ((duration-hour*3600)/60) - (minD);
+        seg = duration-(hour*3600+minute*60) - (segD);
 
         if (minute < 10){
             m = "0" + minute;

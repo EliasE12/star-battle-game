@@ -59,6 +59,14 @@ public class Faction {
     // Métodos
 
     /**
+     * Devuelve el lider creado por el usuario al momento de comenzar una nueva partida.
+     * @return El lider de la faccion del jugador
+     */
+    public Leader getLeader() {
+        return leader;
+    }
+
+    /**
      * Verifica si la posición en el tablero de juego en la que se va a colocar una nueva nave, es permitida o no.
      * @param matriz - Es el tablero de juego.
      * @param posF - Es la posición x del tablero de juego.

@@ -20,7 +20,7 @@ public class TimeGameThread extends Thread {
     // Constructor
 
     /**
-     * Inicializa el cronómetro con la partidad ingresada.
+     * Inicializa el cronómetro con la controladora pasada como parametro.
      * @param gbc - controlador el cual posee el metodo que actualiza el tiempo de la partida en curso.
      */
     public TimeGameThread(GameBoardController gbc) {

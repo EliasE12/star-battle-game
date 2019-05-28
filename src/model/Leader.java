@@ -37,4 +37,14 @@ public abstract class Leader {
         this.name = name;
         this.levelExperience = levelExperience;
     }
+
+    //Metodos
+
+    /**
+     * Devuelve el nivel de experiencia del lider
+     * @return El nivel de experiencia del lider
+     */
+    public LevelExperience getLevelExperience() {
+        return levelExperience;
+    }
 }

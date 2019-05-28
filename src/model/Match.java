@@ -15,12 +15,16 @@ public class Match {
     /**
      * Indica la duración de la partida.
      */
-    public static final long DURATION_MATCH = 600;
+    public static final long DURATION_MATCH_HIGH_LEVEL = 600;
+    public static final long DURATION_MATCH_MEDIUM_LEVEL = 900;
+    public static final long DURATION_MATCH_LOW_LEVEL = 1200;
 
     /**
      * Idica la duración del turno.
      */
-    public static final long DURATION_TURN = 30;
+    public static final long DURATION_TURN_HIGH_LEVEL = 20;
+    public static final long DURATION_TURN_MEDIUM_LEVEL = 30;
+    public static final long DURATION_TURN_LOW_LEVEL = 40;
 
     /**
      * Indica el tamaño del tablero de juego.
@@ -96,6 +100,13 @@ public class Match {
         fillMatrix(gameBoardMachine);
     }
 
+    /**
+     * Devuelve la faccion creada por el usuario.
+     * @return La faccion del jugador.
+     */
+    public Faction getUser() {
+        return user;
+    }
 
     /**
      * Devuelve el valor que posee el atributo time de la clase Match.
@@ -105,6 +116,13 @@ public class Match {
         return time;
     }
 
+    /**
+     * Cambia el valor del parametro time.
+     * @param time Es el nuevo valor que se le dara al parametro time
+     */
+    public void setTime(long time) {
+        this.time = time;
+    }
 
     /**
      * Devuelve el valor del parametro score de la clase Match.

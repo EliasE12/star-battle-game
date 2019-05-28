@@ -103,6 +103,7 @@ public class SelectionWindowController implements Initializable {
         try {
             int members = Integer.parseInt(tfMembers.getText());
             player.getMatch().createUserFaction(tfFactionName.getText(), members, Match.LeaderType.DOMINATOR, tfCaptainName.getText(), cbExperienceLevel.getValue());
+            chooseTime(cbExperienceLevel.getValue());
             startGameBoard(event);
 
         }catch (NumberFormatException e){
@@ -124,6 +125,7 @@ public class SelectionWindowController implements Initializable {
         try {
             int members = Integer.parseInt(tfMembers.getText());
             player.getMatch().createUserFaction(tfFactionName.getText(), members, Match.LeaderType.STRATEGIST, tfCaptainName.getText(), cbExperienceLevel.getValue());
+            chooseTime(cbExperienceLevel.getValue());
             startGameBoard(event);
 
         }catch (NumberFormatException e){
@@ -145,6 +147,7 @@ public class SelectionWindowController implements Initializable {
         try {
             int members = Integer.parseInt(tfMembers.getText());
             player.getMatch().createUserFaction(tfFactionName.getText(), members, Match.LeaderType.PROTECTOR, tfCaptainName.getText(), cbExperienceLevel.getValue());
+            chooseTime(cbExperienceLevel.getValue());
             startGameBoard(event);
 
         }catch (NumberFormatException e){
@@ -157,6 +160,10 @@ public class SelectionWindowController implements Initializable {
         }
     }
 
+    /**
+     * Inicializa la ventana de juego, donde se enfrentaran jugador y maquina.
+     * @param event Es el evento al presionar el boton
+     */
     private void startGameBoard(MouseEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/GameBoardGUI.fxml"));
         Parent root = null;
@@ -174,5 +181,19 @@ public class SelectionWindowController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("Star Battle Game");
         stage.show();
+    }
+
+
+    private void chooseTime(Leader.LevelExperience levelExperience){
+        switch (levelExperience){
+            case LOW:
+                player.getMatch().setTime(Match.DURATION_MATCH_LOW_LEVEL);
+                break;
+            case MEDIUM:
+                player.getMatch().setTime(Match.DURATION_MATCH_MEDIUM_LEVEL);
+                break;
+            case HIGHT:
+                player.getMatch().setTime(Match.DURATION_MATCH_HIGH_LEVEL);
+        }
     }
 }
