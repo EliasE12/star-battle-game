@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa un nave de tipo Dreadnougth
  */
-public class Dreadnought extends Spaceship {
+public class Dreadnought extends Spaceship implements Serializable {
 
     // Constantes
 

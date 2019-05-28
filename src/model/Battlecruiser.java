@@ -2,10 +2,13 @@ package model;
 
 
 // Clase
+
+import java.io.Serializable;
+
 /**
  * Entidad que representa una nave de tipo Battlecruser.
  */
-public class Battlecruiser extends Spaceship{
+public class Battlecruiser extends Spaceship implements Serializable {
 
 	// Constantes
 

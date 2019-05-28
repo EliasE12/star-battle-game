@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa un lider de la facción de tipo protector.
  */
-public class Protector extends Leader{
+public class Protector extends Leader implements Serializable {
 
     // Constantes
 

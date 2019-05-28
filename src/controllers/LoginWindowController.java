@@ -2,8 +2,8 @@ package controllers;
 
 import com.jfoenix.controls.JFXTextField;
 import customExceptions.EmptyDataException;
+import customExceptions.EmptyPlayerStructureException;
 import customExceptions.NotExistPlayerException;
-import customExceptions.NotRegisteredUsersException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Game;
@@ -56,6 +54,7 @@ public class LoginWindowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         game = new Game();
+
     }
 
     /**
@@ -76,7 +75,7 @@ public class LoginWindowController implements Initializable {
             e.message();
         }catch (NotExistPlayerException e) {
             e.message();
-        } catch (NotRegisteredUsersException e) {
+        } catch (EmptyPlayerStructureException e) {
             e.message();
         }
     }
@@ -140,7 +139,7 @@ public class LoginWindowController implements Initializable {
             game.deletePlayer(tfEnter.getText());
         } catch (EmptyDataException e) {
             e.message();
-        } catch (NotRegisteredUsersException e) {
+        } catch (EmptyPlayerStructureException e) {
             e.message();
         }
     }

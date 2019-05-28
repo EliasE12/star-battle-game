@@ -3,7 +3,9 @@ package model;
 import customExceptions.EmptyDataException;
 import customExceptions.EqualUserException;
 import customExceptions.NotExistPlayerException;
-import customExceptions.NotRegisteredUsersException;
+import customExceptions.EmptyPlayerStructureException;
+
+import java.io.*;
 
 // Clase
 
@@ -11,6 +13,10 @@ import customExceptions.NotRegisteredUsersException;
  * Entidad que representa el Juego.
  */
 public class Game {
+
+    // Constantes
+
+    public final static String SERIALITATION_PATH = "data/serialitation.dat";
 
     // Atributos
 
@@ -63,7 +69,7 @@ public class Game {
      * @throws NullPointerException se lanzá cuando no encuentra a un jugador.
      * @throws EmptyDataException se lanzá cuando no se ingresa un valor vacio.
      */
-    public Player searchPlayer(String userName) throws EmptyDataException, NotExistPlayerException, NotRegisteredUsersException {
+    public Player searchPlayer(String userName) throws EmptyDataException, NotExistPlayerException, EmptyPlayerStructureException {
     	Player found;
 
         if (userName.equals("")){
@@ -73,7 +79,7 @@ public class Game {
             if (root != null){
                 found = root.search(userName);
             }else {
-                throw new NotRegisteredUsersException();
+                throw new EmptyPlayerStructureException();
             }
         }
 
@@ -112,19 +118,59 @@ public class Game {
      * Elimina un jugador del juego, indicando su nombre de usuario.
      * @param userName - Es el nombre de usuario del jugador a eliminar.
      */
-    public void deletePlayer(String userName)throws EmptyDataException, NotRegisteredUsersException {
+    public void deletePlayer(String userName)throws EmptyDataException, EmptyPlayerStructureException {
         if (userName.equals("")){
             throw new EmptyDataException();
-
         }else {
             if (root != null){
                 root = root.delete(userName);
 
             }else {
-                throw new NotRegisteredUsersException();
+                throw new EmptyPlayerStructureException();
             }
         }
         numberPlayers--;
     }
-    	
+
+    /**
+     * Guarda el estado del juego
+     */
+    public void saveStateGame() {
+
+
+
+
+        try {
+
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(SERIALITATION_PATH)));
+            oos.writeObject(root);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Carga el estado del juego.
+     */
+    public void loadStateGame(){
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SERIALITATION_PATH)));
+            root = (Player) ois.readObject();
+            ois.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public Player getRoot() {
+        return root;
+    }
+
+    public void setRoot(Player root) {
+        this.root = root;
+    }
 }

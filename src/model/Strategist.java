@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa un lider de tipo estratega.
  */
-public class Strategist extends Leader{
+public class Strategist extends Leader implements Serializable {
 
     // Constantes
 

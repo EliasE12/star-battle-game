@@ -3,12 +3,14 @@ package model;
 import model.LivingBeing.Species;
 import model.Robot.Funtion;
 
+import java.io.Serializable;
+
 // Clase
 
 /**
  * Entidad que presenta un nodo miembro de la facción
  */
-public class Node {
+public class Node implements Serializable {
 
     // Constantes
 

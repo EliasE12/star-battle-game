@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa un miembro de tipo robot.
  */
-public class Robot extends Member {
+public class Robot extends Member implements Serializable {
 
     // Constants
 

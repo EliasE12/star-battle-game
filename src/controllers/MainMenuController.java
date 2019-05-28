@@ -12,6 +12,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Match;
 import model.Player;
+import model.Record;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -68,6 +70,8 @@ public class MainMenuController implements Initializable {
 
         SelectionWindowController ven = loader.getController();
         ven.setPlayer(player);
+
+
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

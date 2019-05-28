@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa un líder de la facción.
  */
-public abstract class Leader {
+public abstract class Leader implements Serializable {
 
     // Constante
 

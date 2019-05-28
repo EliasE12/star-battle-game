@@ -8,14 +8,14 @@ import javafx.scene.control.ButtonType;
 /**
  * Entidad que representa un error que produce nombres de ususario no existen.
  */
-public class NotRegisteredUsersException extends Exception {
+public class EmptyPlayerStructureException extends Exception {
 
     // Constructor
 
     /**
      * Construye la excepción con el mensaje indicado.
      */
-    public NotRegisteredUsersException() {
+    public EmptyPlayerStructureException() {
         super("Para poder realizar la acción deseada, se necesitan usuarios registrados");
     }
 

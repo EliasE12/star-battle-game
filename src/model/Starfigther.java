@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa una nave de tipo Starfigther.
  */
-public abstract class Starfigther extends Spaceship {
+public abstract class Starfigther extends Spaceship implements Serializable {
 
     // Constantes
 

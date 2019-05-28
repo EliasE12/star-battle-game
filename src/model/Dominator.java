@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa un lider de facción de tipo Dominator.
  */
-public class Dominator extends Leader{
+public class Dominator extends Leader implements Serializable {
 
     // Constantes
 

@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa un miembro de la facción.
  */
-public abstract class Member {
+public abstract class Member implements Serializable {
 
     // Atributos
 

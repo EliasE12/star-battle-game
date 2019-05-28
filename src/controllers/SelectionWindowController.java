@@ -2,6 +2,7 @@ package controllers;
 
 import customExceptions.EmptyDataException;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.Leader;
 import model.Match;
 import model.Player;
@@ -178,6 +180,9 @@ public class SelectionWindowController implements Initializable {
         gameBoardController.setPlayer(this.player);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+
+
         stage.setScene(new Scene(root));
         stage.setTitle("Star Battle Game");
         stage.show();

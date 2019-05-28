@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa miembro ser vivo de la facción.
  */
-public class LivingBeing extends Member {
+public class LivingBeing extends Member implements Serializable {
 
     // Constantes
 

@@ -16,7 +16,7 @@
    <left>
       <HBox prefHeight="570.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="570.0" prefWidth="200.0" spacing="90.0">
+            <VBox alignment="TOP_CENTER" prefHeight="570.0" prefWidth="200.0" spacing="60.0">
                <children>
                   <Label text="Configuración">
                      <font>
@@ -48,6 +48,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </JFXButton>
+                  <JFXButton fx:id="btSaveMatch" onAction="#saveMatch" text="Guardar Partida" />
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />

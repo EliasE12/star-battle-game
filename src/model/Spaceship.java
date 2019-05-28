@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa una nave.
  */
-public abstract class Spaceship {
+public abstract class Spaceship implements Serializable {
 
 	//Relaciones
 

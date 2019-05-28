@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa un nave de tipo Bomber.
  */
-public class Bomber extends Starfigther {
+public class Bomber extends Starfigther implements Serializable {
 
     // Atributos
 

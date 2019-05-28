@@ -1,12 +1,14 @@
 package model;
 import model.Match.Direction;
 
+import java.io.Serializable;
+
 // Clase
 
 /**
  * Entidad que representa una facción.
  */
-public class Faction {
+public class Faction implements Serializable {
 
     // Constantes
 
@@ -135,7 +137,7 @@ public class Faction {
             }
 
             valido = verificarPosition(gameBoard, randomX, randomY, direction, size);
-            System.out.println(valido);
+
         }
 
         posicionarNave(gameBoard,randomX, randomY, direction, size);

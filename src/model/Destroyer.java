@@ -2,12 +2,14 @@ package model;
 
 import model.Spaceship;
 
+import java.io.Serializable;
+
 // Clase
 
 /**
  * Entidad que reprsenta una nave de tipo Destroyer.
  */
-public class Destroyer extends Spaceship{
+public class Destroyer extends Spaceship implements Serializable {
 
 	// Constantes
 

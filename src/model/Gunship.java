@@ -2,10 +2,12 @@ package model;
 
 // Clase
 
+import java.io.Serializable;
+
 /**
  * Entidad que representa una nave de tipo Gunship
  */
-public class Gunship extends Starfigther {
+public class Gunship extends Starfigther implements Serializable {
 
     // Atributos
 

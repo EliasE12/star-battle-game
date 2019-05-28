@@ -3,12 +3,14 @@ package model;
 import customExceptions.EmptyDataException;
 import model.Faction.SpaceShipType;
 
+import java.io.Serializable;
+
 // Clase
 
 /**
  * Entidad que representa un partida del juego.
  */
-public class Match {
+public class Match implements Serializable {
 
     // Constantes
 
