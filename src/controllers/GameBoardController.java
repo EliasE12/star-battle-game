@@ -148,6 +148,15 @@ public class GameBoardController implements Initializable {
     }
 
     /**
+     * Se encarga de guardar la partida cuando el jugador lo desee.
+     * @param event Es el evento que se produce al hacer click en el boton
+     */
+    @FXML
+    void saveMatch(ActionEvent event) {
+
+    }
+
+    /**
      * Actualiza en la interfaz el tiempo de la partida en curso.
      */
     public void updateMatchTime(){

@@ -3,15 +3,17 @@ package model;
 import customExceptions.EqualUserException;
 import customExceptions.NotExistPlayerException;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 // Clase
 
 /**
  * Entidad que representa un jugador.
  */
-public class Player {
+public class Player implements Comparable<String>{
 
     // Atributos
 
@@ -91,6 +93,14 @@ public class Player {
     }
 
     // Métodos
+
+    /**
+     * Devuelve el nombre completo del jugador, compuesto de sunombre y apellido con el que se registro
+     * @return
+     */
+    public String getFullName(){
+        return name + " " + lastName;
+    }
 
     /**
      * Devuelve el jugador derecho del jugador actual.
@@ -178,6 +188,22 @@ public class Player {
      */
     public void setMatch(Match match) {
         this.match = match;
+    }
+
+
+    @Override
+    public int compareTo(String o) {
+        int value;
+
+        if (o.compareToIgnoreCase(name + " " + lastName) == 0){
+            value = 0;
+        }else if (o.compareToIgnoreCase(name + " " + lastName) < 0){
+            value = -1;
+        }else {
+            value = 1;
+        }
+
+        return value;
     }
 
     /**
@@ -308,13 +334,6 @@ public class Player {
         int score = match.getScore();
         String time = match.manageMatchTime();
         String delayedTime = "";
-        Record.Result result;
-
-        if (win){
-            result = Record.Result.VICTORIA;
-        }else {
-            result = Record.Result.DERROTA;
-        }
 
         if (match.getTime() <= 0){
             delayedTime = "00:10:00";
@@ -330,7 +349,7 @@ public class Player {
 
         date = day + "/" + month + "/" + year;
 
-        Record record = new Record(date, score, win, delayedTime, result);
+        Record record = new Record(date, score, win, delayedTime);
         addRecord(record);
     }
 
@@ -395,8 +414,34 @@ public class Player {
         }
     }
 
+    /**
+     * Recorre el arbol de jugadores usando el recorrido en preOrden
+     * @param list Es la lista en la cual se van a guardar los nodos visitados por el metodo
+     */
+    public void preOrder(List<Player> list){
+        list.add(this);
 
+        if (left != null){
+            left.preOrder(list);
+        }
+        if (right != null){
+            right.preOrder(list);
+        }
+    }
 
+    public List<Record> recordsToPrint() {
+        List<Record> records = new ArrayList<>();
+
+        if (first != null){
+            Record current = first;
+            while (current != null){
+                records.add(current);
+                current = current.getNext();
+            }
+        }
+
+        return records;
+    }
 
 
 

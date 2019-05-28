@@ -180,9 +180,6 @@ public class SelectionWindowController implements Initializable {
         gameBoardController.setPlayer(this.player);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
-
         stage.setScene(new Scene(root));
         stage.setTitle("Star Battle Game");
         stage.show();

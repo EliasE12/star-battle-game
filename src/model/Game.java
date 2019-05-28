@@ -4,8 +4,13 @@ import customExceptions.EmptyDataException;
 import customExceptions.EqualUserException;
 import customExceptions.NotExistPlayerException;
 import customExceptions.EmptyPlayerStructureException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 // Clase
 
@@ -37,9 +42,58 @@ public class Game {
      */
     public Game() {
         this.root = null;
+
+        comenzar();
+    }
+
+    private void comenzar(){
+        root = new Player("Luis_1", "Felipe", "p1", 500, 15, 5);
+
+        Player p2 = new Player("Pepito_2", "Gomez", "p2", 600, 13, 2);
+        Player p3 = new Player("Pepita_3", "Perez", "p3", 150, 5, 7);
+        Player p4 = new Player("Pep_4", "Andrade", "p4", 300, 8, 3);
+        Player p5 = new Player("Alvaro", "nose", "a1", 255, 8, 9);
+        Player p6 = new Player("Alfonso", "reyes", "a2", 420, 5, 8);
+        Player p7 = new Player("Bella", "Gomez", "c1", 750, 8, 2);
+        Player p8 = new Player("Helias", "Caleb", "c2", 625, 9,2);
+        Player p9 = new Player("Oscar", "Riascos", "c3", 520, 8, 7);
+        Player p10 = new Player("Name", "Nose", "b3", 800, 15, 6);
+
+
+        try {
+            root.addPlayer(p2);
+            root.addPlayer(p4);
+            root.addPlayer(p7);
+            root.addPlayer(p8);
+            root.addPlayer(p5);
+            root.addPlayer(p3);
+            root.addPlayer(p9);
+            root.addPlayer(p6);
+            root.addPlayer(p10);
+        } catch (EqualUserException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     // Métodos
+
+    /**
+     * Devuelve la raiz del arbol de jugadores.
+     * @return La raiz del arbol de jugadores
+     */
+    public Player getRoot() {
+        return root;
+    }
+
+    /**
+     *Cambia la raiz del arbol de jugadores.
+     * @param root La nueva raiz, la cual se va a sustituir la raiz del arbol binario de jugadores
+     */
+    public void setRoot(Player root) {
+        this.root = root;
+    }
 
     /**
      * Devuelve el número de jugadores en el juwgo.
@@ -136,10 +190,6 @@ public class Game {
      * Guarda el estado del juego
      */
     public void saveStateGame() {
-
-
-
-
         try {
 
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(SERIALITATION_PATH)));
@@ -165,12 +215,97 @@ public class Game {
         }
     }
 
+    /**
+     * Se encarga de inicialziar el recorrido en preOrden del arbol binario de jugadores
+     * @return La lista con los jugadores del arbol.
+     */
+    private List<Player> treeToList(){
+        List<Player> list = new ArrayList<Player>();
 
-    public Player getRoot() {
-        return root;
+        if (root != null){
+            root.preOrder(list);
+        }
+
+        return list;
     }
 
-    public void setRoot(Player root) {
-        this.root = root;
+    /**
+     * Se encarga de crear el ranking de los mejores jugadores agregandolos a la lista para, posteriormente, mostrarla en pantalla.
+     * @param list La lista organizada de la cual saldra el rankong de los mejores jugadores.
+     * @return La lista de los mejores jugadores del juego.
+     */
+    public ObservableList<Player> showInformation(List<Player> list){
+        ObservableList<Player> data = FXCollections.observableArrayList();
+
+        for (int i = 0; i < 15; i++) {
+            data.add(list.get(i));
+        }
+
+        return data;
     }
+
+    /**
+     * Organiza la lista, utilizando como criterio el nombre completo del jugador, atraves del algoritmo de ordenamiento burbuja.
+     * @return La lista organizada de acuerdo a su criterio.
+     */
+    public List<Player> sortByName(){
+        List<Player> list = treeToList();
+
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list.size() - i - 1; j++) {
+
+                if (list.get(j).compareTo(list.get(j+1).getFullName()) == -1){
+                    Player temp = list.get(j);
+                    list.set(j, list.get(j+1));
+                    list.set(j+1, temp);
+                }
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Organiza la lista, utlizando como criterio el puntaje global del jugador, atraves del algoritmo de ordenamiento.
+     * @return La lista organizada de acuerdo a su criterio.
+     */
+    public List<Player> sortByScore(){
+        List<Player> list = treeToList();
+
+        for (int i = 0; i < list.size(); i++) {
+            Player current = list.get(i);
+            int j = i;
+
+            while(j > 0 && list.get(j-1).getGlobalScore() < current.getGlobalScore()){
+                list.set(j, list.get(j-1));
+                j--;
+            }
+            list.set(j, current);
+        }
+        return list;
+    }
+
+    /**
+     * Organiza la lista, utilizando como criterio el numero de victorias del jugador, atraves del algoritmo de ordenamiento.
+     * @return La lista organizada de acuerdo a su criterio.
+     */
+    public List<Player> sortByVictories(){
+        List<Player> list = treeToList();
+
+        for (int i = 0; i < list.size()-1; i++) {
+            Player min = list.get(i);
+            int c = i;
+
+            for (int j = i+1; j < list.size(); j++) {
+                if (list.get(j).getWonGames() > min.getWonGames()){
+                    min = list.get(j);
+                    c = j;
+                }
+            }
+            Player aux = list.get(i);
+            list.set(i, min);
+            list.set(c, aux);
+        }
+        return list;
+    }
+
 }

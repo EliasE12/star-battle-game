@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.Date;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,8 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 import model.Player;
 import model.Record;
 
@@ -23,30 +28,8 @@ public class PlayerHistoryController {
     // Atributos
 
 
-    /**
-     * Es la tabla en la que muestran los datos del historial.
-     */
-    @FXML private TableView<Record> tbPlayerHistory;
-
-    /**
-     * Es la columna en la que muestra el tiempo de duración de la partida.
-     */
-    @FXML private TableColumn<Record, String> time;
-
-    /**
-     * Es la columna en la que se muestra la fecha de la partida.
-     */
-    @FXML private TableColumn<Record, Date> date;
-
-    /**
-     * Es la columna en la que se muestra el puntaje obtenido en la partida.
-     */
-    @FXML private TableColumn<Record, Integer> score;
-
-    /**
-     * Es la columna en la que se muestra el resultado de la partida.
-     */
-    @FXML private TableColumn<Record, Record.Result> result;
+    @FXML
+    private Pane pPrintHistorialPlayer;
 
     private Player player;
 
@@ -58,32 +41,54 @@ public class PlayerHistoryController {
     @FXML
     public void initialize() {
 
-    	time.setCellValueFactory(new PropertyValueFactory<Record, String>("time"));
-    	date.setCellValueFactory(new PropertyValueFactory<Record, Date>("date"));
-    	score.setCellValueFactory(new PropertyValueFactory<Record, Integer>("score"));
-        result.setCellValueFactory(new PropertyValueFactory<Record, Record.Result>("result"));
-
-
     }
 
 
     public void setPlayer(Player player){
         this.player = player;
-
         printHistorial();
     }
 
     private void printHistorial(){
-        ObservableList<Record> records = FXCollections.observableArrayList();
-        Record current = player.getFirst();
-        while(current != null){
-            records.add(current);
-            current = current.getNext();
+
+        List<Record> recordList = player.recordsToPrint();
+
+        int desplace = 0;
+        int counter = 0;
+        for (Record record: recordList) {
+
+            BorderPane borderPane = new BorderPane();
+            borderPane.setPrefSize(200.0, 155.0);
+            borderPane.setLayoutX(desplace);
+            borderPane.setLayoutY(20.0);
+
+
+            TextArea textArea = new TextArea();
+            textArea.setText(record.toString());
+            textArea.setPrefSize(200.0, 155.0);
+
+            borderPane.setBottom(textArea);
+            borderPane.setStyle("-fx-background-color:  #1e90ff");
+
+            pPrintHistorialPlayer.getChildren().addAll(borderPane);
+
+            if (counter != recordList.size() - 1) {
+
+                Line line1 = new Line(borderPane.getLayoutX() + 200, borderPane.getLayoutY() + 100, borderPane.getLayoutX() + 200 + 190, borderPane.getLayoutY() + 100);
+                Line line2 = new Line(borderPane.getLayoutX() + 200, borderPane.getLayoutY() + 150, borderPane.getLayoutX() + 200 + 190, borderPane.getLayoutY() + 150);
+
+                Line f1 = new Line(line1.getStartX() + 100, line1.getStartY(), line1.getStartX() + 90, line1.getStartY() - 10);
+                Line f2 = new Line(line1.getStartX() + 100, line1.getStartY(), line1.getStartX() + 90, line1.getStartY() + 10);
+
+                Line f3 = new Line(line2.getStartX(), line2.getStartY(), line2.getStartX() + 10, line2.getStartY() - 10);
+                Line f4 = new Line(line2.getStartX(), line2.getStartY(), line2.getStartX() + 10, line2.getStartY() + 10);
+
+                pPrintHistorialPlayer.getChildren().addAll(line1, line2, f1, f2, f3, f4);
+            }
+            counter++;
+            desplace += 300;
         }
-        tbPlayerHistory.getItems().addAll(records);
     }
-
-
 
 
 }

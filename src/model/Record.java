@@ -9,13 +9,6 @@ import java.util.Date;
  */
 public class Record {
 
-	// Constantes
-
-	/**
-	 * Indica el tipo de resultado de una partida.
-	 */
-	public enum Result {VICTORIA, DERROTA};
-
 	// Atributos
 
 	/**
@@ -43,10 +36,6 @@ public class Record {
 	 */
 	private String time;
 
-	/**
-	 * Es el resultado de la partida.
-	 */
-	private Result result;
 
 	// Constructor
 
@@ -56,19 +45,23 @@ public class Record {
 	 * @param score - El puntaje de la partida.
 	 * @param won - Indica si ha sido ganada o no.
 	 * @param time - El tiempo de duracion de la partida.
-	 * @param result - El resultado de la partida.
+
 	 */
-	public Record(String date, int score, boolean won, String time, Result result) {
+	public Record(String date, int score, boolean won, String time) {
 		this.date = date;
 		this.score = score;
 		this.won = won;
 		this.time = time;
-		this.result = result;
 
 		next = null;
 	}
 
 	// Métodos
+
+
+	public Record getNext() {
+		return next;
+	}
 
 	/**
 	 * Devuelve la fecha de la partida.
@@ -102,21 +95,6 @@ public class Record {
 		return time;
 	}
 
-	/**
-	 * Devuelve el siguiente historial.
-	 * @return next
-	 */
-	public Record getNext() {
-		return next;
-	}
-
-	/**
-	 * Devuelve el resiltado de la partida.
-	 * @return result.
-	 */
-	public Result getResult(){
-		return result;
-	}
 
 	/**
 	 * Se encarga de recorrer la lista simple hasta hallar el ultimo elemnto de esta(la lista simple), para luego, agregarsela a la siguiente.
@@ -130,8 +108,22 @@ public class Record {
 			next.addRecord(toAdd);
 		}
 	}
-	
-	
+
+	@Override
+	public String toString() {
+
+		String res;
+		if (won)
+			res = "Si";
+		else
+			res = "No";
+
+		return
+				"Fecha:  '" + date + '\'' +
+				"Puntaje:  " + score +
+				"Partida Ganada?:  " + won +
+				"Tiempo de Juego:  '" + time ;
+	}
 }
 
 

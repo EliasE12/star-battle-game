@@ -2,7 +2,6 @@ package controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -12,7 +11,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Match;
 import model.Player;
-import model.Record;
 
 import java.io.IOException;
 import java.net.URL;
@@ -85,15 +83,19 @@ public class MainMenuController implements Initializable {
      */
     @FXML
     void recordClicked(ActionEvent event)  {
-        Stage stage = new Stage();
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/PlayerHistory.fxml"));
         Parent root = null;
+
         try {
-            root = FXMLLoader.load(getClass().getResource("/userInterface/PlayerHistory.fxml"));
+            root = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        PlayerHistoryController ven = loader.getController();
+        ven.setPlayer(player);
+
+        Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Historial de partidas");
         stage.setResizable(false);

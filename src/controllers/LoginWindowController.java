@@ -123,6 +123,9 @@ public class LoginWindowController implements Initializable {
             e.printStackTrace();
         }
 
+        HallOfFameController hfc = loader.getController();
+        hfc.setGame(this.game);
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Salon de la Fama");
         stage.setScene(new Scene(root));

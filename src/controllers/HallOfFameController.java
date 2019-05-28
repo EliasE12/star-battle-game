@@ -11,10 +11,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import model.Game;
 import model.Player;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 // Clase
@@ -23,6 +25,13 @@ import java.util.ResourceBundle;
  * Entidad que representa el controlador de la ventana del salón de la fama.
  */
 public class HallOfFameController implements Initializable {
+
+    //Relaciones
+
+    /**
+     * Relacion con las clase Game, la cual permitira ordenar los rankings
+     */
+    private Game game;
 
     // Atrubutos
 
@@ -61,9 +70,15 @@ public class HallOfFameController implements Initializable {
 
         tcName.setCellValueFactory(new PropertyValueFactory<Player,String>("name"));
         tcGlobalScore.setCellValueFactory(new PropertyValueFactory<Player,Integer>("globalScore"));
-        tcWonMatch.setCellValueFactory(new PropertyValueFactory<Player,Integer>("wonMatch"));
-        tcLostMatch.setCellValueFactory(new PropertyValueFactory<Player,Integer>("lostMatch"));
+        tcWonMatch.setCellValueFactory(new PropertyValueFactory<Player,Integer>("wonGames"));
+        tcLostMatch.setCellValueFactory(new PropertyValueFactory<Player,Integer>("lostGames"));
+    }
 
+    /**
+     * Cambia el valor de la relacion con la clase Game
+     */
+    public void setGame(Game game){
+        this.game = game;
     }
 
     /**
@@ -85,6 +100,51 @@ public class HallOfFameController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("Iniciar Sesión");
         stage.show();
+    }
+
+    /**
+     *Controla la accion de organizar el ranking de los mejores jugadores por el nombre.
+     * @param event Es el evento producido al presionar el boton.
+     */
+    @FXML
+    void sortByName(ActionEvent event) {
+        if (!tvHallOfFame.getItems().isEmpty()){
+            tvHallOfFame.getItems().clear();
+        }
+
+        List<Player> list = game.sortByName();
+
+        tvHallOfFame.getItems().addAll(list);
+    }
+
+    /**
+     *Controla la accion de organizar el ranking de los mejores jugadores por el puntaje global de cada uno de ellos.
+     * @param event Es el evento producido al presionar el boton
+     */
+    @FXML
+    void sortByScore(ActionEvent event) {
+        if (!tvHallOfFame.getItems().isEmpty()){
+            tvHallOfFame.getItems().clear();
+        }
+
+        List<Player> list = game.sortByScore();
+
+        tvHallOfFame.getItems().addAll(list);
+    }
+
+    /**
+     *Controla la accion de organziar el ranking de los mejores jugadores por el numero de partidas ganadas de cada uno de ellos.
+     * @param event Es el evento producion al presionar el boton.
+     */
+    @FXML
+    void sortByWinningGamesClicked(ActionEvent event) {
+        if (!tvHallOfFame.getItems().isEmpty()){
+            tvHallOfFame.getItems().clear();
+        }
+
+        List<Player> list = game.sortByVictories();
+
+        tvHallOfFame.getItems().addAll(list);
     }
 
 
