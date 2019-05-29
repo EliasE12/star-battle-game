@@ -100,6 +100,7 @@ public class LoginWindowController implements Initializable {
         RegistrationWindowController ven = loader.getController();
         ven.setGame(game);
 
+
         stage.setTitle("Ventana de Registro");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.WINDOW_MODAL);
@@ -163,6 +164,7 @@ public class LoginWindowController implements Initializable {
         }
 
         MainMenuController ven = loader.getController();
+        ven.setGame(this.game);
         ven.setPlayer(found);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -171,4 +173,12 @@ public class LoginWindowController implements Initializable {
         stage.show();
     }
 
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
 }

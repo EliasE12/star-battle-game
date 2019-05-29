@@ -1,15 +1,15 @@
 package model;
 
+import com.sun.prism.shader.DrawSemiRoundRect_ImagePattern_AlphaTest_Loader;
 import customExceptions.EmptyDataException;
+import customExceptions.EmptyPlayerStructureException;
 import customExceptions.EqualUserException;
 import customExceptions.NotExistPlayerException;
-import customExceptions.EmptyPlayerStructureException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 // Clase
@@ -22,6 +22,7 @@ public class Game {
     // Constantes
 
     public final static String SERIALITATION_PATH = "data/serialitation.dat";
+    public final static String FILE_PATH = "data/file.txt";
 
     // Atributos
 
@@ -42,10 +43,13 @@ public class Game {
      */
     public Game() {
         this.root = null;
-
-        comenzar();
+        loadStateGame();
+        //comenzar();
     }
 
+    /**
+     * Son los jugadores por defecto, de prueba.
+     */
     private void comenzar(){
         root = new Player("Luis_1", "Felipe", "p1", 500, 15, 5);
 
@@ -58,7 +62,6 @@ public class Game {
         Player p8 = new Player("Helias", "Caleb", "c2", 625, 9,2);
         Player p9 = new Player("Oscar", "Riascos", "c3", 520, 8, 7);
         Player p10 = new Player("Name", "Nose", "b3", 800, 15, 6);
-
 
         try {
             root.addPlayer(p2);
@@ -73,7 +76,6 @@ public class Game {
         } catch (EqualUserException e) {
             e.printStackTrace();
         }
-
 
     }
 
@@ -189,15 +191,16 @@ public class Game {
     /**
      * Guarda el estado del juego
      */
-    public void saveStateGame() {
-        try {
+    public void saveStateGame() throws IOException {
+        File file = new File(SERIALITATION_PATH);
 
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(SERIALITATION_PATH)));
-            oos.writeObject(root);
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        if (file.exists())
+            file.delete();
+
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(root);
+        oos.close();
+
     }
 
     /**
@@ -205,9 +208,14 @@ public class Game {
      */
     public void loadStateGame(){
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SERIALITATION_PATH)));
-            root = (Player) ois.readObject();
-            ois.close();
+            File file = new File(SERIALITATION_PATH);
+            if (file.exists()) {
+                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+                root = (Player) ois.readObject();
+                ois.close();
+            }else {
+                file.createNewFile();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -225,9 +233,38 @@ public class Game {
         if (root != null){
             root.preOrder(list);
         }
-
         return list;
     }
+
+
+
+    public void readHallOfFame() throws IOException {
+
+        File file = new File(FILE_PATH);
+
+        if (file.exists())
+            file.delete();
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        while ((line=br.readLine()) != null){
+            String[] strings = line.split(",");
+
+        }
+    }
+
+    public void writeHallOfFam(){
+
+    }
+
+
+    private String  createHallOfFame(){
+        String report  = "";
+
+        return report;
+    }
+
+
 
     /**
      * Se encarga de crear el ranking de los mejores jugadores agregandolos a la lista para, posteriormente, mostrarla en pantalla.

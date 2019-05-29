@@ -6,18 +6,25 @@ import customExceptions.NotShipsPositionedException;
 import javafx.event.ActionEvent;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import model.Game;
 import model.Match;
 import model.Player;
 import model.Faction.SpaceShipType;
 import  model.Match.Direction;
 import threads.UpdateThreadMatchTime;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -35,6 +42,8 @@ public class GameBoardController implements Initializable {
      * Relacion con la clase player
      */
     private Player player;
+
+    private Game game;
 
     /**
      *Se encarga de verificar si el juego ya comenzo, para desabilitar la opcion de agregar naves al tablero de juego del jugador
@@ -119,10 +128,19 @@ public class GameBoardController implements Initializable {
      * Devuelve el jugador que posea la relacion player
      * @return El jugador que posea la relacion player
      */
+
     public Player getPlayer(){
         return player;
     }
 
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
     /**
      * Controla el evento de comenzar a jugar la partida en curso
@@ -153,6 +171,12 @@ public class GameBoardController implements Initializable {
      */
     @FXML
     void saveMatch(ActionEvent event) {
+        try {
+            game.saveStateGame();
+            System.out.println("Partida Guardada");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -291,4 +315,36 @@ public class GameBoardController implements Initializable {
             b.setText("#");
         }
     }
+
+
+
+    @FXML
+    void backClicked(ActionEvent event) {
+
+        try {
+            game.saveStateGame();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/MainMenuGUI.fxml"));
+        Parent root = null;
+
+        try{
+            root = loader.load();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        MainMenuController ven = loader.getController();
+        ven.setGame(this.game);
+        ven.setPlayer(this.player);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Menu principal");
+        stage.show();
+    }
+
+
 }

@@ -87,6 +87,13 @@ public class HallOfFameController implements Initializable {
      */
     @FXML
     void returnClicked(ActionEvent event) {
+
+        try {
+            game.saveStateGame();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/LoginWindowGUI.fxml"));
         Parent root = null;
 
@@ -95,6 +102,7 @@ public class HallOfFameController implements Initializable {
         }catch (IOException e){
             e.printStackTrace();
         }
+
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

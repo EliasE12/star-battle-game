@@ -292,4 +292,11 @@
          </children>
       </VBox>
    </top>
+   <bottom>
+      <JFXButton buttonType="RAISED" onAction="#backClicked" text="Volver" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+   </bottom>
 </BorderPane>

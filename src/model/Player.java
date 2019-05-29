@@ -3,17 +3,15 @@ package model;
 import customExceptions.EqualUserException;
 import customExceptions.NotExistPlayerException;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.io.Serializable;
+import java.util.*;
 
 // Clase
 
 /**
  * Entidad que representa un jugador.
  */
-public class Player implements Comparable<String>{
+public class Player implements Comparable<String>, Serializable {
 
     // Atributos
 
@@ -67,6 +65,8 @@ public class Player implements Comparable<String>{
      */
     private Record first;
 
+    private int numberRecords;
+
     // Constructor
 
     /**
@@ -90,7 +90,24 @@ public class Player implements Comparable<String>{
         right = null;
 
         first = null;
+        numberRecords = 0;
+
+        comenzar();
     }
+
+    /**
+     *  Es el historial por defecto del jugador.
+     */
+
+    private void comenzar(){
+        addRecord(new Record("May/12/2019",345,true,"11:33"));
+        addRecord(new Record("Jun/23/2019",76,true,"09:51"));
+        addRecord(new Record("Ago/09/2019",54,true,"04:13"));
+        addRecord(new Record("Sep/22/2019",132,true,"22:54"));
+        addRecord(new Record("Dic/25/2019",321,true,"04:11"));
+
+    }
+
 
     // Métodos
 
@@ -190,14 +207,20 @@ public class Player implements Comparable<String>{
         this.match = match;
     }
 
-
+    /**
+     * Compara el nombre completo del jugador actual y el que se recibe por parámetro.
+     * @param fullName - El nombre completo del otro jugador.
+     * @return  0 - Si los nombres son iguales.
+     *          1 - Si nombre del jugador actual es mayor que el otro.
+     *          -1 - Si el nombre del jugador actual es menor que el otro.
+     */
     @Override
-    public int compareTo(String o) {
+    public int compareTo(String fullName) {
         int value;
 
-        if (o.compareToIgnoreCase(name + " " + lastName) == 0){
+        if (fullName.compareToIgnoreCase(name + " " + lastName) == 0){
             value = 0;
-        }else if (o.compareToIgnoreCase(name + " " + lastName) < 0){
+        }else if (fullName.compareToIgnoreCase(name + " " + lastName) < 0){
             value = -1;
         }else {
             value = 1;
@@ -412,6 +435,7 @@ public class Player implements Comparable<String>{
         }else {
             first.addRecord(record);
         }
+        numberRecords ++;
     }
 
     /**
@@ -429,6 +453,10 @@ public class Player implements Comparable<String>{
         }
     }
 
+    /**
+     * Devuelve la lista de historiales del jugador.
+     * @return - La lista.
+     */
     public List<Record> recordsToPrint() {
         List<Record> records = new ArrayList<>();
 
@@ -443,6 +471,186 @@ public class Player implements Comparable<String>{
         return records;
     }
 
+
+
+    // Bubble
+
+    /**
+     * Ordena la lista de historiales del jugador bajo el criterio de fecha.
+     */
+    public void recordsSortByDate(){
+
+        if (first.getNext() != null){
+
+            for (int i = 0; i < numberRecords; i++){
+                Record current = first;
+                Record previous = null;
+                Record next = first.getNext();
+
+                while(next != null){
+                    if (current.getDate().compareTo(next.getDate()) > 0){
+
+
+                        if (previous != null){
+                            Record sig = next.getNext();
+
+                            previous.setNext(next);
+                            next.setNext(current);
+                            current.setNext(sig);
+                        }else {
+                            Record sig = next.getNext();
+
+                            first = next;
+                            next.setNext(current);
+                            current.setNext(sig);
+                        }
+
+                        previous = next;
+                        next = current.getNext();
+
+                    }else {
+                        previous = current;
+                        current = next;
+                        next = next.getNext();
+                    }
+                }
+            }
+        }
+    }
+
+
+    // Insertion
+
+    /**
+     * Ordena la lista de historiales del jugador bajo el criterio de puntaje.
+     */
+    public void recordsSortByScore(){
+
+        if (first.getNext() != null){
+
+            Record p = first;
+            Record current = first.getNext();
+            Record previous = first;
+
+            while(current != null){
+                if (previous.getScore() <= current.getScore()){
+                    current = current.getNext();
+                    previous = previous.getNext();
+                }else {
+                    if (first.getScore() > current.getScore()){
+                        previous.setNext(current.getNext());
+                        current.setNext(first);
+                        first = current;
+                    }else {
+                        p = first;
+
+                        Comparator comparator = new Comparator() {
+                            @Override
+                            public int compare(Object record1, Object record2) {
+                                Record r1 = (Record) record1;
+                                Record r2 = (Record) record2;
+                                if (r1.getScore() > r2.getScore())
+                                 return 1;
+                                else if (r1.getScore() < r2.getScore())
+                                    return -1;
+                                else
+                                    return 0;
+                            }
+                        };
+
+                        while(p.getNext() != null && comparator.compare(p.getNext(),current) == -1){
+                            p = p.getNext();
+                        }
+
+                        previous.setNext(current.getNext());
+                        current.setNext(p.getNext());
+                        p.setNext(current);
+                    }
+                }
+                current = previous.getNext();
+            }
+        }
+
+    }
+
+    // Selection
+
+    /**
+     * Ordena la lista de historiales del jugador bajo el criterio de duración de una partida.
+     */
+    public void recordsSortByTime(){
+
+        if (first.getNext() != null){
+            Record n1 = null;
+            Record n2 = null;
+
+            if (first == null || first.getNext()== null)
+            {
+                return;
+            }
+            for (n1 = first; n1.getNext() != null; n1 = n1.getNext()){
+                for (n2 = n1.getNext(); n2 != null; n2 = n2.getNext()) {
+                    Record bn2 = before(n2);
+                    Record bn1 = before(n1);
+                    if (n1.getTime().compareTo(n2.getTime()) > 0){
+                        if (n1 == first){
+                            if (n1.getNext() == n2){
+                                n1.setNext(n2.getNext());;
+                                n2.setNext(n1);
+                                first = n2;
+                            }
+                            else{
+                                Record temp = n2.getNext();
+                                n2.setNext(n1.getNext());
+                                n1.setNext(temp);
+                                bn2.setNext(n1);
+                                first = n2;
+                            }
+                        }else{
+                            if (n1.getNext() == n2)
+                            {
+                                bn1.setNext(n2);
+                                Record temp = n2.getNext();
+                                n2.setNext(n1);
+                                n1.setNext(temp);
+                            }
+                            else
+                            {
+                                bn1.setNext(n2);
+                                Record temp = n2.getNext();
+                                n2.setNext(n1.getNext());
+                                n1.setNext(temp);
+                                bn2.setNext(n1);
+                            }
+                        }
+
+                        Record temp = n1;
+                        n1 = n2;
+                        n2 = temp;
+
+                    }
+                }
+            }
+
+        }
+    }
+
+    /**
+     * Cambia el historial del actual.
+     * @param s - El historial actual.
+     * @return El historial cambiado.
+     */
+    private Record before( Record s)
+    {
+        Record prev = null;
+        Record current = first;
+        while( current != null && current != s )
+        {
+            prev = current;
+            current = current.getNext();
+        }
+        return current != null ? prev : null;
+    }
 
 
 }

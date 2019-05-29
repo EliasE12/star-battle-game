@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import model.Game;
 import model.Leader;
 import model.Match;
 import model.Player;
@@ -77,6 +78,11 @@ public class SelectionWindowController implements Initializable {
      */
     private Player player;
 
+    /**
+     * Es el juego.
+     */
+    private Game game;
+
     // Métodos
 
     /**
@@ -93,6 +99,14 @@ public class SelectionWindowController implements Initializable {
      */
     public void setPlayer(Player player){
         this.player = player;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     /**
@@ -177,6 +191,7 @@ public class SelectionWindowController implements Initializable {
         }
 
         GameBoardController gameBoardController = loader.getController();
+        gameBoardController.setGame(this.game);
         gameBoardController.setPlayer(this.player);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -184,7 +199,6 @@ public class SelectionWindowController implements Initializable {
         stage.setTitle("Star Battle Game");
         stage.show();
     }
-
 
     private void chooseTime(Leader.LevelExperience levelExperience){
         switch (levelExperience){

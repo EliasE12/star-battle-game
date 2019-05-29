@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Game;
 import model.Match;
 import model.Player;
 
@@ -30,6 +31,10 @@ public class MainMenuController implements Initializable {
      */
     private Player player;
 
+
+    private Game game;
+
+
     // Métodos
 
     /**
@@ -46,6 +51,15 @@ public class MainMenuController implements Initializable {
      */
     public void setPlayer(Player player){
         this.player = player;
+    }
+
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     /**
@@ -67,8 +81,8 @@ public class MainMenuController implements Initializable {
         player.setMatch(match);
 
         SelectionWindowController ven = loader.getController();
+        ven.setGame(this.game);
         ven.setPlayer(player);
-
 
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

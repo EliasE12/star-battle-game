@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -20,10 +22,31 @@
       </VBox>
    </top>
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="spPrintHistorialPlayer" prefHeight="401.0" prefWidth="672.0" BorderPane.alignment="CENTER">
          <content>
-            <Pane fx:id="pPrintHistorialPlayer" prefHeight="478.0" prefWidth="698.0" />
+            <Pane fx:id="pPrintHistorialPlayer" prefHeight="422.0" prefWidth="696.0" />
          </content>
       </ScrollPane>
    </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="55.0" prefWidth="700.0" spacing="40.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton buttonType="RAISED" onAction="#sortByDateClicked" text="Ordenar Por  Fecha">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" onAction="#sortByScoreClicked" text="Ordenar Por Puntaje">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="62.0" layoutY="10.0" onAction="#sortByTimeClicked" text="Ordenar Por Tiempo de Duración">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>

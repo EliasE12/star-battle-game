@@ -6,10 +6,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.BorderPane;
@@ -27,10 +24,20 @@ public class PlayerHistoryController {
 
     // Atributos
 
-
+    /**
+     * Es contener donde se muestran el historial del jugador.
+     */
     @FXML
+    private ScrollPane spPrintHistorialPlayer;
+
+    /**
+     * Es el contenedor auxiliar para mostrar el hostorial dej jugador.
+     */
     private Pane pPrintHistorialPlayer;
 
+    /**
+     * Es el jugador.
+     */
     private Player player;
 
     // Métodos
@@ -40,7 +47,7 @@ public class PlayerHistoryController {
      */
     @FXML
     public void initialize() {
-
+        pPrintHistorialPlayer = new Pane();
     }
 
 
@@ -64,6 +71,7 @@ public class PlayerHistoryController {
 
 
             TextArea textArea = new TextArea();
+            textArea.setStyle("-fx-background-color: #4b899a");
             textArea.setText(record.toString());
             textArea.setPrefSize(200.0, 155.0);
 
@@ -84,11 +92,33 @@ public class PlayerHistoryController {
                 Line f4 = new Line(line2.getStartX(), line2.getStartY(), line2.getStartX() + 10, line2.getStartY() + 10);
 
                 pPrintHistorialPlayer.getChildren().addAll(line1, line2, f1, f2, f3, f4);
+                spPrintHistorialPlayer.setContent(pPrintHistorialPlayer);
             }
             counter++;
             desplace += 300;
         }
     }
+
+
+    @FXML
+    void sortByDateClicked(ActionEvent event) {
+        player.recordsSortByDate();
+        printHistorial();
+        System.out.println("Ordenado");
+    }
+
+    @FXML
+    void sortByScoreClicked(ActionEvent event) {
+        player.recordsSortByScore();
+        printHistorial();
+    }
+
+    @FXML
+    void sortByTimeClicked(ActionEvent event) {
+        player.recordsSortByTime();
+        printHistorial();
+    }
+
 
 
 }

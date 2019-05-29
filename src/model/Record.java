@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 // Clase
@@ -7,7 +8,7 @@ import java.util.Date;
 /**
  * Entidad que representa el historial de partidas del jugador.
  */
-public class Record {
+public class Record implements Serializable {
 
 	// Atributos
 
@@ -58,7 +59,18 @@ public class Record {
 
 	// Métodos
 
+	/**
+	 *  Cambia el siguiente histoorial
+	 * @param next - El historial.
+	 */
+	public void setNext(Record next) {
+		this.next = next;
+	}
 
+	/**
+	 * Devuelve el siguiente historial.
+	 * @return
+	 */
 	public Record getNext() {
 		return next;
 	}
@@ -109,6 +121,11 @@ public class Record {
 		}
 	}
 
+
+	/**
+	 * Muestra los datos del historial del jugador.
+	 * @return los datos.
+	 */
 	@Override
 	public String toString() {
 
@@ -119,11 +136,12 @@ public class Record {
 			res = "No";
 
 		return
-				"Fecha:  '" + date + '\'' +
-				"Puntaje:  " + score +
-				"Partida Ganada?:  " + won +
+				"Fecha:  '" + date 	+ "\n" +
+		        "Puntaje:  " + score + "\n" +
+				"Partida Ganada?:  " + res + "\n" +
 				"Tiempo de Juego:  '" + time ;
 	}
+
 }
 
 

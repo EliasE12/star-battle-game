@@ -48,7 +48,10 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="btSaveMatch" onAction="#saveMatch" text="Guardar Partida" />
+                  <JFXButton fx:id="btSaveMatch" buttonType="RAISED" onAction="#saveMatch" text="Guardar Partida">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></JFXButton>
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -289,4 +292,11 @@
          </children>
       </VBox>
    </top>
+   <bottom>
+      <JFXButton buttonType="RAISED" onAction="#backClicked" text="Volver" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+   </bottom>
 </BorderPane>

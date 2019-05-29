@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import model.Game;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -68,6 +69,13 @@ public class RegistrationWindowController implements Initializable {
      */
     @FXML
     void cancelClicked(ActionEvent event) {
+
+        try {
+            game.saveStateGame();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
@@ -80,6 +88,7 @@ public class RegistrationWindowController implements Initializable {
     void toRegisterClicked(ActionEvent event) {
         try {
             game.addPlayer(tfUserName.getText(), tfName.getText(), tfLasName.getText());
+            game.saveStateGame();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.close();
 
@@ -87,6 +96,8 @@ public class RegistrationWindowController implements Initializable {
             e.message();
         }catch (EqualUserException e){
             e.message();
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 }
