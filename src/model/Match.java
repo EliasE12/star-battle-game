@@ -46,12 +46,12 @@ public class Match implements Serializable {
     /**
      * Indica los distintos tipos de líderes que pueden existir.
      */
-    public enum LeaderType {DOMINATOR, PROTECTOR, STRATEGIST};
+    public enum LeaderType {DOMINATOR, PROTECTOR, STRATEGIST}
 
     /**
      * Indica los distintos tipos de posiciones en los que se puede posicionar una nave en el tablero de juego.
      */
-    public enum Direction {HORIZONTAL, VERTICAL};
+    public enum Direction {HORIZONTAL, VERTICAL}
 
     // Atributos
 
@@ -347,7 +347,7 @@ public class Match implements Serializable {
             int x = Integer.parseInt(p[0]);
             int y = Integer.parseInt(p[1]);
 
-            user.posicionarNave(gameBoardPlayer, x, y, direction, size);
+            user.positionShip(x, y, direction, size,gameBoardPlayer);
             machine.createRandomNumbers(spaceShipType, size, gameBoardMachine);
         }
     }

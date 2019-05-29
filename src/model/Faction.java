@@ -1,6 +1,7 @@
 package model;
-import model.Match.Direction;
+
 import model.LivingBeing.Species;
+import model.Match.Direction;
 import model.Robot.Funtion;
 
 import java.io.*;
@@ -17,7 +18,7 @@ public class Faction implements Serializable {
     /**
      * Indica el tipo de naves que pertenecen a la facción.
      */
-    public enum SpaceShipType{STARFIGHTER, BOMBER, INTERCEPTOR, GUNSHIP, DREADNOUGHT, DESTROYER, BATTLECRUISER, SHUTTLE};
+    public enum SpaceShipType{STARFIGHTER, BOMBER, INTERCEPTOR, GUNSHIP, DREADNOUGHT, DESTROYER, BATTLECRUISER, SHUTTLE}
 
     // Atributos
 
@@ -73,18 +74,18 @@ public class Faction implements Serializable {
     /**
      * Verifica si la posición en el tablero de juego en la que se va a colocar una nueva nave, es permitida o no.
      * @param matriz - Es el tablero de juego.
-     * @param posF - Es la posición x del tablero de juego.
-     * @param posC - Es la posición y del tablero de juego.
+     * @param i - Es la posición i del tablero de juego.
+     * @param j - Es la posición j del tablero de juego.
      * @param direction - Es la dirección en la que se va a colocar la nave en el tablero de juego. Puede se HORIZONTAL O VERTICAL.
      * @param sizeSpaceshit - Es el tamaño de la nave, es decir, el número de casillas que ocupará en el tablero de juego.
      * @return - true si la posición en la que se colocará la nave es permitida. False si la posición en la que se colocará la nave no es permitida.
      */
-    private boolean verificarPosition(String[][] matriz, int posF, int posC, Direction direction, int sizeSpaceshit) {
+    public boolean checkPosition(String[][] matriz, int i, int j, Direction direction, int sizeSpaceshit) {
         boolean valido = false;
         if (direction.equals(Direction.HORIZONTAL)) {
             int size = 0;
-            for (int j = posC; j < matriz[0].length && !valido; j++) {
-                if (matriz[posF][j].equals("X")) {
+            while(j < matriz[0].length && !valido) {
+                if (matriz[i][j].equals("X")) {
                     valido = false;
                 } else if (size >= matriz[0].length) {
                     valido = false;
@@ -92,12 +93,13 @@ public class Faction implements Serializable {
                     valido = true;
                 }
                 size++;
+                j++;
             }
 
         } else if (direction.equals(Direction.VERTICAL)) {
             int size = 0;
-            for (int j = posF; j < matriz.length && !valido; j++) {
-                if (matriz[posF][j].equals("X")) {
+            while(i < matriz.length && !valido) {
+                if (matriz[i][j].equals("X")) {
                     valido = false;
                 } else if (size >= matriz.length) {
                     valido = false;
@@ -105,11 +107,12 @@ public class Faction implements Serializable {
                     valido = true;
                 }
                 size++;
-
+                i++;
             }
         }
         return valido;
     }
+
 
 
     /**
@@ -125,9 +128,8 @@ public class Faction implements Serializable {
         int randomY = 0;
         int randomD=0;
 
-        boolean valido = false;
-
-        while (!valido) {
+        boolean valid = false;
+        while (!valid) {
             randomX = (int) Math.floor(Math.random() * (Match.GAME_BOARD_SIZE - (0 + 1)) + 0);
             randomY = (int) Math.floor(Math.random() * (Match.GAME_BOARD_SIZE - (0 + 1)) + 0);
             randomD = (int) Math.floor(Math.random() * 2+1);
@@ -138,51 +140,134 @@ public class Faction implements Serializable {
                 direction = Direction.VERTICAL;
             }
 
-            valido = verificarPosition(gameBoard, randomX, randomY, direction, size);
+            boolean checkAdjacentBoxes = checkAdjacentBoxes(randomX,randomY,gameBoard);
+            boolean checkPosition = checkPosition(gameBoard, randomX, randomY, direction, size);
+            valid = checkPosition && checkAdjacentBoxes;
 
         }
 
-        posicionarNave(gameBoard,randomX, randomY, direction, size);
+        positionShip(randomX, randomY, direction, size,gameBoard);
     }
 
 
     /**
      * Posiciona una nueva nave en una posición permitida del tablero de juego.
      * @param matriz - Es el tablero de juego.
-     * @param x - Es la posición x del tablero de juego.
-     * @param y - Es la posición y del tablero de juego.
+     * @param i - Es la posición i del tablero de juego.
+     * @param j - Es la posición j del tablero de juego.
      * @param direction - s la dirección en la que se va a colocar la nave en el
      *      *                    tablero de juego. Puede se HORIZONTAL O VERTICAL.
      * @param size_Nave - Es el tamaño de la nave, es decir, el número de casillas que ocupará en el tablero de juego.
      */
-    public void posicionarNave(String[][] matriz, int x, int y, Direction direction, int  size_Nave){
-        boolean termino = false;
+    public void positionShip(int i, int j, Direction direction, int size_Nave,String[][] matriz) {
+        if(checkPosition(matriz, i, j, direction, size_Nave)) {
+            if(checkAdjacentBoxes(i, j,matriz)) {
 
-        if (verificarPosition(matriz, x, y, direction, size_Nave)){
 
-            switch (direction) {
-                case HORIZONTAL:
-                    for (int j = y; !termino; j++) {
-                        matriz[x][j] = "X";
+                boolean termino = false;
+                if (direction.equals(Direction.HORIZONTAL)) {
+                    while (!termino) {
+                        matriz[i][j] = "X";
                         size_Nave--;
                         if (size_Nave < 1) {
                             termino = true;
                         }
+                        j++;
                     }
-                    break;
-
-                case VERTICAL:
-                    for (int i = x; !termino; i++) {
-                        matriz[i][y] = "X";
+                } else {
+                    while (!termino) {
+                        matriz[i][j] = "X";
                         size_Nave--;
                         if (size_Nave < 1) {
                             termino = true;
                         }
+                        i++;
                     }
-                    break;
+                }
             }
         }
     }
+
+
+
+
+    /**
+     * Verifica si las casillas contiguas a la parte de la naves tienen naves cercanas.
+     * @param i	fila de la matriz.
+     * @param j columna de la matriz.
+     * @return true : Si no existen casilla contiguas a la matriz.
+     * 		   false : Si existe casillas contiguas a la matriz.
+     */
+    private boolean checkAdjacentBoxes(int i, int j,String[][] matriz) {
+        boolean found = false;
+        int size = matriz.length;
+        int contador = 0;
+
+        if(matriz[i][j].equals("X")) {
+            contador++;
+        }
+
+        //Verifica el extremo superior derecho
+        if((i-1 >= 0 && j+1 < size)) {
+            if(matriz[i-1][j+1].equals("X")) {
+                contador++;
+            }
+        }
+        //Verifica el extremo superior izquierdo
+        if(i-1 >= 0 && j-1 >= 0) {
+            if(matriz[i-1][j-1].equals("X")) {
+                contador++;
+            }
+        }
+        //Verifica la parte superior
+        if(i-1 >= 0) {
+            if(matriz[i-1][j].equals("X")) {
+                contador++;
+            }
+        }
+
+        //Verifica la derecha de la matriz
+        if(j+1 < size) {
+            if(matriz[i][j+1].equals("X")) {
+                contador++;
+            }
+        }
+
+        //Verifica la izquierda de la matriz.
+        if(j-1 >= 0) {
+            if(matriz[i][j-1].equals("X")) {
+                contador++;
+            }
+        }
+
+        //Verifica la parte inferior
+        if(i+1 < size){
+            if(matriz[i+1][j].equals("X")) {
+                contador++;
+            }
+        }
+        //Verifica el extremo inferior derecho.
+        if(i+1 < size && j+1 < size) {
+            if(matriz[i+1][j+1].equals("X")) {
+                contador++;
+            }
+        }
+
+        //Verifica el extremo inferior izquierdo.
+        if(i+1 < size  && j-1 >= 0) {
+            if(matriz[i+1][j-1].equals("X")) {
+                contador++;
+            }
+        }
+
+
+        found = contador <= 0;
+
+        return found;
+
+
+    }
+
 
     /**
      * Comienza el proceso de creacion de los miembros de la faccion, con la llamada a los metodos de crear seres vivos y crear robots.

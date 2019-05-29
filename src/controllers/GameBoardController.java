@@ -1,10 +1,10 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import customExceptions.EmptyDataException;
 import customExceptions.NotShipsPositionedException;
 import javafx.event.ActionEvent;
-import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,12 +16,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.Faction.SpaceShipType;
 import model.Game;
 import model.Match;
+import model.Match.Direction;
 import model.Player;
-import model.Faction.SpaceShipType;
-import  model.Match.Direction;
 import threads.UpdateThreadMatchTime;
 
 import java.io.IOException;
@@ -97,13 +98,18 @@ public class GameBoardController implements Initializable {
 
 
     /**
+     * Permite cambiar la acción del boton de posicionar las naves, cuando inicie el juego.
+     */
+    private boolean paint;
+
+    /**
      *Carga e inicializa los contenedores donde estaran las naves que seran agregadas y la orientacion de estas, ademas,
      * inicializa las matrices para su debida manipulacion.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         playClicked = false;
-
+        paint = true;
         spaceShipsBox.getItems().addAll(SpaceShipType.SHUTTLE, SpaceShipType.BOMBER, SpaceShipType.INTERCEPTOR, SpaceShipType.GUNSHIP, SpaceShipType.STARFIGHTER, SpaceShipType.DESTROYER, SpaceShipType.BATTLECRUISER, SpaceShipType.DREADNOUGHT);
         horientationBox.getItems().addAll(Direction.HORIZONTAL, Direction.VERTICAL);
 
@@ -115,32 +121,6 @@ public class GameBoardController implements Initializable {
     }
 
 
-    /**
-     * Cambia al jugador que posea la relacion player
-     * <pre> el parametro player es != null</>
-     * @param player Es el jugador al cual se cambiara
-     */
-    public void setPlayer(Player player){
-        this.player = player;
-    }
-
-    /**
-     * Devuelve el jugador que posea la relacion player
-     * @return El jugador que posea la relacion player
-     */
-
-    public Player getPlayer(){
-        return player;
-    }
-
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
 
     /**
      * Controla el evento de comenzar a jugar la partida en curso
@@ -162,6 +142,7 @@ public class GameBoardController implements Initializable {
             gameBoadPlayer.setDisable(true);
             gameBoardMachine.setDisable(false);
             fillGridMachine();
+            paint = false;
         }
     }
 
@@ -171,12 +152,6 @@ public class GameBoardController implements Initializable {
      */
     @FXML
     void saveMatch(ActionEvent event) {
-        try {
-            game.saveStateGame();
-            System.out.println("Partida Guardada");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -209,6 +184,7 @@ public class GameBoardController implements Initializable {
 
                 JFXButton b = new JFXButton("*");
                 b.setId(i + "," + j);
+                //Accion del tablero del jugador.
                 b.setOnAction(event -> action(b));
                 b.setPrefHeight(50);
                 b.setPrefWidth(50);
@@ -223,18 +199,24 @@ public class GameBoardController implements Initializable {
      * Se encarga de realizar la accion de cuando se presiona uno de los botones del tablero de juego del jugador, en la etapa de cuando esta posicionando las naves.
      * @param b Es el boton seleccionado
      */
-    private void action(Button b){
-        if (!playClicked){
-            SpaceShipType s = spaceShipsBox.getValue();
+    private void action(JFXButton b){
+        //Permite desativar la acción de posicionar las naves en el tablero, cuando empieze el juego.
+        if(paint) {
+            if (!playClicked) {
+                SpaceShipType s = spaceShipsBox.getValue();
 
-            try {
-                player.getMatch().createSpaceShips(s, horientationBox.getValue(), b.getId());
-                spaceShipsBox.getItems().remove(s);
+                try {
+                    player.getMatch().createSpaceShips(s, horientationBox.getValue(), b.getId());
+                    spaceShipsBox.getItems().remove(s);
 
-                updateGameBoard(gameBoardP);
-            } catch (EmptyDataException e) {
-                e.message();
+                    updateGameBoard(gameBoardP);
+                } catch (EmptyDataException e) {
+                    e.message();
+                }
             }
+        }else{
+            gameBoadPlayer.setDisable(true);
+            gameBoardMachine.setDisable(false);
         }
     }
 
@@ -242,14 +224,56 @@ public class GameBoardController implements Initializable {
      * Se encarga de actualizar lo(s) tablero(s) de juego al ejecutarse alguna accion sobre ello(s)
      * @param gameBoard Es el tablero de juego ha actualizar
      */
-    private void updateGameBoard(Button[][] gameBoard){
+    private void updateGameBoard(JFXButton[][] gameBoard){
         for (int i = 0; i < Match.GAME_BOARD_SIZE; i++) {
             for (int j = 0; j < Match.GAME_BOARD_SIZE; j++) {
-                gameBoard[i][j].setText(player.getMatch().getGameBoardPlayer()[i][j]);
+                //Permite cambiar el color de las casillas que contienen partes de la nave.
+                String value = player.getMatch().getGameBoardPlayer()[i][j];
+                JFXButton button = gameBoard[i][j];
+                if(paint){
+                    //Solo funciona cuando el jugador posiciona las naves.
+                    // Se convierte en falso cuando comienza el juego.
+                    if (value.equals("X")) {
+                        button.setText("X");
+                        button.setStyle("-fx-background-color:blue");
+                        button.setTextFill(Color.WHITE);
+                    }
+                }else{
+
+
+
+                    if(value.equals("#")){
+                        button.setText("#");
+                        button.setDisable(true);
+                        button.setStyle("-fx-background-color:yellow");
+                    }
+                }
+
+
+
+
             }
         }
     }
 
+    /**
+     * Permite actualizar el tablero cuando encuentre un # el cual represente una casilla sin partes de la nave.
+     * @param gameBoard Matriz de botones referente a la de la maquina.
+     */
+    private void updateBoardMachine(JFXButton[][] gameBoard){
+        for (int i = 0; i < Match.GAME_BOARD_SIZE; i++) {
+            for (int j = 0; j < Match.GAME_BOARD_SIZE; j++) {
+                String value = player.getMatch().getGameBoardMachine()[i][j];
+                JFXButton button = gameBoard[i][j];
+                if(value.equals("#")){
+                    button.setText("#");
+                    button.setStyle("-fx-background-color:yellow");
+                    button.setDisable(true);
+
+                }
+            }
+        }
+    }
     /**
      * Se encarga de crear los botones que tendra el tablero de juego de la maquina.
      */
@@ -259,7 +283,15 @@ public class GameBoardController implements Initializable {
 
                 JFXButton b = new JFXButton("*");
                 b.setId(i + "," + j);
-                b.setOnAction(event -> actionPlayer(b.getId()));
+                b.setOnAction(event -> {
+                    actionPlayer(b.getId());
+                    //permite que la maquina reliace su respectiva jugada.
+                    turnMachine();
+                    //permite actualizar el tablero del jugador.
+                    updateGameBoard(gameBoardP);
+                    //permite actualizar el tablero del jugador.
+                    updateBoardMachine(gameBoardM);
+                });
                 b.setPrefHeight(50);
                 b.setPrefWidth(50);
 
@@ -273,11 +305,28 @@ public class GameBoardController implements Initializable {
      * Se encarga de verificar si en la casilla seleccionada por el jugador se encuentra una nave.
      * @param position Es la posicion de la casilla seleccionada
      */
-    private void actionPlayer(String position){
+    private void actionPlayer(String position) {
+        //La posiciones i y j del tablero
+        String[] pos = position.split(",");
+        int i = Integer.parseInt(pos[0]);
+        int j = Integer.parseInt(pos[1]);
+        JFXButton button = gameBoardM[i][j];
+        //Retorna true si encuentra en la posición una parte de la nave y false si no la hay nada.
         boolean isShip = player.getMatch().uncoverMachineBox(position);
-
         if (isShip){
-            discoverShip(position, gameBoardM);
+            button.setText("X");
+            button.setTextFill(Color.WHITE);
+            button.setStyle("-fx-background-color:red");
+            button.setDisable(true);
+
+        }else{
+            button.setText("#");
+            button.setStyle("-fx-background-color:yellow");
+            button.setDisable(true);
+            //Permite desativar el tablero de la maquina para que ella realice su jugada.
+            gameBoardMachine.setDisable(true);
+            gameBoadPlayer.setDisable(false);
+
         }
     }
 
@@ -287,6 +336,7 @@ public class GameBoardController implements Initializable {
      * @param gameBoard Tablero de juego ha acualizar
      */
     private void discoverShip(String position, Button[][] gameBoard){
+
         boolean founded = false;
 
         for (int i = 0; i < Match.GAME_BOARD_SIZE && !founded; i++) {
@@ -307,14 +357,57 @@ public class GameBoardController implements Initializable {
     private void turnMachine(){
         String position = player.getMatch().generatePositionMachine();
 
-        String[] p = position.split(",");
-        Button b = gameBoardP[Integer.parseInt(p[0])][Integer.parseInt(p[1])];
-        b.setDisable(true);
 
-        if (!player.getMatch().uncoverPlayersBox(position)){
+        String[] p = position.split(",");
+        int i = Integer.parseInt(p[0]);
+        int j = Integer.parseInt(p[1]);
+        JFXButton b = gameBoardP[i][j];
+
+        boolean found = player.getMatch().uncoverPlayersBox(position);
+        //Si encuentra una parte de la nave entonces desativa la casilla
+        // de lo contrario desativa la casilla,le cambia el texto de valor y cambia de turno
+        if (found){
+            b.setStyle("-fx-background-color:red");
+            b.setTextFill(Color.WHITE);
+            b.setDisable(true);
+            turnMachine();
+        }else{
             b.setText("#");
+            b.setDisable(true);
+            b.setStyle("-fx-background-color:yellow");
+            gameBoadPlayer.setDisable(true);
+            gameBoardMachine.setDisable(false);
+
         }
     }
+    /**
+     * Cambia al jugador que posea la relacion player
+     * <pre> el parametro player es != null</>
+     * @param player Es el jugador al cual se cambiara
+     */
+    public void setPlayer(Player player){
+        this.player = player;
+    }
+
+    /**
+     * Devuelve el jugador que posea la relacion player
+     * @return El jugador que posea la relacion player
+     */
+
+    public Player getPlayer(){
+        return player;
+    }
+
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+
 
 
 
