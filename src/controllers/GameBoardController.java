@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Faction.SpaceShipType;
@@ -37,14 +38,19 @@ import java.util.ResourceBundle;
  */
 public class GameBoardController implements Initializable {
 
-    // Atrubutos
+    //Relaciones
 
     /**
-     * Relacion con la clase player
+     * Relacion con la clase Player
      */
     private Player player;
 
+    /**
+     * Relacion con la clase Game.
+     */
     private Game game;
+
+    // Atrubutos
 
     /**
      *Se encarga de verificar si el juego ya comenzo, para desabilitar la opcion de agregar naves al tablero de juego del jugador
@@ -60,6 +66,11 @@ public class GameBoardController implements Initializable {
      * Matriz de botones el cual albergara el tablero de la maquina y todos los cambios que se le hagan
      */
     private JFXButton[][] gameBoardM;
+
+    /**
+     * Es la contenedora donde se ubican las opciones para configurar la partida antes de jugarla.
+     */
+    @FXML private HBox hBConfiguration;
 
     /**
      *Almacena las naves que, posteriormente, se desplegaran en el tablero de juego del jugador
@@ -102,6 +113,7 @@ public class GameBoardController implements Initializable {
      */
     private boolean paint;
 
+
     /**
      *Carga e inicializa los contenedores donde estaran las naves que seran agregadas y la orientacion de estas, ademas,
      * inicializa las matrices para su debida manipulacion.
@@ -121,6 +133,40 @@ public class GameBoardController implements Initializable {
     }
 
 
+    //Metodos
+
+    /**
+     * Cambia al jugador que posea la relacion player
+     * <pre> el parametro player es != null</>
+     * @param player Es el jugador al cual se cambiara
+     */
+    public void setPlayer(Player player){
+        this.player = player;
+    }
+
+    /**
+     * Devuelve el jugador que posea la relacion player
+     * @return El jugador que posea la relacion player
+     */
+    public Player getPlayer(){
+        return player;
+    }
+
+    /**
+     * Devuelve la relacion que tiene esta controladora con la clase Game.
+     * @return La relacion con la clase Game.
+     */
+    public Game getGame() {
+        return game;
+    }
+
+    /**
+     * Cambia la relacion de la clase Game
+     * @param game La nueva relacion con la clase Game
+     */
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
     /**
      * Controla el evento de comenzar a jugar la partida en curso
@@ -134,6 +180,7 @@ public class GameBoardController implements Initializable {
 
         }else {
             playClicked = true;
+            hBConfiguration.setDisable(true);
 
             UpdateThreadMatchTime umt = new UpdateThreadMatchTime(this);
             umt.setDaemon(true);
@@ -147,15 +194,6 @@ public class GameBoardController implements Initializable {
     }
 
     /**
-     * Se encarga de guardar la partida cuando el jugador lo desee.
-     * @param event Es el evento que se produce al hacer click en el boton
-     */
-    @FXML
-    void saveMatch(ActionEvent event) {
-
-    }
-
-    /**
      * Actualiza en la interfaz el tiempo de la partida en curso.
      */
     public void updateMatchTime(){
@@ -163,13 +201,16 @@ public class GameBoardController implements Initializable {
         gameTime.setText(time);
 
         if (player.getMatch().getTime() <= 0){
+            gameBoadPlayer.setDisable(true);
+            gameBoardMachine.setDisable(true);
+
+            player.setLostGames(player.getLostGames() + 1);
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", ButtonType.FINISH);
             alert.setHeaderText("Se te ha acabado el tiempo, has perdido la partida");
+            alert.show();
 
-            Optional<ButtonType> option = alert.showAndWait();
-            if (option.get() == ButtonType.FINISH){
-                player.createRecord();
-            }
+            player.createRecord();
         }
     }
 
@@ -239,19 +280,12 @@ public class GameBoardController implements Initializable {
                         button.setTextFill(Color.WHITE);
                     }
                 }else{
-
-
-
                     if(value.equals("#")){
                         button.setText("#");
                         button.setDisable(true);
                         button.setStyle("-fx-background-color:yellow");
                     }
                 }
-
-
-
-
             }
         }
     }
@@ -274,6 +308,7 @@ public class GameBoardController implements Initializable {
             }
         }
     }
+
     /**
      * Se encarga de crear los botones que tendra el tablero de juego de la maquina.
      */
@@ -357,7 +392,6 @@ public class GameBoardController implements Initializable {
     private void turnMachine(){
         String position = player.getMatch().generatePositionMachine();
 
-
         String[] p = position.split(",");
         int i = Integer.parseInt(p[0]);
         int j = Integer.parseInt(p[1]);
@@ -380,46 +414,25 @@ public class GameBoardController implements Initializable {
 
         }
     }
-    /**
-     * Cambia al jugador que posea la relacion player
-     * <pre> el parametro player es != null</>
-     * @param player Es el jugador al cual se cambiara
-     */
-    public void setPlayer(Player player){
-        this.player = player;
-    }
 
     /**
-     * Devuelve el jugador que posea la relacion player
-     * @return El jugador que posea la relacion player
+     *Se encarga de lanzar una advertencia de que si desea abandonar la partida en curso, para posteriormente, si el usuario acepta, abandonar la partida en curso.
+     * @param event Es el evento que se produce al presionarse el boton.
      */
-
-    public Player getPlayer(){
-        return player;
-    }
-
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
-
-
-
-
     @FXML
     void backClicked(ActionEvent event) {
-
-        try {
-            game.saveStateGame();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Esta seguro que desea abandonar la partida?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> optional = alert.showAndWait();
+        if (optional.get() == ButtonType.YES){
+            returnToMainMenu(event);
         }
+    }
 
+    /**
+     *Ejecuta la accion de mostrar el menu principal en pantalla despues de que el usuario aceptara abandornar la partida.
+     * @param event Es el evento de haber abandonado la partida.
+     */
+    private void returnToMainMenu(ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/MainMenuGUI.fxml"));
         Parent root = null;
 
@@ -438,6 +451,5 @@ public class GameBoardController implements Initializable {
         stage.setTitle("Menu principal");
         stage.show();
     }
-
 
 }

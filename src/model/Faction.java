@@ -188,9 +188,6 @@ public class Faction implements Serializable {
         }
     }
 
-
-
-
     /**
      * Verifica si las casillas contiguas a la parte de la naves tienen naves cercanas.
      * @param i	fila de la matriz.

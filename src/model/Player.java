@@ -4,7 +4,10 @@ import customExceptions.EqualUserException;
 import customExceptions.NotExistPlayerException;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.List;
 
 // Clase
 
@@ -205,6 +208,30 @@ public class Player implements Comparable<String>, Serializable {
      */
     public void setMatch(Match match) {
         this.match = match;
+    }
+
+    /**
+     * Cambia el valor del parametro wonGames.
+     * @param wonGames nuevo valor del parameteo wonGames.
+     */
+    public void setWonGames(int wonGames){
+        this.wonGames = wonGames;
+    }
+
+    /**
+     * Cambia el valor del parametro lostGames.
+     * @param lostGames nuevo valor del parametro lostGames.
+     */
+    public void setLostGames(int lostGames){
+        this.lostGames = lostGames;
+    }
+
+    /**
+     * Cambia el valor del puntaje global.
+     * @param globalScore nuevo valor del puntaje global del jugador.
+     */
+    public void setGlobalScore(int globalScore){
+        this.globalScore = globalScore;
     }
 
     /**
@@ -598,7 +625,7 @@ public class Player implements Comparable<String>, Serializable {
                     if (n1.getTime().compareTo(n2.getTime()) > 0){
                         if (n1 == first){
                             if (n1.getNext() == n2){
-                                n1.setNext(n2.getNext());;
+                                n1.setNext(n2.getNext());
                                 n2.setNext(n1);
                                 first = n2;
                             }
@@ -634,7 +661,6 @@ public class Player implements Comparable<String>, Serializable {
                     }
                 }
             }
-
         }
     }
 

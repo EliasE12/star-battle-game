@@ -2,7 +2,6 @@ package threads;
 
 import controllers.GameBoardController;
 import javafx.application.Platform;
-import model.Match;
 
 // Excepción
 
@@ -60,7 +59,7 @@ public class UpdateThreadMatchTime extends Thread {
      * Se encarga de verificar la continuidad del ciclo del hilo, inspeccionando que el tiempo de la partida en curso aun sea mayor que 0.
      */
     private void stopped(){
-        if (gbc.getPlayer().getMatch().getTime() == 0){
+        if (gbc.getPlayer().getMatch().getTime() <= 0){
             stop = true;
         }
     }

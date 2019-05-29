@@ -57,6 +57,22 @@ public class LoginWindowController implements Initializable {
     }
 
     /**
+     * Devuelve la relacion con la clase Game
+     * @return la relacion con Game
+     */
+    public Game getGame() {
+        return game;
+    }
+
+    /**
+     * Cambia el vaor de la relacion con la clase Game
+     * @param game el nuevo valor de la relacion con Game
+     */
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    /**
      * Controla la acción de presionar el botón para entrar a jugador
      * @param event - Es el evento producido al presionar el botón.
      */
@@ -103,7 +119,7 @@ public class LoginWindowController implements Initializable {
         stage.setTitle("Ventana de Registro");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner((Stage) ((Node) event.getSource()).getScene().getWindow());
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
     }
 
@@ -170,14 +186,5 @@ public class LoginWindowController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("Menu principal");
         stage.show();
-    }
-
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
     }
 }

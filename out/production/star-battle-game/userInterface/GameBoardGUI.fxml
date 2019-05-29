@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameBoardController">
    <left>
-      <HBox prefHeight="570.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="hBConfiguration" prefHeight="570.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="570.0" prefWidth="200.0" spacing="60.0">
                <children>
@@ -48,10 +48,6 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="btSaveMatch" buttonType="RAISED" onAction="#saveMatch" text="Guardar Partida">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></JFXButton>
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -293,7 +289,7 @@
       </VBox>
    </top>
    <bottom>
-      <JFXButton buttonType="RAISED" onAction="#backClicked" text="Volver" BorderPane.alignment="CENTER">
+      <JFXButton buttonType="RAISED" onAction="#backClicked" text="Volver al Menu Proincipal" BorderPane.alignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

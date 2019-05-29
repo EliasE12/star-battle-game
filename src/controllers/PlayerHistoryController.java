@@ -1,19 +1,16 @@
 package controllers;
 
-import java.util.Date;
-import java.util.List;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import model.Player;
 import model.Record;
+
+import java.util.List;
 
 // Clase
 
@@ -50,12 +47,18 @@ public class PlayerHistoryController {
         pPrintHistorialPlayer = new Pane();
     }
 
-
+    /**
+     * Cambia el vaor de la relacion con la clase Player para posteriormente inicializar el proceso de pintar el historial del jugador, si lo posee.
+     * @param player el nuevo valor de la relacion con Player
+     */
     public void setPlayer(Player player){
         this.player = player;
         printHistorial();
     }
 
+    /**
+     * Pinta la lista enlazada en pantalla, con todos los datos del historial del jugador.
+     */
     private void printHistorial(){
 
         List<Record> recordList = player.recordsToPrint();
@@ -99,7 +102,10 @@ public class PlayerHistoryController {
         }
     }
 
-
+    /**
+     * Controla la accion de ordenar el historial del jugador utilizando como criterio la fecha.
+     * @param event Es el evento que se produce al presionar el boton.
+     */
     @FXML
     void sortByDateClicked(ActionEvent event) {
         player.recordsSortByDate();
@@ -107,12 +113,20 @@ public class PlayerHistoryController {
         System.out.println("Ordenado");
     }
 
+    /**
+     * Controla la accion de ordenar el historial del jugador utilizando como criterio el puntaje obtenido en dicha partida.
+     * @param event Es el evento que se produce al presionar el boton.
+     */
     @FXML
     void sortByScoreClicked(ActionEvent event) {
         player.recordsSortByScore();
         printHistorial();
     }
 
+    /**
+     * Controla la accion de ordenar el historial del jugador utilizando como criterio el tiempo demorado en dicha partida.
+     * @param event Es el evento que se produce al presionar el boton.
+     */
     @FXML
     void sortByTimeClicked(ActionEvent event) {
         player.recordsSortByTime();

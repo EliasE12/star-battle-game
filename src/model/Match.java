@@ -27,7 +27,7 @@ public class Match implements Serializable {
     /**
      * Indica la duración de la partida.
      */
-    public static final long DURATION_MATCH_HIGH_LEVEL = 600;
+    public static final long DURATION_MATCH_HIGH_LEVEL = 5;
     public static final long DURATION_MATCH_MEDIUM_LEVEL = 900;
     public static final long DURATION_MATCH_LOW_LEVEL = 1200;
 
@@ -144,7 +144,6 @@ public class Match implements Serializable {
         return score;
     }
 
-
     /**
      * Devuelve el valor del parametro win de la clase Match.
      * @return true si el jugador gano la partida en curso. False en caso contrario.
@@ -152,7 +151,6 @@ public class Match implements Serializable {
     public boolean isWin() {
         return win;
     }
-
 
     /**
      * Devuelve la matriz que contiene el tablero de juego del jugador.
@@ -162,7 +160,6 @@ public class Match implements Serializable {
         return gameBoardPlayer;
     }
 
-
     /**
      * Devuelve la matriz que contiene el tablero de juego de la máquina.
      * @return gameBoardMachine
@@ -170,7 +167,6 @@ public class Match implements Serializable {
     public String[][] getGameBoardMachine() {
         return gameBoardMachine;
     }
-
 
     /**
      * Pinta la matriz que representa el tablero de juego.
@@ -183,7 +179,6 @@ public class Match implements Serializable {
             }
         }
     }
-
 
     /**
      * Maneja el tiempo de duración de la partida.
@@ -208,7 +203,6 @@ public class Match implements Serializable {
 
         return matchTime;
     }
-
 
     /**
      * Metodo que se encarga de crear la faccion con su debido capitan, para comenzar la nueva partida.
@@ -253,7 +247,6 @@ public class Match implements Serializable {
         }
     }
 
-
     /**
      * Metodo que se encarga de crear la faccion enemiga, dependiendo de la faccion creada por el usaurio
      * @param members numero de miembros que poseera la faccion enemiga
@@ -279,7 +272,6 @@ public class Match implements Serializable {
         machine = faction;
         machine.createMembers(LIVING_BEING_DATA_MACHINE, ROBOT_DATA_MACHINE, members);
     }
-
 
     /**
      * Se encarga de calcular el tamano de la nave pasada por parametro.
@@ -325,7 +317,6 @@ public class Match implements Serializable {
         return size;
     }
 
-
     /**
      * Inicializa el llamado a los metodos que se encargan de crear las naves en las posiciones escogidas por el jugador.
      * <pre>La matriz gameBoardPlayer donde se van a posicionar las naves del jugador, debe ser != null</>
@@ -352,7 +343,6 @@ public class Match implements Serializable {
         }
     }
 
-
     /**
      * Se encarga de verificar que si en la posicion, pasada como parametro, haya ubicada una nave en el tablero de juego del jugador.
      * @param position posicion donde se verificara, en el tablero de juego del jugador, si hay una nave posicionada
@@ -371,7 +361,6 @@ public class Match implements Serializable {
 
         return discoveredShip;
     }
-
 
     /**
      * Se encarga de verificar que si en la posicion, pasada como parametro, haya ubicada una nave en el tablero de juego de la maquina.
@@ -392,7 +381,6 @@ public class Match implements Serializable {
         return discoveredShip;
     }
 
-
     /**
      *
      * @return
@@ -404,7 +392,6 @@ public class Match implements Serializable {
 
         return win;
     }
-
 
     /**
      * Se encarga de generar aleatoriamente la posicion del boton que seleccionara la maquina en su debido turno.

@@ -1,6 +1,5 @@
 package model;
 
-import com.sun.prism.shader.DrawSemiRoundRect_ImagePattern_AlphaTest_Loader;
 import customExceptions.EmptyDataException;
 import customExceptions.EmptyPlayerStructureException;
 import customExceptions.EqualUserException;
@@ -43,7 +42,7 @@ public class Game {
      */
     public Game() {
         this.root = null;
-        //loadStateGame();
+        loadStateGame();
         //comenzar();
     }
 
@@ -111,11 +110,7 @@ public class Game {
      *         false si el árbol no está vacío.
      */
     public boolean isEmpty(){
-        if(root == null){
-            return true;
-        }else {
-            return false;
-        }
+        return root == null;
     }
 
     /**

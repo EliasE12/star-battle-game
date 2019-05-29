@@ -1,9 +1,9 @@
 package controllers;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.FXML;
-import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -53,11 +53,18 @@ public class MainMenuController implements Initializable {
         this.player = player;
     }
 
-
+    /**
+     * Devuelve la relacion con la clase Game
+     * @return la relacion con Game
+     */
     public Game getGame() {
         return game;
     }
 
+    /**
+     * Cambia el vaor de la relacion con la clase Game
+     * @param game el nuevo valor de la relacion con Game
+     */
     public void setGame(Game game) {
         this.game = game;
     }
@@ -114,7 +121,7 @@ public class MainMenuController implements Initializable {
         stage.setTitle("Historial de partidas");
         stage.setResizable(false);
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
     }
 
