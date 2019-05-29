@@ -1,6 +1,7 @@
 package model;
 
-import model.Spaceship;
+import interfaces.Combatant;
+import interfaces.Recoverable;
 
 import java.io.Serializable;
 
@@ -9,7 +10,7 @@ import java.io.Serializable;
 /**
  * Entidad que reprsenta una nave de tipo Destroyer.
  */
-public class Destroyer extends Spaceship implements Serializable {
+public class Destroyer extends Spaceship implements Serializable, Recoverable, Combatant {
 
 	// Constantes
 
@@ -86,6 +87,16 @@ public class Destroyer extends Spaceship implements Serializable {
 	public void setLaserCannon(int laserCannon) {
 		this.laserCannon = laserCannon;
 	}
-	
-	
+
+	@Override
+	public void recoverLife() {
+		healt = (int) (healt * RECOVER_LIFE);
+	}
+
+    @Override
+    public int maximunDamage() {
+		int damage = (turboLaser * TURBO_LASER_DAMAGE) + (laserCannon * LASER_CANNON_DAMAGE);
+
+        return damage;
+    }
 }

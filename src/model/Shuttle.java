@@ -2,12 +2,14 @@ package model;
 
 // Clase
 
+import interfaces.Combatant;
+
 import java.io.Serializable;
 
 /**
  * Entidad que representa una nave de tipo Shuttle.
  */
-public class Shuttle extends Spaceship implements Serializable {
+public class Shuttle extends Spaceship implements Serializable, Combatant {
 
 	// Constantes
 
@@ -84,7 +86,12 @@ public class Shuttle extends Spaceship implements Serializable {
 	public void setLaserCannon(int laserCannon) {
 		this.laserCannon = laserCannon;
 	}
-		
-	
 
+
+	@Override
+	public int maximunDamage() {
+		int damage = (turboLaser * TURBO_LASER_DAMAGE) + (laserCannon * LASER_CANNON_DAMAGE);
+
+		return damage;
+	}
 }

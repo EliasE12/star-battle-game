@@ -73,4 +73,11 @@ public class Interceptor extends Starfigther implements Serializable {
     public void setTurbo(int turbo) {
         this.turbo = turbo;
     }
+
+    @Override
+    public int maximunDamage() {
+        int damage = (turboLaser * TURBO_LASER_DAMAGE);
+
+        return damage;
+    }
 }

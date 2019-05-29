@@ -45,13 +45,13 @@ public class UpdateThreadMatchTime extends Thread {
 
             TimeGameThread timeGameThread = new TimeGameThread(gbc);
             Platform.runLater(timeGameThread);
+            stopped();
 
             try {
                 sleep(SLEEP_TIME);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            stopped();
         }
     }
 
@@ -59,7 +59,10 @@ public class UpdateThreadMatchTime extends Thread {
      * Se encarga de verificar la continuidad del ciclo del hilo, inspeccionando que el tiempo de la partida en curso aun sea mayor que 0.
      */
     private void stopped(){
-        if (gbc.getPlayer().getMatch().getTime() <= 0){
+        boolean finishMachine = gbc.getPlayer().getMatch().checkUncoveredShips(gbc.getPlayer().getMatch().getGameBoardPlayer(), gbc.getGameBoardP());
+        boolean finishUser = gbc.getPlayer().getMatch().checkUncoveredShips(gbc.getPlayer().getMatch().getGameBoardMachine(), gbc.getGameBoardM());
+
+        if (gbc.getPlayer().getMatch().getTime() <= 0 || (finishMachine || finishUser)){
             stop = true;
         }
     }

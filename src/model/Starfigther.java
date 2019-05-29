@@ -2,12 +2,14 @@ package model;
 
 // Clase
 
+import interfaces.Combatant;
+
 import java.io.Serializable;
 
 /**
  * Entidad que representa una nave de tipo Starfigther.
  */
-public abstract class Starfigther extends Spaceship implements Serializable {
+public class Starfigther extends Spaceship implements Serializable, Combatant {
 
     // Constantes
 
@@ -61,5 +63,12 @@ public abstract class Starfigther extends Spaceship implements Serializable {
      */
     public void setTurboLaser(int turboLaser) {
         this.turboLaser = turboLaser;
+    }
+
+    @Override
+    public int maximunDamage() {
+        int damage = turboLaser * TURBO_LASER_DAMAGE;
+
+        return damage;
     }
 }

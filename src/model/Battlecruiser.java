@@ -3,19 +3,23 @@ package model;
 
 // Clase
 
+import interfaces.Combatant;
+import interfaces.Defensible;
+import interfaces.Recoverable;
+
 import java.io.Serializable;
 
 /**
  * Entidad que representa una nave de tipo Battlecruser.
  */
-public class Battlecruiser extends Spaceship implements Serializable {
+public class Battlecruiser extends Spaceship implements Serializable, Recoverable, Combatant, Defensible {
 
 	// Constantes
 
 	/**
 	 * Representa los diferentes rangos o jerarquías de la nave.
 	 */
-	public enum Rank{NOVA_CLASS,CENTURION_CLASS,MEDIATOR_CLASS,PRAETOR_CLASS};
+	public enum Rank{NOVA_CLASS,CENTURION_CLASS,MEDIATOR_CLASS,PRAETOR_CLASS}
 
 	/**
 	 * Es la cantidad de vida de la nace
@@ -70,7 +74,7 @@ public class Battlecruiser extends Spaceship implements Serializable {
 	 * @param staffLimit - Es el límite de miembros en la nave.
 	 * @param model - Es el modelo de la nave.
 	 * @param fuelRatio - Es la relación de combustible.
-	 * @param healt - Es el nivel de salub de la nave.
+	 * @param healt - Es el nivel de salud de la nave.
 	 * @param turboLaser - Es el nivel de poder del turbo láser.
 	 * @param laserCannon - Es el nivel de poder del cañón láser.
 	 * @param ionCannon - Es el nivel de poder del cañón de iones.
@@ -202,6 +206,35 @@ public class Battlecruiser extends Spaceship implements Serializable {
 		this.rank = rank;
 	}
 
-	
-	
+	@Override
+	public void recoverLife() {
+		healt = (int) (healt * RECOVER_LIFE);
+	}
+
+    @Override
+    public int maximunDamage() {
+        int damage = (turboLaser*TURBO_LASER_DAMAGE) + (laserCannon*LASER_CANNON_DAMAGE) + (ionCannon*ION_CANNON_DAMAGE);
+
+        return damage;
+    }
+
+	@Override
+	public double shieldCapacity() {
+		double shield = 0.0;
+
+		if (hyperdrive){
+			switch (typeShield){
+				case "Raycoat Shield":
+					shield = volume * maximunDamage() * LIGHTNING_RESISTANCE;
+					break;
+				case "Particle Shield":
+					shield = volume * maximunDamage() * PARTICLE_RESISTANCE;
+					break;
+				case "Concussion Shield":
+					shield = volume * maximunDamage() * COUNSSION_RESISTANCE;
+					break;
+			}
+		}
+		return shield;
+	}
 }

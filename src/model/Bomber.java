@@ -50,4 +50,11 @@ public class Bomber extends Starfigther implements Serializable {
     public void setLoadingCapacity(int loadingCapacity) {
         this.loadingCapacity = loadingCapacity;
     }
+
+    @Override
+    public int maximunDamage() {
+        int damage = turboLaser * TURBO_LASER_DAMAGE;
+
+        return damage;
+    }
 }

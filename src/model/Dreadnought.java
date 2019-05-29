@@ -2,12 +2,14 @@ package model;
 
 // Clase
 
+import interfaces.Combatant;
+
 import java.io.Serializable;
 
 /**
  * Entidad que representa un nave de tipo Dreadnougth
  */
-public class Dreadnought extends Spaceship implements Serializable {
+public class Dreadnought extends Spaceship implements Serializable, Combatant {
 
     // Constantes
 
@@ -129,5 +131,12 @@ public class Dreadnought extends Spaceship implements Serializable {
      */
     public void setIonCannon(int ionCannon) {
         this.ionCannon = ionCannon;
+    }
+
+    @Override
+    public int maximunDamage() {
+        int damage = (turboLaser * TURBO_LASER_DAMAGE) + (laserCannon * LASER_CANNON_DAMAGE) + (ionCannon * ION_CANNON_DAMAGE);
+
+        return damage;
     }
 }

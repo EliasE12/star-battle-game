@@ -2,7 +2,6 @@ package controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXRadioButton;
 import customExceptions.EmptyDataException;
 import customExceptions.NotShipsPositionedException;
 import javafx.event.ActionEvent;
@@ -25,6 +24,7 @@ import model.Match;
 import model.Match.Direction;
 import model.Player;
 import threads.UpdateThreadMatchTime;
+import threads.WinnerThread;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,7 +39,6 @@ import java.util.ResourceBundle;
 public class GameBoardController implements Initializable {
 
     //Relaciones
-
 
     /**
      * Relacion con la clase Player
@@ -57,9 +56,6 @@ public class GameBoardController implements Initializable {
      *Se encarga de verificar si el juego ya comenzo, para desabilitar la opcion de agregar naves al tablero de juego del jugador
      */
     private boolean playClicked;
-
-    @FXML
-    private JFXRadioButton radio;
 
     /**
      * Matriz de botones el cual albergara el tablero del jugador y todos los cambios que se le hagan.
@@ -84,7 +80,7 @@ public class GameBoardController implements Initializable {
     /**
      *Almacena la orientacion de las naves que se colocaran en el tablero de juego del jugador
      */
-    @FXML private JFXComboBox<Direction> horientationBox;
+    @FXML private JFXComboBox<Direction> orientationBox;
 
     /**
      *Tablero de juego del jugador donde estaran almacenadas sus naves
@@ -127,7 +123,7 @@ public class GameBoardController implements Initializable {
         playClicked = false;
         paint = true;
         spaceShipsBox.getItems().addAll(SpaceShipType.SHUTTLE, SpaceShipType.BOMBER, SpaceShipType.INTERCEPTOR, SpaceShipType.GUNSHIP, SpaceShipType.STARFIGHTER, SpaceShipType.DESTROYER, SpaceShipType.BATTLECRUISER, SpaceShipType.DREADNOUGHT);
-        horientationBox.getItems().addAll(Direction.HORIZONTAL, Direction.VERTICAL);
+        orientationBox.getItems().addAll(Direction.HORIZONTAL, Direction.VERTICAL);
 
         gameBoardP = new JFXButton[Match.GAME_BOARD_SIZE][Match.GAME_BOARD_SIZE];
         gameBoardM = new JFXButton[Match.GAME_BOARD_SIZE][Match.GAME_BOARD_SIZE];
@@ -173,6 +169,22 @@ public class GameBoardController implements Initializable {
     }
 
     /**
+     * Devuelve la matriz de botones donde se alojan las naves del jugador.
+     * @return la matriz de botones del jugador.
+     */
+    public JFXButton[][] getGameBoardP() {
+        return gameBoardP;
+    }
+
+    /**
+     * Devuelve la matriz de botones donde se alojan las naves de la maquina.
+     * @return la matriz de botones de la maquina.
+     */
+    public JFXButton[][] getGameBoardM() {
+        return gameBoardM;
+    }
+
+    /**
      * Controla el evento de comenzar a jugar la partida en curso
      * @param event Es el evento producido al presionar el boton
      */
@@ -189,6 +201,10 @@ public class GameBoardController implements Initializable {
             UpdateThreadMatchTime umt = new UpdateThreadMatchTime(this);
             umt.setDaemon(true);
             umt.start();
+
+            WinnerThread wt = new WinnerThread(this);
+            wt.setDaemon(true);
+            wt.start();
 
             gameBoadPlayer.setDisable(true);
             gameBoardMachine.setDisable(false);
@@ -248,10 +264,10 @@ public class GameBoardController implements Initializable {
         //Permite desativar la acción de posicionar las naves en el tablero, cuando empieze el juego.
         if(paint) {
             if (!playClicked) {
-                SpaceShipType s = selecionar();
+                SpaceShipType s = spaceShipsBox.getValue();
 
                 try {
-                    player.getMatch().createSpaceShips(s, horientationBox.getValue(), b.getId());
+                    player.getMatch().createSpaceShips(s, orientationBox.getValue(), b.getId());
                     spaceShipsBox.getItems().remove(s);
 
                     updateGameBoard(gameBoardP);
@@ -369,15 +385,14 @@ public class GameBoardController implements Initializable {
         }
     }
 
-
     /**
      * Se encarga de escoger aleatoriamente un boton en el tablero de juego del jugador y destaparla para, posteriormente,
      * verificar si hay o no una nave.
      */
     private void turnMachine(){
         String position = player.getMatch().generatePositionMachine();
+
         String[] p = position.split(",");
-        boolean valid = true;
         int i = Integer.parseInt(p[0]);
         int j = Integer.parseInt(p[1]);
         JFXButton b = gameBoardP[i][j];
@@ -437,27 +452,37 @@ public class GameBoardController implements Initializable {
         stage.show();
     }
 
-    private void cleanMemory(){
-        Runtime garbage = Runtime.getRuntime();
-        garbage.gc();
-    }
+    /**
+     *
+     */
+    public void checkUncoveredShips(){
+        boolean finishMachine = player.getMatch().checkUncoveredShips(player.getMatch().getGameBoardPlayer(), gameBoardP);
+        boolean finishUser = player.getMatch().checkUncoveredShips(player.getMatch().getGameBoardMachine(), gameBoardM);
 
-    @FXML
-    void radioAction(ActionEvent event) {
+        if (finishMachine){
+            gameBoardMachine.setDisable(true);
+            gameBoadPlayer.setDisable(true);
+            player.getMatch().setScore(player.getMatch().getScore() + 500);
 
-    }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Has perdido la partida.", ButtonType.OK);
+            alert.show();
 
-    private SpaceShipType selecionar(){
-        SpaceShipType value = null;
-        if(radio.isSelected()){
-            System.out.println("ee");
-            radio.setDisable(true);
-            value = SpaceShipType.DREADNOUGHT;
+            showBattle();
+
+        }else if (finishUser){
+            gameBoardMachine.setDisable(true);
+            gameBoadPlayer.setDisable(true);
+            player.getMatch().setScore(player.getMatch().getScore() + 500);
+
+            showBattle();
         }
-        return value;
     }
-    @FXML
-    public void saveMatch(){
 
+    /**
+     *Muestra en pantalla labatalla final para decidir el vencedor de la partida.
+     */
+    private void showBattle(){
+        player.getMatch().battle(gameBoardM, gameBoardP);
     }
+
 }

@@ -2,12 +2,14 @@ package model;
 
 // Clase
 
+import interfaces.Defensible;
+
 import java.io.Serializable;
 
 /**
  * Entidad que representa una nave de tipo Gunship
  */
-public class Gunship extends Starfigther implements Serializable {
+public class Gunship extends Starfigther implements Serializable, Defensible {
 
     // Atributos
 
@@ -144,5 +146,32 @@ public class Gunship extends Starfigther implements Serializable {
      */
     public void setHyperdrive(boolean hyperdrive) {
         this.hyperdrive = hyperdrive;
+    }
+
+    @Override
+    public int maximunDamage() {
+        int damage = (turboLaser * TURBO_LASER_DAMAGE) + (ionCannon * ION_CANNON_DAMAGE) + (protonTorpedo * PROTON_TORPEDO_DAMAGE);
+
+        return damage;
+    }
+
+    @Override
+    public double shieldCapacity() {
+        double shield = 0.0;
+
+        if (hyperdrive){
+            switch (typeShield){
+                case "Raycoat Shield":
+                    shield = volume * maximunDamage() * LIGHTNING_RESISTANCE;
+                    break;
+                case "Particle Shield":
+                    shield = volume * maximunDamage() * PARTICLE_RESISTANCE;
+                    break;
+                case "Concussion Shield":
+                    shield = volume * maximunDamage() * COUNSSION_RESISTANCE;
+                    break;
+            }
+        }
+        return shield;
     }
 }

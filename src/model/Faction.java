@@ -435,5 +435,96 @@ public class Faction implements Serializable {
         return f;
     }
 
+    /**
+     * Se encarga de crear la flota de la faccion, tanto del jugador como de la maquina.
+     * @param win True si el jugador gano. False en caso contrario.
+     * @param type Es el tipo de nave a crear.
+     */
+    public void createFleet(boolean win, SpaceShipType type){
+        Spaceship spaceship = null;
 
+        switch (type){
+            case BATTLECRUISER:
+                if (win){
+                    spaceship = new Battlecruiser("Battlecruiser", 100, "BR-1", 1000, Battlecruiser.AMOUNT_LIFE, 50, 50, 50, Battlecruiser.LIGHTNING_SHIELD, true, true);
+                }else {
+                    spaceship = new Battlecruiser("Battlecruiser", 100, "BR-1", 1000, Battlecruiser.AMOUNT_LIFE/2, 50, 50, 50, Battlecruiser.LIGHTNING_SHIELD, true, true);
+                }
+                break;
+
+            case STARFIGHTER:
+                if (win){
+                    spaceship = new Starfigther("Starfigther", 1, "SR-1", 1000, Starfigther.AMOUNT_LIFE, 5);
+                }else {
+                    spaceship = new Starfigther("Starfigther", 1, "SR-1", 1000, Starfigther.AMOUNT_LIFE/2, 5);
+                }
+                break;
+
+            case INTERCEPTOR:
+                if (win){
+                    spaceship = new Interceptor("Interceptor", 1, "IR-1", 1000, Interceptor.AMOUNT_LIFE, 5, 10, 30);
+                }else {
+                    spaceship = new Interceptor("Interceptor", 1, "IR-1", 1000, Interceptor.AMOUNT_LIFE/2, 5, 10, 30);
+                }
+                break;
+
+            case GUNSHIP:
+                if (win){
+                    spaceship = new Gunship("Gunship", 1, "GP-1", 1000, Gunship.AMOUNT_LIFE, 5, 5, 5, 5, Gunship.PARTICLE_SHIELD, true);
+                }else {
+                    spaceship = new Gunship("Gunship", 1, "GP-1", 1000, Gunship.AMOUNT_LIFE/2, 5, 5, 5, 5, Gunship.PARTICLE_SHIELD, true);
+                }
+                break;
+
+            case BOMBER:
+                if (win){
+                    spaceship = new Bomber("Bomber", 1, "BE-1", 1000, Bomber.AMOUNT_LIFE, 5, 50);
+                }else {
+                    spaceship = new Bomber("Bomber", 1, "BE-1", 1000, Bomber.AMOUNT_LIFE/2, 5, 50);
+                }
+                break;
+            case DREADNOUGHT:
+                if (win){
+                    spaceship = new Dreadnought("Dreadnought", 300, "DT-1", 1000, Dreadnought.AMOUNT_LIFE, true, 80, 80, 80);
+                }else {
+                    spaceship = new Dreadnought("Dreadnought", 300, "DT-1", 1000, Dreadnought.AMOUNT_LIFE/2, true, 80, 80, 80);
+                }
+                break;
+
+            case DESTROYER:
+                if (win){
+                    spaceship = new Destroyer("Destroyer", 70, "DR-1", 1000, Destroyer.AMOUNT_LIFE, 30, 30);
+                }else {
+                    spaceship = new Destroyer("Destroyer", 70, "DR-1", 1000, Destroyer.AMOUNT_LIFE/2, 30, 30);
+                }
+                break;
+            case SHUTTLE:
+                if (win){
+                    spaceship = new Shuttle("Shuttle", 2, "SE-1", 1000, Shuttle.AMOUNT_LIFE, 2, 2);
+                }else {
+                    spaceship = new Shuttle("Shuttle", 2, "SE-1", 1000, Shuttle.AMOUNT_LIFE/2, 2, 2);
+                }
+                break;
+        }
+        addSpaceShip(spaceship);
+    }
+
+    /**
+     * Agrega las naves creadas a la lista de naves de la faccion.
+     * <pre> la nueva nave toAdd es != null.</>
+     * @param toAdd Es la nueva nave a agregar.
+     */
+    private void addSpaceShip(Spaceship toAdd){
+        if (first == null){
+            first = toAdd;
+        }else {
+            Spaceship current = first;
+            while(current.getNext() != null){
+                current = current.getNext();
+            }
+
+            current.setNext(toAdd);
+            current.getNext().setPrevius(current);
+        }
+    }
 }

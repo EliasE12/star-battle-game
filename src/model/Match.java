@@ -2,6 +2,7 @@ package model;
 
 import customExceptions.EmptyDataException;
 import customExceptions.MemberLimitException;
+import javafx.scene.control.Button;
 import model.Faction.SpaceShipType;
 
 import java.io.IOException;
@@ -15,6 +16,11 @@ import java.io.Serializable;
 public class Match implements Serializable {
 
     // Constantes
+
+    /**
+     * Indica el numero de casillas que poseen naves dentro del tablero de juego.
+     */
+    public static final int AMOUNT_OF_MARKERS = 21;
 
     /**
      * Indica la ruta de los archivos donde se guarda la informacion de los miembros de la(s) faccion(nes)
@@ -145,6 +151,14 @@ public class Match implements Serializable {
     }
 
     /**
+     * Cambia el valor del parametro score.
+     * @param score Es el nuevo valor para el paramtro score.
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    /**
      * Devuelve el valor del parametro win de la clase Match.
      * @return true si el jugador gano la partida en curso. False en caso contrario.
      */
@@ -166,6 +180,30 @@ public class Match implements Serializable {
      */
     public String[][] getGameBoardMachine() {
         return gameBoardMachine;
+    }
+
+    /**
+     *Identifica si el jugador o la maquina ya destaparon todas las casillas de us enemigo en el trablero de juego.
+     * @param gameBoard Es la matriz de Strings donde se verificara si esta una nave alli posicionada.
+     * @param gameBoard2 Es la matriz de botones donde se verificara que el jugador o la maquina ya la hallan destapado.
+     * @return True si ya destapo todas las casillas donde hay partes de naves. False en caso contrario.
+     */
+    public boolean checkUncoveredShips( String[][] gameBoard, Button[][] gameBoard2){
+        boolean uncovered = false;
+        int counter = 0;
+
+        for (int i = 0; i < gameBoard.length; i++) {
+            for (int j = 0; j < gameBoard.length; j++) {
+                if (gameBoard[i][j].equals("X") && gameBoard2[i][j].isDisable()){
+                    counter ++;
+                }
+            }
+        }
+        if (counter == AMOUNT_OF_MARKERS){
+            uncovered = true;
+        }
+
+        return uncovered;
     }
 
     /**
@@ -386,8 +424,8 @@ public class Match implements Serializable {
     }
 
     /**
-     *
-     * @return
+     *Verifica que la partida haya sido ganada por el jugador.
+     * @return true si la partida la gano el jugador. False en caso contrario.
      */
     public boolean winner(){
         boolean win = false;
@@ -460,10 +498,35 @@ public class Match implements Serializable {
             }
 
         }
-
     }
 
+    /**
+     * Inicializa el proceso de la creacion de las naves espaciales, una ves acabada la primera ronda en el tablero de juego.
+     * @param gameBoardM Es el tablero de juego donde se ubican las naves de la maquina.
+     * @param gameBoardP Es el tablero de juego donde se ubican las naves del jugador.
+     */
+    public void battle(Button[][] gameBoardM, Button[][] gameBoardP){
+        boolean finishPlayer = checkUncoveredShips(gameBoardMachine, gameBoardM);
+        boolean finishMachine = checkUncoveredShips(gameBoardPlayer, gameBoardP);
 
+        user.createFleet(finishPlayer, SpaceShipType.BATTLECRUISER);
+        user.createFleet(finishPlayer, SpaceShipType.BOMBER);
+        user.createFleet(finishPlayer, SpaceShipType.DESTROYER);
+        user.createFleet(finishPlayer, SpaceShipType.DREADNOUGHT);
+        user.createFleet(finishPlayer, SpaceShipType.GUNSHIP);
+        user.createFleet(finishPlayer, SpaceShipType.INTERCEPTOR);
+        user.createFleet(finishPlayer, SpaceShipType.SHUTTLE);
+        user.createFleet(finishPlayer, SpaceShipType.STARFIGHTER);
+
+        machine.createFleet(finishMachine, SpaceShipType.BATTLECRUISER);
+        machine.createFleet(finishMachine, SpaceShipType.BOMBER);
+        machine.createFleet(finishMachine, SpaceShipType.DESTROYER);
+        machine.createFleet(finishMachine, SpaceShipType.DREADNOUGHT);
+        machine.createFleet(finishMachine, SpaceShipType.GUNSHIP);
+        machine.createFleet(finishMachine, SpaceShipType.INTERCEPTOR);
+        machine.createFleet(finishMachine, SpaceShipType.SHUTTLE);
+        machine.createFleet(finishMachine, SpaceShipType.STARFIGHTER);
+    }
 
 
 }
