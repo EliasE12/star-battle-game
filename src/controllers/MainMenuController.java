@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Game;
@@ -24,12 +26,19 @@ import java.util.ResourceBundle;
  */
 public class MainMenuController implements Initializable {
 
+
+
+    @FXML
+    private ImageView ivMainImage;
+
+
     // Relación
 
     /**
      * Es la relación con la clase Jugador.
      */
     private Player player;
+
 
 
     private Game game;
@@ -42,7 +51,7 @@ public class MainMenuController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        ivMainImage.setImage(new Image("ImagenCentral.jpg"));
     }
 
     /**

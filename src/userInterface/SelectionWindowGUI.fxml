@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SelectionWindowController">
    <top>
       <VBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -27,7 +20,7 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
+            <VBox alignment="TOP_CENTER" prefHeight="361.0" prefWidth="215.0">
                <children>
                   <Label text="Dominador">
                      <font>
@@ -35,7 +28,10 @@
                      </font>
                   </Label>
                   <Separator prefWidth="200.0" />
-                  <ImageView fx:id="dominatorImage" fitHeight="338.0" fitWidth="200.0" onMouseClicked="#dominatorClicked" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="dominatorImage" fitHeight="338.0" fitWidth="200.0" onMouseClicked="#dominatorClicked" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../img/Dominador.jpg" />
+                     </image></ImageView>
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -47,7 +43,10 @@
                      </font>
                   </Label>
                   <Separator prefWidth="200.0" />
-                  <ImageView fx:id="protectorImage" fitHeight="338.0" fitWidth="200.0" onMouseClicked="#protectorClicked" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="protectorImage" fitHeight="338.0" fitWidth="200.0" onMouseClicked="#protectorClicked" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../img/Protector.jpg" />
+                     </image></ImageView>
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -59,7 +58,10 @@
                      </font>
                   </Label>
                   <Separator prefWidth="200.0" />
-                  <ImageView fx:id="strategistImage" fitHeight="338.0" fitWidth="200.0" onMouseClicked="#estrategistClicked" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="strategistImage" fitHeight="338.0" fitWidth="200.0" onMouseClicked="#estrategistClicked" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../img/Estratega.jpeg" />
+                     </image></ImageView>
                </children>
             </VBox>
          </children>

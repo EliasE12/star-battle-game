@@ -1,29 +1,26 @@
 package controllers;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import customExceptions.EmptyDataException;
 import customExceptions.MemberLimitException;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import com.jfoenix.controls.JFXComboBox;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import model.Game;
 import model.Leader;
 import model.Match;
 import model.Player;
-import com.jfoenix.controls.JFXTextField;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -92,6 +89,10 @@ public class SelectionWindowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cbExperienceLevel.getItems().addAll(Leader.LevelExperience.LOW, Leader.LevelExperience.MEDIUM, Leader.LevelExperience.HIGHT);
+        dominatorImage.setImage(new Image("Dominador.jpg"));
+        protectorImage.setImage(new Image("Protector.jpg"));
+        strategistImage.setImage(new Image("Estratega.jpeg"));
+
     }
 
     /**
@@ -102,9 +103,6 @@ public class SelectionWindowController implements Initializable {
         this.player = player;
     }
 
-    public Game getGame() {
-        return game;
-    }
 
     public void setGame(Game game) {
         this.game = game;

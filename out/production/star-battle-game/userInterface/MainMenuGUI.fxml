@@ -2,12 +2,13 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuController">
    <center>
       <SplitPane dividerPositions="0.3745819397993311" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
@@ -23,7 +24,15 @@
                      </font></JFXButton>
                </children>
             </VBox>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
+            <BorderPane>
+               <center>
+                  <ImageView fx:id="ivMainImage" fitHeight="400.0" fitWidth="369.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../img/ImagenCentral.jpg" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
         </items>
       </SplitPane>
    </center>
