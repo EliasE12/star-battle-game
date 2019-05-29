@@ -2,6 +2,7 @@ package controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXRadioButton;
 import customExceptions.EmptyDataException;
 import customExceptions.NotShipsPositionedException;
 import javafx.event.ActionEvent;
@@ -12,7 +13,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -40,6 +40,7 @@ public class GameBoardController implements Initializable {
 
     //Relaciones
 
+
     /**
      * Relacion con la clase Player
      */
@@ -56,6 +57,9 @@ public class GameBoardController implements Initializable {
      *Se encarga de verificar si el juego ya comenzo, para desabilitar la opcion de agregar naves al tablero de juego del jugador
      */
     private boolean playClicked;
+
+    @FXML
+    private JFXRadioButton radio;
 
     /**
      * Matriz de botones el cual albergara el tablero del jugador y todos los cambios que se le hagan.
@@ -244,7 +248,7 @@ public class GameBoardController implements Initializable {
         //Permite desativar la acción de posicionar las naves en el tablero, cuando empieze el juego.
         if(paint) {
             if (!playClicked) {
-                SpaceShipType s = spaceShipsBox.getValue();
+                SpaceShipType s = selecionar();
 
                 try {
                     player.getMatch().createSpaceShips(s, horientationBox.getValue(), b.getId());
@@ -365,25 +369,6 @@ public class GameBoardController implements Initializable {
         }
     }
 
-    /**
-     * Se encarga de destapar la casilla al seleccionarse y, al verificarse, que haya una nave en ella(la casilla).
-     * @param position Posicion de la casilla seleccionada
-     * @param gameBoard Tablero de juego ha acualizar
-     */
-    private void discoverShip(String position, Button[][] gameBoard){
-
-        boolean founded = false;
-
-        for (int i = 0; i < Match.GAME_BOARD_SIZE && !founded; i++) {
-            for (int j = 0; j < Match.GAME_BOARD_SIZE && !founded; j++) {
-                if (position.compareTo(gameBoard[i][j].getId()) == 0){
-                    founded = true;
-
-                    gameBoard[i][j].setText("X");
-                }
-            }
-        }
-    }
 
     /**
      * Se encarga de escoger aleatoriamente un boton en el tablero de juego del jugador y destaparla para, posteriormente,
@@ -391,8 +376,8 @@ public class GameBoardController implements Initializable {
      */
     private void turnMachine(){
         String position = player.getMatch().generatePositionMachine();
-
         String[] p = position.split(",");
+        boolean valid = true;
         int i = Integer.parseInt(p[0]);
         int j = Integer.parseInt(p[1]);
         JFXButton b = gameBoardP[i][j];
@@ -452,4 +437,27 @@ public class GameBoardController implements Initializable {
         stage.show();
     }
 
+    private void cleanMemory(){
+        Runtime garbage = Runtime.getRuntime();
+        garbage.gc();
+    }
+
+    @FXML
+    void radioAction(ActionEvent event) {
+
+    }
+
+    private SpaceShipType selecionar(){
+        SpaceShipType value = null;
+        if(radio.isSelected()){
+            System.out.println("ee");
+            radio.setDisable(true);
+            value = SpaceShipType.DREADNOUGHT;
+        }
+        return value;
+    }
+    @FXML
+    public void saveMatch(){
+
+    }
 }

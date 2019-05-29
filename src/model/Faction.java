@@ -90,7 +90,12 @@ public class Faction implements Serializable {
                 } else if (size >= matriz[0].length) {
                     valido = false;
                 } else if (size == sizeSpaceshit) {
-                    valido = true;
+                    //Verifica si la ultima posición de la nave la casilla siguiente existe otra nave.
+                    if(j+1 < matriz[0].length){
+                        valido = !matriz[i][j + 1].equals("X");
+                    }else{
+                        valido = true;
+                    }
                 }
                 size++;
                 j++;
@@ -104,7 +109,13 @@ public class Faction implements Serializable {
                 } else if (size >= matriz.length) {
                     valido = false;
                 } else if (size == sizeSpaceshit) {
-                    valido = true;
+                    //Verifica si la ultima posición de la nave la casilla siguiente existe otra nave.
+                    if(i+1 < matriz.length){
+                        valido = !matriz[i + 1][j].equals("X");
+                    }else {
+                        valido = true;
+                    }
+
                 }
                 size++;
                 i++;

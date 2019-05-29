@@ -27,7 +27,7 @@ public class Match implements Serializable {
     /**
      * Indica la duración de la partida.
      */
-    public static final long DURATION_MATCH_HIGH_LEVEL = 5;
+    public static final long DURATION_MATCH_HIGH_LEVEL = 600;
     public static final long DURATION_MATCH_MEDIUM_LEVEL = 900;
     public static final long DURATION_MATCH_LOW_LEVEL = 1200;
 
@@ -358,6 +358,8 @@ public class Match implements Serializable {
         if (gameBoardPlayer[x][y].equals("X")){
             disableAdjoiningCells(x,y,gameBoardPlayer);
             discoveredShip = true;
+        }else{
+            gameBoardPlayer[x][y] = "#";
         }
 
         return discoveredShip;
@@ -400,13 +402,11 @@ public class Match implements Serializable {
      * @return
      */
     public String generatePositionMachine(){
-        String position = "";
-        int x = 0;
-        int y = 0;
-        x = (int) Math.floor(Math.random() * (GAME_BOARD_SIZE - (0 + 1)) + 0);
-        y = (int) Math.floor(Math.random() * (GAME_BOARD_SIZE - (0 + 1)) + 0);
+        int x = (int) Math.floor(Math.random() * (GAME_BOARD_SIZE - (0 + 1)) + 0);
+        int y =  (int) Math.floor(Math.random() * (GAME_BOARD_SIZE - (0 + 1)) + 0);
 
-        return (!gameBoardMachine[x][y].equals("#"))? (x+","+y) : generatePositionMachine();
+
+        return (x+","+y);
     }
 
 
@@ -462,6 +462,8 @@ public class Match implements Serializable {
         }
 
     }
+
+
 
 
 }
