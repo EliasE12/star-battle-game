@@ -356,6 +356,7 @@ public class Match implements Serializable {
         int y = Integer.parseInt(p[1]);
 
         if (gameBoardPlayer[x][y].equals("X")){
+            disableAdjoiningCells(x,y,gameBoardPlayer);
             discoveredShip = true;
         }
 
@@ -375,6 +376,7 @@ public class Match implements Serializable {
         int y = Integer.parseInt(p[1]);
 
         if (gameBoardMachine[x][y].equals("X")){
+            disableAdjoiningCells(x,y,gameBoardMachine);
             discoveredShip = true;
         }
 
@@ -399,12 +401,67 @@ public class Match implements Serializable {
      */
     public String generatePositionMachine(){
         String position = "";
+        int x = 0;
+        int y = 0;
+        x = (int) Math.floor(Math.random() * (GAME_BOARD_SIZE - (0 + 1)) + 0);
+        y = (int) Math.floor(Math.random() * (GAME_BOARD_SIZE - (0 + 1)) + 0);
 
-        int x = (int) Math.floor(Math.random() * (GAME_BOARD_SIZE - (0 + 1)) + 0);
-        int y = (int) Math.floor(Math.random() * (GAME_BOARD_SIZE - (0 + 1)) + 0);
-
-        position = x + "," + y;
-
-        return position;
+        return (!gameBoardMachine[x][y].equals("#"))? (x+","+y) : generatePositionMachine();
     }
+
+
+    /**
+     * Permite al jugador o a la maquina deshabilitar las casillas contiguas a la posición pasada que no tenga partes de la nave
+     * @param i posición de la fila del tablero.
+     * @param j posición de la columna del tablero.
+     * @param matriz matriz que contiene las naves.
+     */
+    private void disableAdjoiningCells(int i, int j,String[][] matriz) {
+        int size = matriz.length;
+        if(matriz[i][j].equals("X")) {
+
+            //Verifica el extremo superior derecho
+            if((i-1 >= 0 && j+1 < size)) {
+                if(!matriz[i-1][j+1].equals("X")) {
+                    matriz[i-1][j+1] = "#";
+                }
+            }
+            //Verifica el extremo superior izquierdo
+            if(i-1 >= 0 && j-1 >= 0) {
+                if(!matriz[i-1][j-1].equals("X")) {
+                    matriz[i-1][j-1] = "#";
+                }
+            }
+            //Verifica el extremo inferior derecho.
+            if(i+1 < size && j+1 < size) {
+                if(!matriz[i+1][j+1].equals("X")) {
+                    matriz[i+1][j+1] = "#";
+                }
+            }
+
+            //Verifica el extremo inferior izquierdo.
+            if(i+1 < size  && j-1 >= 0) {
+                if(!matriz[i+1][j-1].equals("X")) {
+                    matriz[i+1][j-1] = "#";
+                }
+            }
+
+            //Verifica la parte superior
+            if(i-1 >= 0) {
+                if(!matriz[i-1][j].equals("X")) {
+                    matriz[i-1][j] = "#";
+                }
+            }
+            //Verifica la parte inferior
+            if(i+1 <= size){
+                if(!matriz[i+1][j].equals("X")) {
+                    matriz[i+1][j] = "#";
+                }
+            }
+
+        }
+
+    }
+
+
 }
