@@ -1,7 +1,9 @@
 package model;
 import model.Match.Direction;
+import model.LivingBeing.Species;
+import model.Robot.Funtion;
 
-import java.io.Serializable;
+import java.io.*;
 
 // Clase
 
@@ -182,7 +184,163 @@ public class Faction implements Serializable {
         }
     }
 
+    /**
+     * Comienza el proceso de creacion de los miembros de la faccion, con la llamada a los metodos de crear seres vivos y crear robots.
+     * @param livingBeingPath Es la ruta del archivo de texto, donde se guarda la informacion de los seres vivos.
+     * @param robotPath Es la ruta del archivo de texto, donde se guarda la informacion de los robots.
+     * @param n Es el numero de miembros, tando de robots como de seres vivos, que el usuario quiere crear.
+     * @throws IOException Se lanza cuando no se encuentra o el archivo de texto esta corrupto.
+     */
+    public void createMembers(String livingBeingPath, String robotPath, int n) throws IOException {
+        int livingBeingsN = n - ((n*10)/100);
+        int robotsN = ((n*10)/100);
 
+        createLivingBeings(livingBeingPath, livingBeingsN);
+        createRobots(robotPath, robotsN);
+    }
+
+    /**
+     * Agrega los nuevos nodos al arbol de miembros.
+     * @param toAdd Es el nodo a agregar.
+     */
+    private void addNode(Node toAdd){
+        if (root == null){
+            root = toAdd;
+
+        }else {
+            root.addNode(toAdd);
+        }
+    }
+
+    /**
+     * Se encarga de leer y, posteriormente, crear a los miembros que son seres vivos con todos sus datos obtenidos del archivo de texto de seres vivos.
+     * @param path Es la ruta del archivo de texto, el cual posee toda la informacion de los miembros que son seres vivos.
+     * @param limit Es el limite de miemrbros a crear.
+     * @throws IOException Se lanza cuando el archivo de texto con la informacion, no se encuentra o esta corrupto.
+     */
+    private void createLivingBeings(String path, int limit) throws IOException {
+        File file = new File(path);
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+
+        int counter = 0;
+        String line = br.readLine();
+        while(line != null && counter < limit){
+            Node node = new Node();
+
+            String[] words = line.split(",");
+            int age = Integer.parseInt(words[0]);
+            int yearsService = Integer.parseInt(words[1]);
+            String name = words[2];
+            String dialect = words[3];
+            Species species = decideSpecies(words[4]);
+
+            Member member = new LivingBeing(age, yearsService, name, dialect, species);
+            node.setMember(member);
+
+            addNode(node);
+
+            line = br.readLine();
+            counter ++;
+        }
+    }
+
+    /**
+     * Identifica el tipo de especie que es el ser vivo a crear, con la informacion proporcionada por el archivo de texto.
+     * @param specie Es la especie la cual se a identificar.
+     * @return La especie del ser vivo identificada.
+     */
+    private Species decideSpecies(String specie){
+        Species species = null;
+
+        switch (specie){
+            case "Human":
+                species = Species.HUMAN;
+                break;
+            case "Twilek":
+                species = Species.TWILEK;
+                break;
+            case "Wookie":
+                species = Species.WOOKIE;
+                break;
+            case "Togruta":
+                species = Species.TOGRUTA;
+                break;
+            case "Ewok":
+                species = Species.EWOK;
+                break;
+            case "Gungan":
+                species = Species.GUNGAN;
+                break;
+            case "Jawa":
+                species = Species.JAWA;
+                break;
+            case "Hutt":
+                species = Species.HUTT;
+                break;
+            case "Sith":
+                species = Species.SITH;
+                break;
+        }
+        return species;
+    }
+
+    /**
+     * Se encarga de leer y, posteriormente, crear a los miembros que son robots con todos sus datos obtenidos del archivo de texto de robots.
+     * @param path Es la ruta del archivo de texto, el cual posee toda la informacion de los miembros que son robots.
+     * @param limit Es el limite de miembros a crear.
+     * @throws IOException Se lanza cuando el archivo de texto con la informacion, no se encuentra o esta corrupto.
+     */
+    private void createRobots(String path, int limit) throws IOException {
+        File file = new File(path);
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+
+        int counter = 0;
+        String line = br.readLine();
+        while(line != null && counter < limit){
+            Node node = new Node();
+
+            String[] words = line.split(",");
+            int age = Integer.parseInt(words[0]);
+            int yearsService = Integer.parseInt(words[1]);
+            String model = words[2] + "-" + words[3];
+            Funtion funtion = decideFuntion(words[4]);
+
+            Member member = new Robot(age, yearsService, model, funtion);
+            node.setMember(member);
+
+            addNode(node);
+
+            line = br.readLine();
+            counter ++;
+        }
+    }
+
+    /**
+     * Identifica el tipo de funcion que posee el robot a crear, con la informacion proporcionada por el archivo de texto.
+     * @param funtion Es la funcion la cual se a identificar.
+     * @return La funcion del robot identificada.
+     */
+    private Funtion decideFuntion(String funtion){
+        Funtion f = null;
+
+        switch (funtion){
+            case "Combat":
+                f = Funtion.COMBAT;
+                break;
+            case "Astronomechanical":
+                f = Funtion.ASTRONOMECHANICAL;
+                break;
+            case "Doctor":
+                f = Funtion.DOCTOR;
+                break;
+            case "Protocol":
+                f = Funtion.PROTOCOL;
+                break;
+        }
+        return f;
+    }
 
 
 }

@@ -258,30 +258,33 @@ public class Player implements Comparable<String>, Serializable {
     
     /**
      *  Se usa recursiva para localizar un jugador en el arbol que inicia en este nodo.
-     * @param userName es el nombre de usuario que se desea buscar. - nameSearch != null
+     * @param userN es el nombre de usuario que se desea buscar. - nameSearch != null
      * @return jugador con el mismo nombre de usuario. Si no lo encuentra retorna null;
      * @throws NotExistPlayerException se lanzá cuando no encuentra a un jugador.
      */
-    public Player search (String userName) throws NotExistPlayerException{
+    public Player search (String userN) throws NotExistPlayerException{
         Player found = null;
-    	
-    	if(userName.compareTo(this.userName) == 0) {
-    		found = this;
-    	}else if(userName.compareTo(this.userName) < 0) {
-    	    if (left != null){
+
+        if(userName.compareTo(this.userName) == 0) {
+            found = this;
+
+        }else if(userName.compareTo(userN) > 0) {
+            if (left != null){
                 found = left.search(userName);
+
+            }else {
+                throw new NotExistPlayerException();
             }
-      	}else {
-    	    if (right != null){
+
+        }else if (userName.compareTo(userN) < 0){
+            if (right != null){
                 found = right.search(this.userName);
+
+            }else {
+                throw new NotExistPlayerException();
             }
-    	}
-
-    	if (found == null){
-    	    throw new NotExistPlayerException();
         }
-
-    	return found;
+        return found;
     }
     
     

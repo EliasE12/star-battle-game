@@ -57,36 +57,25 @@ public class Node implements Serializable {
     // Métodos
 
     /**
-     * Agrega un nuevo miembro de al árbol de miembros.
-     * @param typeMember - El tipo de miembro.
-     * @param age - La edad del miembro.
-     * @param yearsService - Son los años de servicio del miembro.
-     * @param name - El nombre del miembro.
-     * @param dialect - El dialecto del miembro.
-     * @param species - La especie del miembro.
-     * @param model - El modelo del miembro
-     * @param funtion - Es la función del miembro.
+     * Se encarga comenzar el proceso de agregacion de un nuevo nodo al arbol binario de miembros, verificando que la raiz sea null o no.
+     * @param toAdd
      */
-    public void addMember(String typeMember, int age, int yearsService, String name, String dialect, Species species, String model, Funtion funtion) { }
+    public void addNode(Node toAdd){
+        if (toAdd.member.yearsService <= member.yearsService){
+            if (left == null){
+                left = toAdd;
+            }else {
+                left.addNode(toAdd);
+            }
 
-    /**
-     * Agrega un nuevo ser vivo al álbol de miembros.
-     * @param age - La edad del ser vivo
-     * @param yearsService - Los años de servicio del ser vivo.
-     * @param name - El nombre del ser vivo.
-     * @param dialect - El dialecto del vivo.
-     * @param species - La especie del ser vivo.
-     */
-    private void addLivingBeing(int age, int yearsService, String name, String dialect, Species species){}
-
-    /**
-     * Agrega un nuevo robot al árbol de miembros.
-     * @param age - La edad del robot
-     * @param yearsService - Los años de servicio del robot.
-     * @param model - El modelo del robot.
-     * @param funtion - la función del robot.
-     */
-    private void addRobot(int age, int yearsService, String model, Funtion funtion){}
+        }else {
+            if(right == null){
+                right = toAdd;
+            }else {
+                right.addNode(toAdd);
+            }
+        }
+    }
 
     /**
      * Devuelve le nodo izquierdo del árbol.

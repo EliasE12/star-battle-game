@@ -1,8 +1,10 @@
 package model;
 
 import customExceptions.EmptyDataException;
+import customExceptions.MemberLimitException;
 import model.Faction.SpaceShipType;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 // Clase
@@ -13,6 +15,14 @@ import java.io.Serializable;
 public class Match implements Serializable {
 
     // Constantes
+
+    /**
+     * Indica la ruta de los archivos donde se guarda la informacion de los miembros de la(s) faccion(nes)
+     */
+    public static final String LIVING_BEING_DATA_USER = "data/LIVINGBEING_USER_DATA.csv";
+    public static final String ROBOT_DATA_USER = "data/ROBOT_USER_DATA.csv";
+    public static final String LIVING_BEING_DATA_MACHINE = "data/LIVINGBEING_MACHINE_DATA.csv";
+    public static final String ROBOT_DATA_MACHINE = "data/ROBOT_MACHINE_DATA.csv";
 
     /**
      * Indica la duración de la partida.
@@ -209,32 +219,37 @@ public class Match implements Serializable {
      * @param experience experiencia de combate del nuevo lider de la nueva faccion
      * @throws EmptyDataException - Se lanza cuando algunos de los parametros son nulos o estan vacios.
      */
-    public void createUserFaction(String factionName, int members, LeaderType type, String leaderName, Leader.LevelExperience experience) throws EmptyDataException{
+    public void createUserFaction(String factionName, int members, LeaderType type, String leaderName, Leader.LevelExperience experience) throws EmptyDataException, IOException, MemberLimitException {
 
         if (factionName.equals("") || type == null || leaderName.equals("") || experience == null){
             throw new EmptyDataException();
 
         }else {
+            if (members > 1000 || members < 100){
+                throw new MemberLimitException();
 
-            Leader leader1 = null;
+            }else {
+                Leader leader1 = null;
 
-            switch (type){
-                case DOMINATOR:
-                    leader1 = new Dominator(leaderName, experience, false);
-                    break;
+                switch (type){
+                    case DOMINATOR:
+                        leader1 = new Dominator(leaderName, experience, false);
+                        break;
 
-                case PROTECTOR:
-                    leader1 = new Protector(leaderName, experience, false);
-                    break;
+                    case PROTECTOR:
+                        leader1 = new Protector(leaderName, experience, false);
+                        break;
 
-                case STRATEGIST:
-                    leader1 = new Strategist(leaderName, experience, false);
-                    break;
+                    case STRATEGIST:
+                        leader1 = new Strategist(leaderName, experience, false);
+                        break;
+                }
+                Faction faction = new Faction(factionName, members, leader1);
+                user = faction;
+                user.createMembers(LIVING_BEING_DATA_USER, ROBOT_DATA_USER, members);
+
+                createMachineFaction(members, type, experience);
             }
-            Faction faction = new Faction(factionName, members, leader1);
-            user = faction;
-
-            createMachineFaction(members, type, experience);
         }
     }
 
@@ -245,7 +260,7 @@ public class Match implements Serializable {
      * @param leaderType tipo de lider que dirigira la faccion enemiga
      * @param experience nivel de experiencia del capitan de la faccion enemiga
      */
-    private void createMachineFaction(int members, LeaderType leaderType, Leader.LevelExperience experience){
+    private void createMachineFaction(int members, LeaderType leaderType, Leader.LevelExperience experience) throws IOException {
         Leader leader = null;
 
         switch (leaderType){
@@ -262,6 +277,7 @@ public class Match implements Serializable {
         }
         Faction faction = new Faction("Machine", members, leader);
         machine = faction;
+        machine.createMembers(LIVING_BEING_DATA_MACHINE, ROBOT_DATA_MACHINE, members);
     }
 
 

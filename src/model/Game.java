@@ -43,7 +43,7 @@ public class Game {
      */
     public Game() {
         this.root = null;
-        loadStateGame();
+        //loadStateGame();
         //comenzar();
     }
 
@@ -235,36 +235,6 @@ public class Game {
         }
         return list;
     }
-
-
-
-    public void readHallOfFame() throws IOException {
-
-        File file = new File(FILE_PATH);
-
-        if (file.exists())
-            file.delete();
-
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line;
-        while ((line=br.readLine()) != null){
-            String[] strings = line.split(",");
-
-        }
-    }
-
-    public void writeHallOfFam(){
-
-    }
-
-
-    private String  createHallOfFame(){
-        String report  = "";
-
-        return report;
-    }
-
-
 
     /**
      * Se encarga de crear el ranking de los mejores jugadores agregandolos a la lista para, posteriormente, mostrarla en pantalla.

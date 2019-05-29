@@ -1,6 +1,7 @@
 package controllers;
 
 import customExceptions.EmptyDataException;
+import customExceptions.MemberLimitException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -129,6 +130,14 @@ public class SelectionWindowController implements Initializable {
 
         }catch (EmptyDataException e){
             e.message();
+
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "Archivo con los datos de los miembros de la faccion fue eliminado, o esta corrupto", ButtonType.CLOSE);
+            alert.setHeaderText("Archivo eliminado o corrupto");
+            alert.show();
+
+        } catch (MemberLimitException e) {
+            e.message();
         }
     }
 
@@ -151,6 +160,14 @@ public class SelectionWindowController implements Initializable {
 
         }catch (EmptyDataException e){
             e.message();
+
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "Archivo con los datos de los miembros de la faccion fue eliminado, o esta corrupto", ButtonType.CLOSE);
+            alert.setHeaderText("Archivo eliminado o corrupto");
+            alert.show();
+
+        } catch (MemberLimitException e) {
+            e.message();
         }
     }
 
@@ -172,6 +189,14 @@ public class SelectionWindowController implements Initializable {
             alert.show();
 
         }catch (EmptyDataException e){
+            e.message();
+
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Causado por:\n" + "Archivo con los datos de los miembros de la faccion fue eliminado, o esta corrupto", ButtonType.CLOSE);
+            alert.setHeaderText("Archivo eliminado o corrupto");
+            alert.show();
+
+        }catch (MemberLimitException e){
             e.message();
         }
     }
@@ -200,6 +225,10 @@ public class SelectionWindowController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Se encarga de decidir el tiempo de duracion de la partida, de acuerdo a la experiencia del capitan de la faccion, escogida.
+     * @param levelExperience Es la experiencia del capitan de la
+     */
     private void chooseTime(Leader.LevelExperience levelExperience){
         switch (levelExperience){
             case LOW:
